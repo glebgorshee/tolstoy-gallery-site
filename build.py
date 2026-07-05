@@ -181,7 +181,6 @@ def footer():
   </div>
   <div class="ft-bottom">
     <span>© 2026 Art Gallery Tolstoy</span>
-    <span class="ft-draft">рыба — черновая структура</span>
   </div>
 </footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -214,7 +213,6 @@ def build_index():
 <section class="hero">
   <div class="hero-bg"><img src="{IMG}/site/new-slide3.jpg" alt=""></div>
   <div class="hero-in">
-    <p class="hero-kicker" data-ru="Москва · с 2016" data-en="Moscow · since 2016">Москва · с 2016</p>
     <h1 class="hero-title">Art Gallery<br>Tolstoy</h1>
     <p class="hero-sub" data-ru="Коллекция живописи и скульптуры современных европейских художников" data-en="A collection of paintings and sculptures by modern European artists">Коллекция живописи и скульптуры современных европейских художников</p>
     <a class="btn btn-light" href="collections.html" data-ru="Смотреть коллекцию" data-en="View collection">Смотреть коллекцию</a>
