@@ -36,26 +36,30 @@ document.documentElement.classList.add('js');
     header.classList.add('solid');
   });
 
-  /* ---- анимации: вход героя, параллакс, каскадный reveal ---- */
+  /* ---- анимации ----
+     Вход первого экрана — на чистом CSS (класс intro-anim + .ready),
+     НЕ на GSAP: контент не должен зависеть от rAF-тикера (в фоне/headless он стопорится).
+     GSAP оставляем только для параллакса — он ничего не прячет. */
   var canAnimate = window.gsap && window.ScrollTrigger && !reduce;
   if (canAnimate) gsap.registerPlugin(ScrollTrigger);
 
-  if (canAnimate) {
-    // вход шапки
-    gsap.from('#siteHeader .hd-inner', { y: -22, autoAlpha: 0, duration: .7, ease: 'power2.out', clearProps: 'all' });
-
-    // каскадный вход первого экрана (герой / шапка страницы)
-    var introSel = ['.hero-kicker', '.hero-title', '.hero-sub', '.hero .btn',
+  if (!reduce) {
+    // помечаем элементы первого экрана и запускаем каскад после отрисовки
+    var introSel = ['.hero-title', '.hero-sub', '.hero .btn',
                     '.ah-years', '.ah-name', '.ah-en',
                     '.ph-kicker', '.page-head h1', '.filters'];
     var intro = introSel.map(function (s) { return document.querySelector(s); }).filter(Boolean);
-    if (intro.length) {
-      gsap.from(intro, {
-        y: 34, autoAlpha: 0, duration: .9, ease: 'power3.out',
-        stagger: .12, delay: .15, clearProps: 'all'
-      });
-    }
+    intro.forEach(function (el, i) {
+      el.classList.add('intro-anim');
+      el.style.setProperty('--i', i);
+    });
+    // setTimeout, а не rAF: rAF стопорится в фоне/headless и оставил бы герой невидимым
+    setTimeout(function () {
+      intro.forEach(function (el) { el.classList.add('ready'); });
+    }, 60);
+  }
 
+  if (canAnimate) {
     // лёгкий параллакс фоновой работы в герое (scale даёт запас, чтобы не оголялись края)
     var heroEl = document.querySelector('.hero, .artist-hero');
     var heroBg = heroEl && heroEl.querySelector('.hero-bg img, .ah-img img');

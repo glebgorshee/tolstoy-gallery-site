@@ -37,6 +37,12 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .js .reveal{opacity:0;transform:translateY(24px)}
 .reveal.in{opacity:1;transform:none;transition:opacity .8s var(--ease),transform .8s var(--ease)}
 
+/* вход первого экрана — CSS-каскад (не GSAP), база видима без JS */
+.js .intro-anim{opacity:0;transform:translateY(26px)}
+.js .intro-anim.ready{opacity:1;transform:none;
+  transition:opacity .9s var(--ease),transform .9s var(--ease);
+  transition-delay:calc(var(--i,0) * 90ms)}
+
 /* ---------- header ---------- */
 .site-header{
   position:fixed;top:0;left:0;right:0;z-index:100;
@@ -45,15 +51,17 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
   color:#fff;mix-blend-mode:normal;
 }
 .site-header.solid{background:rgba(255,255,255,.92);backdrop-filter:blur(10px);color:var(--fg);padding:14px 0;box-shadow:0 1px 0 var(--line)}
-.hd-inner{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad);display:flex;align-items:center;justify-content:space-between}
-.brand{font-family:var(--serif);font-size:20px;letter-spacing:.02em;font-weight:400}
+.hd-inner{position:relative;max-width:var(--maxw);margin:0 auto;padding:0 var(--pad);display:flex;align-items:center;justify-content:space-between}
+.brand{font-family:var(--serif);font-size:17px;letter-spacing:.02em;font-weight:400}
 .brand span{font-style:italic}
-.hd-right{display:flex;align-items:center;gap:28px}
-.nav{display:flex;align-items:center;gap:32px}
-.nav a{font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;position:relative;padding-bottom:3px}
-.nav a::after{content:'';position:absolute;left:0;bottom:0;width:0;height:1px;background:currentColor;transition:width .35s var(--ease)}
+.hd-right{display:flex;align-items:center;gap:22px}
+/* меню по центру, как у Eden: спокойный регистр, мелкий гротеск */
+.nav{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;align-items:center;gap:34px}
+.nav a{font-size:15px;letter-spacing:.01em;font-weight:400;position:relative;padding-bottom:4px;opacity:.92}
+.nav a::after{content:'';position:absolute;left:0;bottom:0;width:0;height:1px;background:currentColor;transition:width .4s var(--ease)}
+.nav a:hover{opacity:1}
 .nav a:hover::after,.nav a.active::after{width:100%}
-.lang{font-size:12px;letter-spacing:.14em;font-weight:600;border:1px solid currentColor;border-radius:20px;padding:5px 12px;opacity:.85}
+.lang{font-size:12px;letter-spacing:.08em;font-weight:500;border:1px solid currentColor;border-radius:100px;padding:7px 14px;opacity:.85;transition:.4s var(--ease)}
 .lang:hover{opacity:1}
 .burger{display:none;width:34px;height:22px;position:relative}
 .burger span{position:absolute;left:0;width:100%;height:2px;background:currentColor;transition:.3s var(--ease)}
@@ -64,24 +72,28 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .mobile-menu.open{transform:none}
 .mobile-menu a{font-family:var(--serif);font-size:30px}
 
-/* ---------- hero ---------- */
-.hero{position:relative;height:100svh;min-height:600px;display:flex;align-items:flex-end;color:#fff;overflow:hidden}
+/* ---------- hero (контент по центру, как у Eden) ---------- */
+.hero{position:relative;height:100svh;min-height:600px;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;overflow:hidden}
 .hero-bg{position:absolute;inset:0;z-index:0}
-.hero-bg img{width:100%;height:100%;object-fit:cover;filter:brightness(.72)}
-.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.05) 40%,rgba(0,0,0,.55))}
-.hero-in{position:relative;z-index:2;max-width:var(--maxw);margin:0 auto;width:100%;padding:0 var(--pad) clamp(60px,10vh,120px)}
-.hero-kicker{font-size:13px;letter-spacing:.24em;text-transform:uppercase;margin-bottom:20px;opacity:.9}
-.hero-title{font-family:var(--serif);font-weight:300;line-height:.95;font-size:clamp(3.2rem,11vw,9rem);letter-spacing:-.02em}
-.hero-sub{font-size:clamp(1rem,1.6vw,1.35rem);max-width:520px;margin:26px 0 34px;font-weight:300}
-.scroll-cue{position:absolute;bottom:28px;left:50%;width:1px;height:54px;background:linear-gradient(#fff,transparent);z-index:2;animation:cue 2s var(--ease) infinite}
+.hero-bg img{width:100%;height:100%;object-fit:cover;filter:brightness(.74)}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.28),rgba(0,0,0,.08) 45%,rgba(0,0,0,.42))}
+.hero-in{position:relative;z-index:2;width:100%;padding:0 var(--pad);display:flex;flex-direction:column;align-items:center}
+.hero-title{font-family:var(--serif);font-weight:400;line-height:1;font-size:clamp(2.6rem,7vw,5.4rem);letter-spacing:-.01em}
+.hero-sub{font-size:clamp(.95rem,1.4vw,1.15rem);max-width:440px;margin:22px auto 32px;font-weight:300;opacity:.92}
+.scroll-cue{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);width:1px;height:54px;background:linear-gradient(#fff,transparent);z-index:2;animation:cue 2.4s var(--ease) infinite}
 @keyframes cue{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
 
-/* ---------- buttons ---------- */
-.btn{display:inline-block;font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;padding:15px 30px;border-radius:2px;transition:.3s var(--ease)}
-.btn-light{background:#fff;color:#141414}
-.btn-light:hover{background:transparent;color:#fff;box-shadow:inset 0 0 0 1px #fff}
-.btn-dark{background:var(--fg);color:#fff}
-.btn-dark:hover{background:var(--accent)}
+/* ---------- buttons (капсулы, медленный ховер как у Eden) ---------- */
+.btn{display:inline-block;font-size:14px;letter-spacing:.02em;font-weight:500;padding:14px 34px;border-radius:100px;transition:background .5s var(--ease),color .5s var(--ease),border-color .5s var(--ease),box-shadow .5s var(--ease);cursor:pointer}
+.btn-light{background:#fff;color:#141414;border:1px solid #fff}
+.btn-light:hover{background:transparent;color:#fff}
+.btn-dark{background:var(--fg);color:#fff;border:1px solid var(--fg)}
+.btn-dark:hover{background:transparent;color:var(--fg)}
+/* liquid glass — только поверх медиа (герой): полупрозрачное стекло с блюром */
+.btn-glass{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.55);
+  backdrop-filter:blur(10px) saturate(1.4);-webkit-backdrop-filter:blur(10px) saturate(1.4);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.28),0 8px 30px rgba(0,0,0,.16)}
+.btn-glass:hover{background:#fff;color:#141414;border-color:#fff;box-shadow:0 10px 34px rgba(0,0,0,.2)}
 
 /* ---------- intro ---------- */
 .intro{padding-top:clamp(80px,14vh,180px);padding-bottom:clamp(80px,14vh,180px)}
@@ -115,9 +127,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .t-meta{font-size:12px;color:var(--muted);letter-spacing:.02em}
 
 /* ---------- page head ---------- */
-.page-head{padding-top:clamp(120px,18vh,220px);padding-bottom:clamp(30px,5vh,60px)}
-.ph-kicker{font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
-.page-head h1{font-family:var(--serif);font-weight:300;font-size:clamp(2.6rem,9vw,6.5rem);letter-spacing:-.02em;line-height:.98}
+.page-head{padding-top:clamp(120px,18vh,210px);padding-bottom:clamp(30px,5vh,60px)}
+.ph-kicker{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+.page-head h1{font-family:var(--serif);font-weight:400;font-size:clamp(2.4rem,7vw,5rem);letter-spacing:-.01em;line-height:1}
 
 /* ---------- artists list ---------- */
 .artist-list{padding-bottom:clamp(60px,10vh,120px);display:flex;flex-direction:column;gap:clamp(40px,8vh,110px)}
@@ -147,7 +159,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 
 /* ---------- filters ---------- */
 .filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:clamp(30px,5vh,50px)}
-.filter{font-size:13px;letter-spacing:.06em;padding:9px 18px;border:1px solid var(--line);border-radius:30px;color:var(--muted);transition:.3s}
+.filter{font-size:13px;letter-spacing:.01em;padding:9px 20px;border:1px solid var(--line);border-radius:100px;color:var(--muted);transition:.4s var(--ease)}
 .filter:hover{border-color:var(--fg);color:var(--fg)}
 .filter.active{background:var(--fg);color:#fff;border-color:var(--fg)}
 .tile.hide{display:none}
@@ -220,6 +232,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;scroll-behavior:auto!important}
-  .js .reveal{opacity:1;transform:none}
-  .reveal.in{transition:none}
+  .js .reveal,.js .intro-anim{opacity:1;transform:none}
+  .reveal.in,.intro-anim.ready{transition:none}
 }
