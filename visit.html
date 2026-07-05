@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Визит — Art Gallery Tolstoy</title>
+<meta name="description" content="Как добраться и записаться в Арт Галерею Толстой">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&family=Noto+Serif:ital,wght@0,300;0,400;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<header class="site-header" id="siteHeader">
+  <div class="hd-inner">
+    <a class="brand" href="index.html">Art Gallery <span>Tolstoy</span></a>
+    <nav class="nav" id="nav">
+      <a href="artists.html" data-ru="Художники" data-en="Artists">Художники</a>
+      <a href="collections.html" data-ru="Коллекция" data-en="Collection">Коллекция</a>
+      <a href="visit.html" class="active" data-ru="Визит" data-en="Visit">Визит</a>
+      <button class="lang" id="langToggle" type="button">EN</button>
+    </nav>
+    <button class="burger" id="burger" aria-label="Меню"><span></span><span></span></button>
+  </div>
+</header>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="artists.html" data-ru="Художники" data-en="Artists">Художники</a>
+  <a href="collections.html" data-ru="Коллекция" data-en="Collection">Коллекция</a>
+  <a href="visit.html" data-ru="Визит" data-en="Visit">Визит</a>
+</div>
+
+
+<section class="page-head container">
+  <p class="ph-kicker" data-ru="Как добраться" data-en="Getting here">Как добраться</p>
+  <h1 data-ru="Визит" data-en="Visit">Визит</h1>
+</section>
+<section class="container visit-grid">
+  <div class="visit-info reveal">
+    <div class="vi-block">
+      <div class="vi-label">Адрес</div>
+      <p class="vi-big">Новинский бульвар, 1/2, Москва</p>
+    </div>
+    <div class="vi-block">
+      <div class="vi-label">Режим</div>
+      <p data-ru="Доступ в галерею — только по предварительной записи. Пожалуйста, свяжитесь с нами, чтобы договориться о визите." data-en="Access to the gallery is by appointment only. Please contact us to make an appointment.">Доступ в галерею — только по предварительной записи. Пожалуйста, свяжитесь с нами, чтобы договориться о визите.</p>
+    </div>
+    <div class="vi-block">
+      <div class="vi-label">Контакты</div>
+      <p><a href="mailto:mf@artgallerytolstoy.com">mf@artgallerytolstoy.com</a> · +7 (916) 999-90-06</p>
+      <p><a href="mailto:mb@artgallerytolstoy.com">mb@artgallerytolstoy.com</a> · +7 (916) 291-31-45</p>
+    </div>
+    <div class="vi-block">
+      <div class="vi-label">Соцсети</div>
+      <p><a href="https://www.facebook.com/artgallerytolstoy/" target="_blank" rel="noopener">Facebook</a></p>
+    </div>
+  </div>
+  <form class="visit-form reveal" onsubmit="return false;">
+    <div class="vf-label">Записаться на визит</div>
+    <input type="text" placeholder="Имя" autocomplete="name">
+    <input type="tel" placeholder="Телефон" autocomplete="tel">
+    <input type="email" placeholder="E-mail" autocomplete="email">
+    <textarea rows="3" placeholder="Комментарий"></textarea>
+    <button class="btn btn-dark" type="submit">Отправить</button>
+    <p class="vf-note">Форма-заглушка. Подключим отправку на почту при запуске.</p>
+  </form>
+</section>
+<section class="map-wrap">
+  <iframe src="https://maps.google.com/maps?q=Новинский+бульвар+1/2+Москва&z=15&output=embed" loading="lazy" title="Карта"></iframe>
+</section>
+<footer class="site-footer">
+  <div class="ft-grid">
+    <div>
+      <div class="ft-brand">Art Gallery Tolstoy</div>
+      <p class="ft-muted">Галерея современного европейского искусства.<br>Вход только по предварительной записи.</p>
+    </div>
+    <div>
+      <div class="ft-label">Адрес</div>
+      <p>Новинский бульвар, 1/2, Москва</p>
+    </div>
+    <div>
+      <div class="ft-label">Контакты</div>
+      <p><a href="mailto:mf@artgallerytolstoy.com">mf@artgallerytolstoy.com</a><br><a href="tel:+79169999006">+7 (916) 999-90-06</a></p>
+      <p><a href="mailto:mb@artgallerytolstoy.com">mb@artgallerytolstoy.com</a><br><a href="tel:+79162913145">+7 (916) 291-31-45</a></p>
+    </div>
+    <div>
+      <div class="ft-label">Соцсети</div>
+      <p><a href="https://www.facebook.com/artgallerytolstoy/" target="_blank" rel="noopener">Facebook</a></p>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <span>© 2026 Art Gallery Tolstoy</span>
+    <span class="ft-draft">рыба — черновая структура</span>
+  </div>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
