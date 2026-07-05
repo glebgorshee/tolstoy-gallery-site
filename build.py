@@ -143,7 +143,7 @@ def header(active=''):
       <nav class="nav" id="nav">
         <a href="artists.html"{cls('artists')} data-ru="Художники" data-en="Artists">Художники</a>
         <a href="collections.html"{cls('collections')} data-ru="Коллекция" data-en="Collection">Коллекция</a>
-        <a href="visit.html"{cls('visit')} data-ru="Визит" data-en="Visit">Визит</a>
+        <a href="contacts.html"{cls('contacts')} data-ru="Контакты" data-en="Contacts">Контакты</a>
       </nav>
       <button class="lang" id="langToggle" type="button">EN</button>
       <button class="burger" id="burger" aria-label="Меню"><span></span><span></span></button>
@@ -153,7 +153,7 @@ def header(active=''):
 <div class="mobile-menu" id="mobileMenu">
   <a href="artists.html" data-ru="Художники" data-en="Artists">Художники</a>
   <a href="collections.html" data-ru="Коллекция" data-en="Collection">Коллекция</a>
-  <a href="visit.html" data-ru="Визит" data-en="Visit">Визит</a>
+  <a href="contacts.html" data-ru="Контакты" data-en="Contacts">Контакты</a>
 </div>
 '''
 
@@ -242,11 +242,11 @@ def build_index():
 
 <section class="visit-cta">
   <div class="container visit-cta-in reveal">
-    <p class="vc-kicker" data-ru="Визит" data-en="Visit">Визит</p>
+    <p class="vc-kicker" data-ru="Контакты" data-en="Contacts">Контакты</p>
     <h2 data-ru="Приходите посмотреть" data-en="Come and see">Приходите посмотреть</h2>
     <p class="vc-addr">{esc(CONTACTS['address'])}</p>
     <p class="vc-note" data-ru="Доступ в галерею — по предварительной записи." data-en="Access to the gallery is by appointment only.">Доступ в галерею — по предварительной записи.</p>
-    <a class="btn btn-dark" href="visit.html" data-ru="Записаться на визит" data-en="Book a visit">Записаться на визит</a>
+    <a class="btn btn-dark" href="contacts.html" data-ru="Записаться на просмотр" data-en="Book a viewing">Записаться на просмотр</a>
   </div>
 </section>
 '''
@@ -317,7 +317,7 @@ def build_artist(a):
     <p class="vc-kicker">Интересует работа?</p>
     <h2>Запишитесь на просмотр</h2>
     <p class="vc-note">Доступ в галерею — по предварительной записи.</p>
-    <a class="btn btn-dark" href="visit.html">Связаться с галереей</a>
+    <a class="btn btn-dark" href="contacts.html">Записаться на просмотр</a>
   </div>
 </section>
 '''
@@ -355,7 +355,7 @@ def build_visit():
     body = f'''
 <section class="page-head container">
   <p class="ph-kicker" data-ru="Как добраться" data-en="Getting here">Как добраться</p>
-  <h1 data-ru="Визит" data-en="Visit">Визит</h1>
+  <h1 data-ru="Контакты" data-en="Contacts">Контакты</h1>
 </section>
 <section class="container visit-grid">
   <div class="visit-info reveal">
@@ -378,7 +378,7 @@ def build_visit():
     </div>
   </div>
   <form class="visit-form reveal" onsubmit="return false;">
-    <div class="vf-label">Записаться на визит</div>
+    <div class="vf-label">Записаться на просмотр</div>
     <input type="text" placeholder="Имя" autocomplete="name">
     <input type="tel" placeholder="Телефон" autocomplete="tel">
     <input type="email" placeholder="E-mail" autocomplete="email">
@@ -391,7 +391,7 @@ def build_visit():
   <iframe src="https://maps.google.com/maps?q={map_q}&z=15&output=embed" loading="lazy" title="Карта"></iframe>
 </section>
 '''
-    return head('Визит — Art Gallery Tolstoy', 'Как добраться и записаться в Арт Галерею Толстой', 'visit') + body + footer()
+    return head('Контакты — Art Gallery Tolstoy', 'Контакты, адрес и запись на просмотр в Арт Галерее Толстой', 'contacts') + body + footer()
 
 # ---------- запись файлов ----------
 def w(path, content):
@@ -405,6 +405,6 @@ w('artists.html', build_artists())
 for a in ARTISTS:
     w(f'artist-{a["slug"]}.html', build_artist(a))
 w('collections.html', build_collections())
-w('visit.html', build_visit())
+w('contacts.html', build_visit())
 print('Работ в каталоге по художникам:', {k: len(v) for k, v in ALL_WORKS.items()})
 print('Готово.')
