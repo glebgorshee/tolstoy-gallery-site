@@ -139,13 +139,15 @@ def header(active=''):
     return f'''<header class="site-header" id="siteHeader">
   <div class="hd-inner">
     <a class="brand" href="index.html">Art Gallery <span>Tolstoy</span></a>
-    <nav class="nav" id="nav">
-      <a href="artists.html"{cls('artists')} data-ru="Художники" data-en="Artists">Художники</a>
-      <a href="collections.html"{cls('collections')} data-ru="Коллекция" data-en="Collection">Коллекция</a>
-      <a href="visit.html"{cls('visit')} data-ru="Визит" data-en="Visit">Визит</a>
+    <div class="hd-right">
+      <nav class="nav" id="nav">
+        <a href="artists.html"{cls('artists')} data-ru="Художники" data-en="Artists">Художники</a>
+        <a href="collections.html"{cls('collections')} data-ru="Коллекция" data-en="Collection">Коллекция</a>
+        <a href="visit.html"{cls('visit')} data-ru="Визит" data-en="Visit">Визит</a>
+      </nav>
       <button class="lang" id="langToggle" type="button">EN</button>
-    </nav>
-    <button class="burger" id="burger" aria-label="Меню"><span></span><span></span></button>
+      <button class="burger" id="burger" aria-label="Меню"><span></span><span></span></button>
+    </div>
   </div>
 </header>
 <div class="mobile-menu" id="mobileMenu">

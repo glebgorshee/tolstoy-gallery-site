@@ -36,22 +36,60 @@ document.documentElement.classList.add('js');
     header.classList.add('solid');
   });
 
-  /* ---- reveal ---- */
+  /* ---- анимации: вход героя, параллакс, каскадный reveal ---- */
+  var canAnimate = window.gsap && window.ScrollTrigger && !reduce;
+  if (canAnimate) gsap.registerPlugin(ScrollTrigger);
+
+  if (canAnimate) {
+    // вход шапки
+    gsap.from('#siteHeader .hd-inner', { y: -22, autoAlpha: 0, duration: .7, ease: 'power2.out', clearProps: 'all' });
+
+    // каскадный вход первого экрана (герой / шапка страницы)
+    var introSel = ['.hero-kicker', '.hero-title', '.hero-sub', '.hero .btn',
+                    '.ah-years', '.ah-name', '.ah-en',
+                    '.ph-kicker', '.page-head h1', '.filters'];
+    var intro = introSel.map(function (s) { return document.querySelector(s); }).filter(Boolean);
+    if (intro.length) {
+      gsap.from(intro, {
+        y: 34, autoAlpha: 0, duration: .9, ease: 'power3.out',
+        stagger: .12, delay: .15, clearProps: 'all'
+      });
+    }
+
+    // лёгкий параллакс фоновой работы в герое (scale даёт запас, чтобы не оголялись края)
+    var heroEl = document.querySelector('.hero, .artist-hero');
+    var heroBg = heroEl && heroEl.querySelector('.hero-bg img, .ah-img img');
+    if (heroEl && heroBg) {
+      gsap.set(heroBg, { scale: 1.12 });
+      gsap.fromTo(heroBg, { yPercent: -4 }, {
+        yPercent: 4, ease: 'none',
+        scrollTrigger: { trigger: heroEl, start: 'top top', end: 'bottom top', scrub: true }
+      });
+    }
+  }
+
+  /* ---- reveal при скролле: IntersectionObserver + каскад внутри пачки ----
+     Нарочно НЕ на ScrollTrigger: показ контента не должен зависеть от rAF,
+     а IO не боится сдвигов layout от lazy-картинок. */
   var reveals = [].slice.call(document.querySelectorAll('.reveal'));
   if (reduce || !('IntersectionObserver' in window)) {
     reveals.forEach(function (el) { el.classList.add('in'); });
-  } else if (window.gsap && window.ScrollTrigger) {
-    gsap.registerPlugin(ScrollTrigger);
-    reveals.forEach(function (el) {
-      ScrollTrigger.create({
-        trigger: el, start: 'top 88%',
-        onEnter: function () { el.classList.add('in'); }
-      });
-    });
   } else {
-    var io = new IntersectionObserver(function (es) {
-      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-    }, { rootMargin: '0px 0px -12% 0px' });
+    var io = new IntersectionObserver(function (entries) {
+      var i = 0;
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var el = e.target;
+        el.style.transitionDelay = Math.min(i * 70, 420) + 'ms'; // ступенька 70мс, потолок 420
+        el.classList.add('in');
+        el.addEventListener('transitionend', function te() {
+          el.style.transitionDelay = '';
+          el.removeEventListener('transitionend', te);
+        });
+        io.unobserve(el);
+        i++;
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
     reveals.forEach(function (el) { io.observe(el); });
   }
 
