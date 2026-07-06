@@ -75,13 +75,14 @@ ARTISTS = [
 ]
 # ключи сортировки по фамилии (для обоих языков). Базовый порядок в DOM — по RU,
 # на EN список пересортировывается в JS (порядки не совпадают).
+# сортировка по ОТОБРАЖАЕМОМУ имени (Имя Фамилия) — чтобы список читался по алфавиту
 SORT_KEYS = {
-    'accardi':    ('аккарди',  'accardi'),
-    'bashev':     ('башев',    'bashev'),
-    'julie-jaler':('жалер',    'jaler'),
-    'kiko':       ('кико',     'kiko'),
-    'tamburro':   ('тамбурро', 'tamburro'),
-    'van-apple':  ('ван эппл', 'van apple'),
+    'accardi':    ('анджело',  'angelo'),      # Анджело Аккарди
+    'tamburro':   ('антонио',  'antonio'),     # Антонио Тамбурро
+    'julie-jaler':('джули',    'julie'),       # Джули Жалер
+    'van-apple':  ('дидерик',  'diederik'),    # Дидерик ван Эппл
+    'kiko':       ('кико',     'kiko'),        # KIKO
+    'bashev':     ('максим',   'maxim'),       # Максим Башев
 }
 for a in ARTISTS:
     a['sort_ru'], a['sort_en'] = SORT_KEYS[a['key']]
@@ -169,6 +170,9 @@ def kiko_works():
                         size='', sold=False, imgs=[rel], artist='kiko'))
     return out
 
+# у сплошных конфет обложкой встал «зад» — ставим кадр с надписью бренда первым (0-based индекс)
+JULIE_FRONT = {'coco-blanc': 1, 'coco-noir': 2, 'hermes-1': 1, 'herm-s-ii': 1}
+
 def julie_works():
     data = json.load(open(os.path.join(ROOT, 'data/julie_works.json'), encoding='utf-8'))
     out = []
@@ -176,6 +180,9 @@ def julie_works():
         imgs = [i for i in w['imgs'] if os.path.exists(os.path.join(ROOT, i))]
         if not imgs:
             continue
+        fi = JULIE_FRONT.get(w['slug'])
+        if fi is not None and fi < len(imgs):
+            imgs = [imgs[fi]] + imgs[:fi] + imgs[fi + 1:]   # фронт — первым
         out.append(dict(title=w['title'], tech_ru='Смола', tech_en='Resin', size=w.get('size', ''),
                         sold=False, imgs=imgs, artist='julie-jaler'))
     return out
