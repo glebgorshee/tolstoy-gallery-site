@@ -114,6 +114,24 @@ document.documentElement.classList.add('js');
     });
   }
 
+  /* ---- карусель ракурсов прямо в плитке (стрелки меняют ракурс) ---- */
+  document.querySelectorAll('.tile.multi').forEach(function (tile) {
+    var imgs = (tile.getAttribute('data-images') || '').split('|').filter(Boolean);
+    if (imgs.length < 2) return;
+    var img = tile.querySelector('.tile-img img');
+    var count = tile.querySelector('.ti-count');
+    var i = 0;
+    function set(n) {
+      i = (n + imgs.length) % imgs.length;
+      img.src = imgs[i];
+      tile.setAttribute('data-full', imgs[i]);          // лайтбокс откроется на текущем ракурсе
+      if (count) count.textContent = (i + 1) + ' / ' + imgs.length;
+    }
+    var prev = tile.querySelector('.ti-prev'), next = tile.querySelector('.ti-next');
+    if (prev) prev.addEventListener('click', function (e) { e.stopPropagation(); set(i - 1); });
+    if (next) next.addEventListener('click', function (e) { e.stopPropagation(); set(i + 1); });
+  });
+
   /* ---- lightbox ---- */
   var tiles = [].slice.call(document.querySelectorAll('.tile[data-full]'));
   if (tiles.length) {
@@ -128,37 +146,59 @@ document.documentElement.classList.add('js');
     var lbImg = lb.querySelector('img'),
         lbT = lb.querySelector('.lc-title'),
         lbM = lb.querySelector('.lc-meta');
-    var cur = 0;
-    function show(i) {
+    var mode = 'works', cur = 0, angles = [], aIdx = 0, angleTile = null;
+
+    function metaOf(t, extra) {
+      var meta = t.getAttribute('data-meta') || '';
+      if (t.getAttribute('data-sold') === '1') meta += (meta ? ' · ' : '') + 'Продано';
+      if (extra) meta += (meta ? ' · ' : '') + extra;
+      return meta;
+    }
+    function showWork(i) {                     // листаем между работами
       var visible = tiles.filter(function (t) { return !t.classList.contains('hide'); });
       if (!visible.length) return;
       cur = (i + visible.length) % visible.length;
       var t = visible[cur];
       lbImg.src = t.getAttribute('data-full');
       lbT.textContent = t.getAttribute('data-title') || '';
-      var meta = t.getAttribute('data-meta') || '';
-      if (t.getAttribute('data-sold') === '1') meta += (meta ? ' · ' : '') + 'Продано';
-      lbM.textContent = meta;
-      lb._visible = visible;
+      lbM.textContent = metaOf(t);
     }
+    function showAngle(i) {                     // листаем ракурсы одной работы
+      aIdx = (i + angles.length) % angles.length;
+      lbImg.src = angles[aIdx];
+      lbT.textContent = angleTile.getAttribute('data-title') || '';
+      lbM.textContent = metaOf(angleTile, 'ракурс ' + (aIdx + 1) + ' / ' + angles.length);
+    }
+    function step(d) { if (mode === 'angles') showAngle(aIdx + d); else showWork(cur + d); }
     function open(t) {
-      var visible = tiles.filter(function (x) { return !x.classList.contains('hide'); });
-      show(visible.indexOf(t));
+      var imgs = (t.getAttribute('data-images') || '').split('|').filter(Boolean);
+      if (imgs.length > 1) {
+        mode = 'angles'; angles = imgs; angleTile = t;
+        aIdx = Math.max(0, imgs.indexOf(t.getAttribute('data-full')));
+        showAngle(aIdx);
+      } else {
+        mode = 'works';
+        var visible = tiles.filter(function (x) { return !x.classList.contains('hide'); });
+        showWork(visible.indexOf(t));
+      }
       lb.classList.add('open'); document.body.style.overflow = 'hidden';
     }
     function close() { lb.classList.remove('open'); document.body.style.overflow = ''; }
     tiles.forEach(function (t) {
-      t.addEventListener('click', function () { open(t); });
+      t.addEventListener('click', function (e) {
+        if (e.target.closest('.ti-nav')) return;   // клик по стрелке — не открываем лайтбокс
+        open(t);
+      });
     });
     lb.querySelector('.lb-close').addEventListener('click', close);
-    lb.querySelector('.lb-prev').addEventListener('click', function () { show(cur - 1); });
-    lb.querySelector('.lb-next').addEventListener('click', function () { show(cur + 1); });
+    lb.querySelector('.lb-prev').addEventListener('click', function () { step(-1); });
+    lb.querySelector('.lb-next').addEventListener('click', function () { step(1); });
     lb.addEventListener('click', function (e) { if (e.target === lb) close(); });
     document.addEventListener('keydown', function (e) {
       if (!lb.classList.contains('open')) return;
       if (e.key === 'Escape') close();
-      if (e.key === 'ArrowLeft') show(cur - 1);
-      if (e.key === 'ArrowRight') show(cur + 1);
+      if (e.key === 'ArrowLeft') step(-1);
+      if (e.key === 'ArrowRight') step(1);
     });
   }
 

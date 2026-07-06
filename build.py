@@ -11,19 +11,23 @@ VER = str(int(time.time()))  # версия для сброса кеша CSS/JS 
 
 # ---------- данные о художниках ----------
 ARTISTS = [
-    dict(slug='terenin', order=1, key='terenin',
-         name_ru='Алексей Теренин', name_en='Alexey Terenin',
-         years='р. 1969 · Москва / Прага',
-         portrait=f'{IMG}/site/terenin-home.jpg',
-         short_ru='Магический реализм: всадники, цветы и город снов на стыке культур Запада и Востока.',
-         bio_ru=('Алексей Теренин родился в Москве в 1969 году. В 1993 году окончил Московский '
-                 'архитектурный институт, успешно сочетая в работах образование архитектора и практику '
-                 'художника. Часть детства провёл в Праге, что впитало в его творчество наследие культур '
-                 'Запада и Востока. Искусствовед Алексей Вахманов определил этот стиль как магический '
-                 'реализм. Первая персональная выставка — 1992, галерея «М’Арс». В 1997 году работал '
-                 'художником-постановщиком балета «Каприччио» Стравинского (реж. Алексей Ратманский) на '
-                 'сцене Большого театра. Живёт и работает в Праге. В России эксклюзивно представлен Арт '
-                 'Галереей Толстой.')),
+    dict(slug='kiko', order=1, key='kiko',
+         name_ru='KIKO', name_en='KIKO',
+         years='Современный художник',
+         portrait=f'{IMG}/site/kiko-portrait.jpg',
+         short_ru='Экспрессивные портреты из цветных росчерков — на грани абстракции и фигуратива.',
+         bio_ru=('KIKO — современный художник, работающий в экспрессивной манере: многослойные цветные '
+                 'росчерки и мазки складываются в портреты и образы на грани абстракции и фигуратива. '
+                 '[Черновая справка — биографию уточним у художника.]')),
+    dict(slug='julie-jaler', order=2, key='julie-jaler',
+         name_ru='Джули Жалер', name_en='Julie Jaler',
+         years='Париж',
+         portrait=f'{IMG}/site/julie-portrait.jpg',
+         short_ru='Гиперреалистичные скульптуры-конфеты из смолы в мотивах люксовых домов.',
+         bio_ru=('Джули Жалер (Julie Jaler) — французская художница-скульптор из Парижа. Создаёт '
+                 'гиперреалистичные скульптуры-конфеты из смолы, оборачивая их в мотивы люксовых домов — '
+                 'переосмысление роскоши, поп-арта и объекта желания. Каждая работа существует в нескольких '
+                 'ракурсах. [Черновая справка — биографию уточним у художницы.]')),
     dict(slug='accardi', order=2, key='accardi',
          name_ru='Анджело Аккарди', name_en='Angelo Accardi',
          years='р. 1964 · Италия',
@@ -44,16 +48,6 @@ ARTISTS = [
                  'в Риме. Выставлялся в престижных галереях Италии, Монако, Швейцарии, Австрии, Германии и '
                  'США. В его работах преобладают оттенки белого и синего, жёлтого и охры. Акцент сделан на '
                  'фигуре в движении и на форме; композиция всегда полна динамики.')),
-    dict(slug='mirogi', order=4, key='mirogi',
-         name_ru='MiRoGi', name_en='Michèle Rousselot-Gilbert',
-         years='р. 1957 · Франция',
-         portrait=f'{IMG}/site/michele-home.jpg',
-         short_ru='Скульптура женского тела: чувственность без вульгарности.',
-         bio_ru=('Мишель Руссело-Жильбер (MiRoGi) родилась в 1957 году во Франции. Скульптурой занимается '
-                 'с 1999 года. Самоучка с прекрасным пониманием человеческого тела (по образованию '
-                 'физиотерапевт и остеопат), что дало ей уникальное видение движения в скульптуре. Она '
-                 'выражает женскую чувственность в телесных формах, наполненных жизнью, работая в '
-                 'эротическом стиле, но без вульгарности — показывая возможные пути женского обольщения.')),
     dict(slug='van-apple', order=5, key='van-apple',
          name_ru='Дидерик ван Эппл', name_en='Diederik van Apple',
          years='р. 1985 · Нидерланды',
@@ -82,12 +76,12 @@ ARTISTS = [
 # ключи сортировки по фамилии (для обоих языков). Базовый порядок в DOM — по RU,
 # на EN список пересортировывается в JS (порядки не совпадают).
 SORT_KEYS = {
-    'accardi':  ('аккарди',  'accardi'),
-    'bashev':   ('башев',    'bashev'),
-    'mirogi':   ('мироги',   'mirogi'),
-    'tamburro': ('тамбурро', 'tamburro'),
-    'terenin':  ('теренин',  'terenin'),
-    'van-apple':('ван эппл', 'van apple'),
+    'accardi':    ('аккарди',  'accardi'),
+    'bashev':     ('башев',    'bashev'),
+    'julie-jaler':('жалер',    'jaler'),
+    'kiko':       ('кико',     'kiko'),
+    'tamburro':   ('тамбурро', 'tamburro'),
+    'van-apple':  ('ван эппл', 'van apple'),
 }
 for a in ARTISTS:
     a['sort_ru'], a['sort_en'] = SORT_KEYS[a['key']]
@@ -112,7 +106,30 @@ def local_work_img(artist_key, slug, remote_url):
             return p
     return None
 
+def kiko_works():
+    out = []
+    for p in sorted(glob.glob(os.path.join(ROOT, f'{IMG}/works/kiko/*.jpg'))):
+        rel = os.path.relpath(p, ROOT).replace(os.sep, '/')
+        out.append(dict(title='', tech='Акрил, смешанная техника', size='', sold=False,
+                        imgs=[rel], artist='kiko'))
+    return out
+
+def julie_works():
+    data = json.load(open(os.path.join(ROOT, 'data/julie_works.json'), encoding='utf-8'))
+    out = []
+    for w in data:
+        imgs = [i for i in w['imgs'] if os.path.exists(os.path.join(ROOT, i))]
+        if not imgs:
+            continue
+        out.append(dict(title=w['title'], tech='Смола / resin', size=w.get('size', ''),
+                        sold=False, imgs=imgs, artist='julie-jaler'))
+    return out
+
 def works_of(artist_key):
+    if artist_key == 'kiko':
+        return kiko_works()
+    if artist_key == 'julie-jaler':
+        return julie_works()
     out = []
     for it in catalog.get(artist_key, []):
         img = local_work_img(artist_key, it['slug'], it.get('image'))
@@ -122,7 +139,7 @@ def works_of(artist_key):
         tech = meta[1] if len(meta) > 1 else ''
         size = meta[2] if len(meta) > 2 else ''
         sold = 'SOLD' in meta
-        out.append(dict(title=it['title'], tech=tech, size=size, sold=sold, img=img,
+        out.append(dict(title=it['title'], tech=tech, size=size, sold=sold, imgs=[img],
                         artist=artist_key))
     return out
 
@@ -204,18 +221,28 @@ def footer():
 </body>
 </html>'''
 
-def work_tile(w, idx):
+def work_tile(w, idx=0):
+    imgs = w.get('imgs') or [w.get('img')]
+    cover = imgs[0]
+    multi = len(imgs) > 1
     badge = '<span class="badge">Продано</span>' if w['sold'] else ''
     meta = ' · '.join(x for x in (w['tech'], w['size']) if x)
-    return f'''<figure class="tile reveal" data-index="{idx}" data-title="{esc(w['title'])}" data-meta="{esc(meta)}" data-sold="{'1' if w['sold'] else '0'}" data-full="{esc(w['img'])}">
-  <div class="tile-img"><img src="{esc(w['img'])}" alt="{esc(w['title'])}" loading="lazy">{badge}</div>
-  <figcaption><span class="t-title">{esc(w['title'])}</span><span class="t-meta">{esc(meta)}</span></figcaption>
+    title_html = f'<span class="t-title">{esc(w["title"])}</span>' if w['title'] else ''
+    candy = ' candy' if w.get('artist') == 'julie-jaler' else ''
+    nav = ''
+    if multi:
+        nav = ('<button class="ti-nav ti-prev" aria-label="Предыдущий ракурс">‹</button>'
+               '<button class="ti-nav ti-next" aria-label="Следующий ракурс">›</button>'
+               f'<span class="ti-count">1 / {len(imgs)}</span>')
+    return f'''<figure class="tile reveal{' multi' if multi else ''}{candy}" data-artist="{esc(w.get('artist',''))}" data-title="{esc(w['title'])}" data-meta="{esc(meta)}" data-sold="{'1' if w['sold'] else '0'}" data-images="{esc('|'.join(imgs))}" data-full="{esc(cover)}">
+  <div class="tile-img"><img src="{esc(cover)}" alt="{esc(w['title'])}" loading="lazy">{badge}{nav}</div>
+  <figcaption>{title_html}<span class="t-meta">{esc(meta)}</span></figcaption>
 </figure>'''
 
 # ---------- главная ----------
 def build_index():
     featured = []
-    for key in ('accardi', 'van-apple', 'terenin', 'mirogi'):
+    for key in ('julie-jaler', 'accardi', 'van-apple', 'kiko'):
         featured += ALL_WORKS[key][:3]
     tiles = ''.join(work_tile(w, i) for i, w in enumerate(featured))
     artist_cards = ''.join(f'''<a class="a-card reveal" href="artist-{a['slug']}.html" data-sru="{esc(a['sort_ru'])}" data-sen="{esc(a['sort_en'])}">
@@ -343,13 +370,9 @@ def build_collections():
         filters += (f'<button class="filter" data-f="{a["key"]}" data-sru="{esc(a["sort_ru"])}" data-sen="{esc(a["sort_en"])}" '
                     f'data-ru="{esc(a["name_ru"])}" data-en="{esc(a["name_en"])}">{esc(a["name_ru"])}</button>')
     tiles = ''
-    idx = 0
     for a in ARTISTS:
         for w in ALL_WORKS[a['key']]:
-            t = work_tile(w, idx)
-            t = t.replace('class="tile reveal"', f'class="tile reveal" data-artist="{a["key"]}"')
-            tiles += t
-            idx += 1
+            tiles += work_tile(w)   # data-artist проставляется внутри work_tile
     body = f'''
 <section class="page-head container">
   <p class="ph-kicker" data-ru="Живопись и скульптура" data-en="Paintings and sculpture">Живопись и скульптура</p>
