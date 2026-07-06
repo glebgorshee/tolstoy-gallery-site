@@ -13,16 +13,18 @@ document.documentElement.classList.add('js');
     if (window.ScrollTrigger) lenis.on('scroll', ScrollTrigger.update);
   }
 
-  /* ---- header: прозрачный над героем -> плотный при скролле ---- */
+  /* ---- header: прозрачный над тёмным героем -> плотный при скролле ----
+     На страницах с .page-head (белый фон) шапка плотная ВСЕГДА,
+     иначе белый текст на белом = невидимо. */
   var header = document.getElementById('siteHeader');
-  var hero = document.querySelector('.hero, .artist-hero, .page-head');
+  var hero = document.querySelector('.hero, .artist-hero');
+  var alwaysSolid = !hero; // нет тёмного героя (page-head/обычная страница) → всегда solid
   function onScroll() {
-    var threshold = hero ? hero.offsetHeight - 90 : 60;
+    if (alwaysSolid) { header.classList.add('solid'); return; }
+    var threshold = hero.offsetHeight - 90;
     if (window.scrollY > threshold) header.classList.add('solid');
     else header.classList.remove('solid');
   }
-  // страницы без тёмного героя (page-head на белом) — сразу плотный header
-  if (hero && hero.classList.contains('page-head')) header.classList.add('solid');
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
 

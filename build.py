@@ -3,10 +3,11 @@
 """Генератор статического сайта Art Gallery Tolstoy (рыба).
 Читает data/catalog.json + картинки в assets/img, собирает HTML-страницы.
 Запуск:  python3 build.py"""
-import json, os, re, html, glob, shutil
+import json, os, re, html, glob, shutil, time
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 IMG = 'assets/img'
+VER = str(int(time.time()))  # версия для сброса кеша CSS/JS при каждой пересборке
 
 # ---------- данные о художниках ----------
 ARTISTS = [
@@ -128,7 +129,7 @@ def head(title, desc, active=''):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&family=Noto+Serif:ital,wght@0,300;0,400;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/style.css?v={VER}">
 </head>
 <body>
 {header(active)}
@@ -138,16 +139,16 @@ def header(active=''):
     def cls(name): return ' class="active"' if name == active else ''
     return f'''<header class="site-header" id="siteHeader">
   <div class="hd-inner">
-    <a class="brand" href="index.html">Art Gallery <span>Tolstoy</span></a>
-    <div class="hd-right">
-      <nav class="nav" id="nav">
-        <a href="artists.html"{cls('artists')} data-ru="Художники" data-en="Artists">Художники</a>
-        <a href="collections.html"{cls('collections')} data-ru="Коллекция" data-en="Collection">Коллекция</a>
-        <a href="contacts.html"{cls('contacts')} data-ru="Контакты" data-en="Contacts">Контакты</a>
-      </nav>
-      <button class="lang" id="langToggle" type="button">EN</button>
+    <div class="hd-top">
       <button class="burger" id="burger" aria-label="Меню"><span></span><span></span></button>
+      <a class="brand" href="index.html">Art Gallery <span>Tolstoy</span></a>
+      <button class="lang" id="langToggle" type="button">EN</button>
     </div>
+    <nav class="nav" id="nav">
+      <a href="artists.html"{cls('artists')} data-ru="Художники" data-en="Artists">Художники</a>
+      <a href="collections.html"{cls('collections')} data-ru="Коллекция" data-en="Collection">Коллекция</a>
+      <a href="contacts.html"{cls('contacts')} data-ru="Контакты" data-en="Contacts">Контакты</a>
+    </nav>
   </div>
 </header>
 <div class="mobile-menu" id="mobileMenu">
@@ -186,7 +187,7 @@ def footer():
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-<script src="assets/js/main.js"></script>
+<script src="assets/js/main.js?v={VER}"></script>
 </body>
 </html>'''
 

@@ -51,19 +51,19 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
   color:#fff;mix-blend-mode:normal;
 }
 .site-header.solid{background:rgba(255,255,255,.92);backdrop-filter:blur(10px);color:var(--fg);padding:14px 0;box-shadow:0 1px 0 var(--line)}
-.hd-inner{position:relative;max-width:var(--maxw);margin:0 auto;padding:0 var(--pad);display:flex;align-items:center;justify-content:space-between}
-.brand{font-family:var(--serif);font-size:17px;letter-spacing:.02em;font-weight:400}
+/* шапка как у Eden: название по центру сверху, меню под ним */
+.hd-inner{position:relative;max-width:var(--maxw);margin:0 auto;padding:0 var(--pad);display:flex;flex-direction:column;align-items:center;gap:13px}
+.hd-top{position:relative;width:100%;display:flex;align-items:center;justify-content:center;min-height:28px}
+.brand{font-family:var(--serif);font-size:20px;letter-spacing:.05em;font-weight:400}
 .brand span{font-style:italic}
-.hd-right{display:flex;align-items:center;gap:22px}
-/* меню по центру, как у Eden: спокойный регистр, мелкий гротеск */
-.nav{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;align-items:center;gap:34px}
+.nav{display:flex;align-items:center;gap:34px}
 .nav a{font-size:15px;letter-spacing:.01em;font-weight:400;position:relative;padding-bottom:4px;opacity:.92}
 .nav a::after{content:'';position:absolute;left:0;bottom:0;width:0;height:1px;background:currentColor;transition:width .4s var(--ease)}
 .nav a:hover{opacity:1}
 .nav a:hover::after,.nav a.active::after{width:100%}
-.lang{font-size:12px;letter-spacing:.08em;font-weight:500;border:1px solid currentColor;border-radius:100px;padding:7px 14px;opacity:.85;transition:.4s var(--ease)}
+.lang{position:absolute;right:0;top:50%;transform:translateY(-50%);font-size:12px;letter-spacing:.08em;font-weight:500;border:1px solid currentColor;border-radius:100px;padding:7px 14px;opacity:.85;transition:opacity .4s var(--ease),background .4s var(--ease),color .4s var(--ease)}
 .lang:hover{opacity:1}
-.burger{display:none;width:34px;height:22px;position:relative}
+.burger{display:none;width:30px;height:20px;position:absolute;left:0;top:50%;transform:translateY(-50%)}
 .burger span{position:absolute;left:0;width:100%;height:2px;background:currentColor;transition:.3s var(--ease)}
 .burger span:first-child{top:4px}.burger span:last-child{bottom:4px}
 .burger.open span:first-child{top:10px;transform:rotate(45deg)}
@@ -215,8 +215,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 @media(max-width:768px){
   .nav{display:none}
   .burger{display:block}
-  .hd-right{gap:16px}
-  .lang{padding:8px 14px;min-height:36px}  /* язык остаётся видимым рядом с бургером */
+  .brand{font-size:17px;letter-spacing:.03em}   /* чтобы название влезало между бургером и языком */
+  .lang{padding:7px 12px}
   .grid{columns:2;column-gap:16px}
   .grid .tile{margin-bottom:20px}
   .artist-row,.artist-row.row-rev{grid-template-columns:1fr;gap:22px}
