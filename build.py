@@ -14,7 +14,7 @@ ARTISTS = [
     dict(slug='kiko', order=1, key='kiko',
          name_ru='KIKO', name_en='KIKO',
          years='Современный художник',
-         portrait=f'{IMG}/site/kiko-portrait.jpg',
+         portrait=f'{IMG}/site/kiko-portrait.jpg', hero_pos='center 15%',
          short_ru='Экспрессивные портреты из цветных росчерков — на грани абстракции и фигуратива.',
          bio_ru=('KIKO — современный художник, работающий в экспрессивной манере: многослойные цветные '
                  'росчерки и мазки складываются в портреты и образы на грани абстракции и фигуратива. '
@@ -22,7 +22,7 @@ ARTISTS = [
     dict(slug='julie-jaler', order=2, key='julie-jaler',
          name_ru='Джули Жалер', name_en='Julie Jaler',
          years='Париж',
-         portrait=f'{IMG}/site/julie-portrait.jpg',
+         portrait=f'{IMG}/site/julie-portrait.jpg', hero_pos='center 12%',
          short_ru='Гиперреалистичные скульптуры-конфеты из смолы в мотивах люксовых домов.',
          bio_ru=('Джули Жалер (Julie Jaler) — французская художница-скульптор из Парижа. Создаёт '
                  'гиперреалистичные скульптуры-конфеты из смолы, оборачивая их в мотивы люксовых домов — '
@@ -51,7 +51,7 @@ ARTISTS = [
     dict(slug='van-apple', order=5, key='van-apple',
          name_ru='Дидерик ван Эппл', name_en='Diederik van Apple',
          years='р. 1985 · Нидерланды',
-         portrait=f'{IMG}/site/van-apple-art-uitnodiging-kopiya.jpg',
+         portrait=f'{IMG}/site/van-apple-art-uitnodiging-kopiya.jpg', hero_pos='center top',
          short_ru='Цифровое mix-media искусство: поп-культура, комиксы, лимитированные серии.',
          bio_ru=('Дидерик ван Эппл родился и вырос в Лейдене, Нидерланды, в 1985 году. Бросил юриспруденцию '
                  'ради творчества; с 2005 года работал арт-представителем галереи в Амстердаме, ездил по '
@@ -62,7 +62,7 @@ ARTISTS = [
     dict(slug='bashev', order=6, key='bashev',
          name_ru='Максим Башев', name_en='Maxim Bashev',
          years='Москва',
-         portrait=f'{IMG}/site/bashev-main1.jpg',
+         portrait=f'{IMG}/site/bashev-main1.jpg', hero_pos='center 15%',
          short_ru='Художник-гуманист: авангард, смешанная техника, фотопортрет в живописи.',
          bio_ru=('Максим Башев — художник, график, фотограф, автор коротких рассказов. Удостоен звания '
                  '«Художник-гуманист» (сертификат вице-президента Fine Arts Sotheby’s Гарри Ф. Метцнера и '
@@ -338,7 +338,7 @@ def build_artist(a):
         gallery_head = 'Работы'
     body = f'''
 <section class="artist-hero">
-  <div class="ah-img"><img src="{esc(a['portrait'])}" alt="{esc(a['name_ru'])}"></div>
+  <div class="ah-img"><img src="{esc(a['portrait'])}" alt="{esc(a['name_ru'])}" style="object-position:{a.get('hero_pos','center center')}"></div>
   <div class="ah-txt container">
     <p class="ah-years">{esc(a['years'])}</p>
     <h1 class="ah-name">{esc(a['name_ru'])}</h1>
