@@ -88,6 +88,61 @@ for a in ARTISTS:
 ARTISTS.sort(key=lambda a: a['sort_ru'])   # базовый порядок — русский алфавит
 ART_BY_KEY = {a['key']: a for a in ARTISTS}
 
+# ---------- английские версии текстов художников ----------
+EN = {
+ 'kiko': dict(
+    years='Contemporary artist',
+    short='Expressive portraits built from colored scribbles — between abstraction and figuration.',
+    bio=('KIKO is a contemporary artist working in an expressive manner: layered colored scribbles and '
+         'strokes come together into portraits and images on the edge of abstraction and figuration. '
+         '[Draft note — biography to be confirmed with the artist.]')),
+ 'julie-jaler': dict(
+    years='Paris',
+    short='Hyperrealistic resin candy sculptures wrapped in the motifs of luxury houses.',
+    bio=('Julie Jaler is a French sculptor-artist based in Paris. She creates hyperrealistic candy '
+         'sculptures in resin, wrapping them in the motifs of luxury houses — a reimagining of luxury, '
+         'pop art and the object of desire. Each work exists in several viewing angles. '
+         '[Draft note — biography to be confirmed with the artist.]')),
+ 'accardi': dict(
+    years='b. 1964 · Italy',
+    short='Ironic, surreal cityscapes of modern life.',
+    bio=('Angelo Accardi was born in 1964 in Sapri, province of Salerno. He studied at the Academy of '
+         'Fine Arts in Naples. In the early 1990s he founded his own painting and sculpture studio near '
+         'his home. Today Accardi’s art is a magical composition of modern life: cityscapes, often ironic '
+         'and surreal. He has taken part in numerous solo and group exhibitions in Italy and around the '
+         'world; his works are in private collections across Europe, the USA and Asia.')),
+ 'tamburro': dict(
+    years='b. 1948 · Italy',
+    short='The figure in motion: white, blue, gold and ochre.',
+    bio=('Antonio Tamburro was born in 1948. He graduated from the Academy of Fine Arts in Naples, then '
+         'in Rome. He has exhibited in prestigious galleries in Italy, Monaco, Switzerland, Austria, '
+         'Germany and the USA. His work is dominated by shades of white and blue, yellow and ochre. The '
+         'emphasis is on the figure in motion and on form; the composition is always full of dynamism.')),
+ 'van-apple': dict(
+    years='b. 1985 · Netherlands',
+    short='Digital mix-media art: pop culture, comics, limited editions.',
+    bio=('Diederik van Apple was born and raised in Leiden, the Netherlands, in 1985. He gave up law for '
+         'art; from 2005 he worked as a gallery art representative in Amsterdam, travelling the world’s '
+         'exhibitions and fairs. He began creating digital mix-media art, combining fantasy with the '
+         'artistic atmosphere of the places he lived. His first limited series (2017) sold out instantly. '
+         'He worked in Ibiza. Today his works are popular in international galleries, among collectors and '
+         'investors.')),
+ 'bashev': dict(
+    years='Moscow',
+    short='Humanist artist: avant-garde, mixed media, photo-portraits in painting.',
+    bio=('Maxim Bashev is an artist, graphic artist, photographer and author of short stories. He was '
+         'awarded the title “Humanist Artist” (certificate from Sotheby’s Vice President of Fine Arts '
+         'Garry F. Metzner and the Aldo Castillo Gallery, Chicago). A contemporary avant-garde artist '
+         'working in mixed media; one of the main features of his manner is the integration of '
+         'photo-portraits into painting. He considers the artist and philosopher Luis Ortega his teacher. '
+         'Among his influences: Velázquez, El Greco, Goya, Dalí, Basquiat, Haring, Dubuffet, Rauschenberg, '
+         'Twombly. He lives and works in Moscow; his works are in museums and private collections in '
+         'Russia, the USA and Europe.')),
+}
+for a in ARTISTS:
+    e = EN[a['key']]
+    a['years_en'], a['short_en'], a['bio_en'] = e['years'], e['short'], e['bio']
+
 CONTACTS = dict(
     address='Новинский бульвар, 1/2, Москва',
     email1='mf@artgallerytolstoy.com', phone1='+7 (916) 999-90-06',
@@ -110,8 +165,8 @@ def kiko_works():
     out = []
     for p in sorted(glob.glob(os.path.join(ROOT, f'{IMG}/works/kiko/*.jpg'))):
         rel = os.path.relpath(p, ROOT).replace(os.sep, '/')
-        out.append(dict(title='', tech='Акрил, смешанная техника', size='', sold=False,
-                        imgs=[rel], artist='kiko'))
+        out.append(dict(title='', tech_ru='Акрил, смешанная техника', tech_en='Acrylic, mixed media',
+                        size='', sold=False, imgs=[rel], artist='kiko'))
     return out
 
 def julie_works():
@@ -121,7 +176,7 @@ def julie_works():
         imgs = [i for i in w['imgs'] if os.path.exists(os.path.join(ROOT, i))]
         if not imgs:
             continue
-        out.append(dict(title=w['title'], tech='Смола / resin', size=w.get('size', ''),
+        out.append(dict(title=w['title'], tech_ru='Смола', tech_en='Resin', size=w.get('size', ''),
                         sold=False, imgs=imgs, artist='julie-jaler'))
     return out
 
@@ -139,8 +194,8 @@ def works_of(artist_key):
         tech = meta[1] if len(meta) > 1 else ''
         size = meta[2] if len(meta) > 2 else ''
         sold = 'SOLD' in meta
-        out.append(dict(title=it['title'], tech=tech, size=size, sold=sold, imgs=[img],
-                        artist=artist_key))
+        out.append(dict(title=it['title'], tech_ru=tech, tech_en=tech, size=size, sold=sold,
+                        imgs=[img], artist=artist_key))
     return out
 
 ALL_WORKS = {a['key']: works_of(a['key']) for a in ARTISTS}
@@ -194,19 +249,19 @@ def footer():
   <div class="ft-grid">
     <div>
       <div class="ft-brand">Art Gallery Tolstoy</div>
-      <p class="ft-muted">Галерея современного европейского искусства.<br>Вход только по предварительной записи.</p>
+      <p class="ft-muted" data-ru="Галерея современного европейского искусства. Вход только по предварительной записи." data-en="A gallery of contemporary European art. Access by appointment only.">Галерея современного европейского искусства. Вход только по предварительной записи.</p>
     </div>
     <div>
-      <div class="ft-label">Адрес</div>
-      <p>{esc(c['address'])}</p>
+      <div class="ft-label" data-ru="Адрес" data-en="Address">Адрес</div>
+      <p data-ru="{esc(c['address'])}" data-en="Novinsky Blvd, 1/2, Moscow">{esc(c['address'])}</p>
     </div>
     <div>
-      <div class="ft-label">Контакты</div>
+      <div class="ft-label" data-ru="Контакты" data-en="Contacts">Контакты</div>
       <p><a href="mailto:{c['email1']}">{c['email1']}</a><br><a href="tel:{c['phone1'].replace(' ','').replace('(','').replace(')','').replace('-','')}">{c['phone1']}</a></p>
       <p><a href="mailto:{c['email2']}">{c['email2']}</a><br><a href="tel:{c['phone2'].replace(' ','').replace('(','').replace(')','').replace('-','')}">{c['phone2']}</a></p>
     </div>
     <div>
-      <div class="ft-label">Соцсети</div>
+      <div class="ft-label" data-ru="Соцсети" data-en="Social">Соцсети</div>
       <p><a href="{c['fb']}" target="_blank" rel="noopener">Facebook</a></p>
     </div>
   </div>
@@ -225,8 +280,11 @@ def work_tile(w, idx=0):
     imgs = w.get('imgs') or [w.get('img')]
     cover = imgs[0]
     multi = len(imgs) > 1
-    badge = '<span class="badge">Продано</span>' if w['sold'] else ''
-    meta = ' · '.join(x for x in (w['tech'], w['size']) if x)
+    tech_ru = w.get('tech_ru', w.get('tech', ''))
+    tech_en = w.get('tech_en', w.get('tech', ''))
+    meta_ru = ' · '.join(x for x in (tech_ru, w['size']) if x)
+    meta_en = ' · '.join(x for x in (tech_en, w['size']) if x)
+    badge = '<span class="badge" data-ru="Продано" data-en="Sold">Продано</span>' if w['sold'] else ''
     title_html = f'<span class="t-title">{esc(w["title"])}</span>' if w['title'] else ''
     candy = ' candy' if w.get('artist') == 'julie-jaler' else ''
     nav = ''
@@ -234,9 +292,9 @@ def work_tile(w, idx=0):
         nav = ('<button class="ti-nav ti-prev" aria-label="Предыдущий ракурс">‹</button>'
                '<button class="ti-nav ti-next" aria-label="Следующий ракурс">›</button>'
                f'<span class="ti-count">1 / {len(imgs)}</span>')
-    return f'''<figure class="tile reveal{' multi' if multi else ''}{candy}" data-artist="{esc(w.get('artist',''))}" data-title="{esc(w['title'])}" data-meta="{esc(meta)}" data-sold="{'1' if w['sold'] else '0'}" data-images="{esc('|'.join(imgs))}" data-full="{esc(cover)}">
+    return f'''<figure class="tile reveal{' multi' if multi else ''}{candy}" data-artist="{esc(w.get('artist',''))}" data-title="{esc(w['title'])}" data-meta-ru="{esc(meta_ru)}" data-meta-en="{esc(meta_en)}" data-sold="{'1' if w['sold'] else '0'}" data-images="{esc('|'.join(imgs))}" data-full="{esc(cover)}">
   <div class="tile-img"><img src="{esc(cover)}" alt="{esc(w['title'])}" loading="lazy">{badge}{nav}</div>
-  <figcaption>{title_html}<span class="t-meta">{esc(meta)}</span></figcaption>
+  <figcaption>{title_html}<span class="t-meta" data-ru="{esc(meta_ru)}" data-en="{esc(meta_en)}">{esc(meta_ru)}</span></figcaption>
 </figure>'''
 
 # ---------- главная ----------
@@ -248,7 +306,7 @@ def build_index():
     artist_cards = ''.join(f'''<a class="a-card reveal" href="artist-{a['slug']}.html" data-sru="{esc(a['sort_ru'])}" data-sen="{esc(a['sort_en'])}">
       <div class="a-card-img"><img src="{esc(a['portrait'])}" alt="{esc(a['name_ru'])}" loading="lazy"></div>
       <div class="a-card-name" data-ru="{esc(a['name_ru'])}" data-en="{esc(a['name_en'])}">{esc(a['name_ru'])}</div>
-      <div class="a-card-years">{esc(a['years'])}</div>
+      <div class="a-card-years" data-ru="{esc(a['years'])}" data-en="{esc(a['years_en'])}">{esc(a['years'])}</div>
     </a>''' for a in ARTISTS)
     body = f'''
 <section class="hero">
@@ -305,10 +363,10 @@ def build_artists():
         rows += f'''<a class="artist-row reveal" href="artist-{a['slug']}.html" data-sru="{esc(a['sort_ru'])}" data-sen="{esc(a['sort_en'])}">
       <div class="ar-img"><img src="{esc(a['portrait'])}" alt="{esc(a['name_ru'])}" loading="lazy"></div>
       <div class="ar-txt">
-        <p class="ar-years">{esc(a['years'])}</p>
+        <p class="ar-years" data-ru="{esc(a['years'])}" data-en="{esc(a['years_en'])}">{esc(a['years'])}</p>
         <h2 class="ar-name" data-ru="{esc(a['name_ru'])}" data-en="{esc(a['name_en'])}">{esc(a['name_ru'])}</h2>
         <p class="ar-en" data-ru="{esc(a['name_en'])}" data-en="{esc(a['name_ru'])}">{esc(a['name_en'])}</p>
-        <p class="ar-short">{esc(a['short_ru'])}</p>
+        <p class="ar-short" data-ru="{esc(a['short_ru'])}" data-en="{esc(a['short_en'])}">{esc(a['short_ru'])}</p>
         <span class="ar-link" data-ru="{cnt_txt} →" data-en="{cnt_en} →">{cnt_txt} →</span>
       </div>
     </a>'''
@@ -332,32 +390,30 @@ def build_artist(a):
             name = os.path.splitext(os.path.basename(v))[0]
             vtiles += f'''<figure class="tile reveal"><div class="tile-img"><video src="{esc(rel)}" muted loop playsinline preload="none"></video></div><figcaption><span class="t-title">{esc(name)}</span></figcaption></figure>'''
         gallery = f'<div class="grid grid-video">{vtiles}</div>' if vtiles else ''
-        gallery_head = 'Видео-работы'
+        gh_ru, gh_en = 'Видео-работы', 'Video works'
     else:
         gallery = f'<div class="grid">{tiles}</div>'
-        gallery_head = 'Работы'
+        gh_ru, gh_en = 'Работы', 'Works'
     body = f'''
 <section class="artist-hero">
   <div class="ah-img"><img src="{esc(a['portrait'])}" alt="{esc(a['name_ru'])}" style="object-position:{a.get('hero_pos','center center')}"></div>
   <div class="ah-txt container">
-    <p class="ah-years">{esc(a['years'])}</p>
-    <h1 class="ah-name">{esc(a['name_ru'])}</h1>
-    <p class="ah-en">{esc(a['name_en'])}</p>
+    <h1 class="ah-name" data-ru="{esc(a['name_ru'])}" data-en="{esc(a['name_en'])}">{esc(a['name_ru'])}</h1>
   </div>
 </section>
 <section class="container artist-bio">
-  <p class="bio reveal">{esc(a['bio_ru'])}</p>
+  <p class="bio reveal" data-ru="{esc(a['bio_ru'])}" data-en="{esc(a['bio_en'])}">{esc(a['bio_ru'])}</p>
 </section>
 <section class="container block">
-  <div class="block-head reveal"><h2>{gallery_head}</h2></div>
+  <div class="block-head reveal"><h2 data-ru="{gh_ru}" data-en="{gh_en}">{gh_ru}</h2></div>
   {gallery}
 </section>
 <section class="visit-cta">
   <div class="container visit-cta-in reveal">
-    <p class="vc-kicker">Интересует работа?</p>
-    <h2>Запишитесь на просмотр</h2>
-    <p class="vc-note">Доступ в галерею — по предварительной записи.</p>
-    <a class="btn btn-dark" href="contacts.html">Записаться на просмотр</a>
+    <p class="vc-kicker" data-ru="Интересует работа?" data-en="Interested in a work?">Интересует работа?</p>
+    <h2 data-ru="Запишитесь на просмотр" data-en="Book a viewing">Запишитесь на просмотр</h2>
+    <p class="vc-note" data-ru="Доступ в галерею — по предварительной записи." data-en="Access to the gallery is by appointment only.">Доступ в галерею — по предварительной записи.</p>
+    <a class="btn btn-dark" href="contacts.html" data-ru="Записаться на просмотр" data-en="Book a viewing">Записаться на просмотр</a>
   </div>
 </section>
 '''
@@ -397,31 +453,31 @@ def build_visit():
 <section class="container visit-grid">
   <div class="visit-info reveal">
     <div class="vi-block">
-      <div class="vi-label">Адрес</div>
-      <p class="vi-big">{esc(c['address'])}</p>
+      <div class="vi-label" data-ru="Адрес" data-en="Address">Адрес</div>
+      <p class="vi-big" data-ru="{esc(c['address'])}" data-en="Novinsky Blvd, 1/2, Moscow">{esc(c['address'])}</p>
     </div>
     <div class="vi-block">
-      <div class="vi-label">Режим</div>
+      <div class="vi-label" data-ru="Режим" data-en="Hours">Режим</div>
       <p data-ru="Доступ в галерею — только по предварительной записи. Пожалуйста, свяжитесь с нами, чтобы договориться о визите." data-en="Access to the gallery is by appointment only. Please contact us to make an appointment.">Доступ в галерею — только по предварительной записи. Пожалуйста, свяжитесь с нами, чтобы договориться о визите.</p>
     </div>
     <div class="vi-block">
-      <div class="vi-label">Контакты</div>
+      <div class="vi-label" data-ru="Контакты" data-en="Contacts">Контакты</div>
       <p><a href="mailto:{c['email1']}">{c['email1']}</a> · {c['phone1']}</p>
       <p><a href="mailto:{c['email2']}">{c['email2']}</a> · {c['phone2']}</p>
     </div>
     <div class="vi-block">
-      <div class="vi-label">Соцсети</div>
+      <div class="vi-label" data-ru="Соцсети" data-en="Social">Соцсети</div>
       <p><a href="{c['fb']}" target="_blank" rel="noopener">Facebook</a></p>
     </div>
   </div>
   <form class="visit-form reveal" onsubmit="return false;">
-    <div class="vf-label">Записаться на просмотр</div>
-    <input type="text" placeholder="Имя" autocomplete="name">
-    <input type="tel" placeholder="Телефон" autocomplete="tel">
-    <input type="email" placeholder="E-mail" autocomplete="email">
-    <textarea rows="3" placeholder="Комментарий"></textarea>
-    <button class="btn btn-dark" type="submit">Отправить</button>
-    <p class="vf-note">Форма-заглушка. Подключим отправку на почту при запуске.</p>
+    <div class="vf-label" data-ru="Записаться на просмотр" data-en="Book a viewing">Записаться на просмотр</div>
+    <input type="text" placeholder="Имя" data-ru="Имя" data-en="Name" autocomplete="name">
+    <input type="tel" placeholder="Телефон" data-ru="Телефон" data-en="Phone" autocomplete="tel">
+    <input type="email" placeholder="E-mail" data-ru="E-mail" data-en="E-mail" autocomplete="email">
+    <textarea rows="3" placeholder="Комментарий" data-ru="Комментарий" data-en="Message"></textarea>
+    <button class="btn btn-dark" type="submit" data-ru="Отправить" data-en="Send">Отправить</button>
+    <p class="vf-note" data-ru="Форма-заглушка. Подключим отправку на почту при запуске." data-en="Placeholder form. Email delivery will be connected at launch.">Форма-заглушка. Подключим отправку на почту при запуске.</p>
   </form>
 </section>
 <section class="map-wrap">

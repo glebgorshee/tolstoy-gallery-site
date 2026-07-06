@@ -149,8 +149,9 @@ document.documentElement.classList.add('js');
     var mode = 'works', cur = 0, angles = [], aIdx = 0, angleTile = null;
 
     function metaOf(t, extra) {
-      var meta = t.getAttribute('data-meta') || '';
-      if (t.getAttribute('data-sold') === '1') meta += (meta ? ' · ' : '') + 'Продано';
+      var lng = document.documentElement.lang === 'en' ? 'en' : 'ru';
+      var meta = t.getAttribute('data-meta-' + lng) || '';
+      if (t.getAttribute('data-sold') === '1') meta += (meta ? ' · ' : '') + (lng === 'en' ? 'Sold' : 'Продано');
       if (extra) meta += (meta ? ' · ' : '') + extra;
       return meta;
     }
@@ -167,10 +168,14 @@ document.documentElement.classList.add('js');
       aIdx = (i + angles.length) % angles.length;
       lbImg.src = angles[aIdx];
       lbT.textContent = angleTile.getAttribute('data-title') || '';
-      lbM.textContent = metaOf(angleTile, 'ракурс ' + (aIdx + 1) + ' / ' + angles.length);
+      var lng = document.documentElement.lang === 'en' ? 'en' : 'ru';
+      var label = (lng === 'en' ? 'view ' : 'ракурс ') + (aIdx + 1) + ' / ' + angles.length;
+      lbM.textContent = metaOf(angleTile, label);
     }
     function step(d) { if (mode === 'angles') showAngle(aIdx + d); else showWork(cur + d); }
     function open(t) {
+      // конфеты Julie Jaler — просмотр на белом фоне
+      lb.classList.toggle('light', t.getAttribute('data-artist') === 'julie-jaler');
       var imgs = (t.getAttribute('data-images') || '').split('|').filter(Boolean);
       if (imgs.length > 1) {
         mode = 'angles'; angles = imgs; angleTile = t;
@@ -217,7 +222,10 @@ document.documentElement.classList.add('js');
   }
   function applyLang() {
     document.querySelectorAll('[data-ru][data-en]').forEach(function (el) {
-      el.textContent = el.getAttribute('data-' + lang);
+      var val = el.getAttribute('data-' + lang);
+      var tag = el.tagName;
+      if (tag === 'INPUT' || tag === 'TEXTAREA') el.placeholder = val;  // плейсхолдеры форм
+      else el.textContent = val;
     });
     reorderByLang(document.querySelector('.artist-strip'), '.a-card');
     reorderByLang(document.querySelector('.artist-list'), '.artist-row');

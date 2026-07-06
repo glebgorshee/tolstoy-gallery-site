@@ -125,8 +125,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .tile figcaption{padding:12px 2px 4px;display:flex;flex-direction:column;gap:2px}
 .t-title{font-family:var(--serif);font-size:1rem}
 .t-meta{font-size:12px;color:var(--muted);letter-spacing:.02em}
-/* конфеты Julie Jaler — прозрачные вырезы, кладём на бумагу с воздухом */
-.tile.candy .tile-img{background:var(--paper);padding:7% 9%}
+/* конфеты Julie Jaler — на белом фоне с воздухом */
+.tile.candy .tile-img{background:#fff;padding:7% 9%}
 .tile.candy:hover .tile-img img{transform:scale(1.03)}
 /* карусель ракурсов в плитке */
 .tile.multi .tile-img{position:relative}
@@ -222,6 +222,11 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .lb-nav{position:absolute;top:50%;transform:translateY(-50%);font-size:44px;color:#fff;opacity:.7;padding:20px;transition:opacity .3s}
 .lb-nav:hover{opacity:1}
 .lb-prev{left:12px}.lb-next{right:12px}
+/* белый режим лайтбокса — для конфет Julie Jaler (полный просмотр на белом) */
+.lb.light{background:rgba(255,255,255,.98)}
+.lb.light img{box-shadow:none}
+.lb.light .lb-close,.lb.light .lb-nav,.lb.light .lc-title{color:#141414}
+.lb.light .lc-meta{color:#8a8a8a}
 
 /* ---------- responsive ---------- */
 @media(max-width:1100px){
