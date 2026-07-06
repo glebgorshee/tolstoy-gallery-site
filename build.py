@@ -79,6 +79,19 @@ ARTISTS = [
                  'в музеях и частных коллекциях России, США и Европы.'),
          is_video=True),
 ]
+# ключи сортировки по фамилии (для обоих языков). Базовый порядок в DOM — по RU,
+# на EN список пересортировывается в JS (порядки не совпадают).
+SORT_KEYS = {
+    'accardi':  ('аккарди',  'accardi'),
+    'bashev':   ('башев',    'bashev'),
+    'mirogi':   ('мироги',   'mirogi'),
+    'tamburro': ('тамбурро', 'tamburro'),
+    'terenin':  ('теренин',  'terenin'),
+    'van-apple':('ван эппл', 'van apple'),
+}
+for a in ARTISTS:
+    a['sort_ru'], a['sort_en'] = SORT_KEYS[a['key']]
+ARTISTS.sort(key=lambda a: a['sort_ru'])   # базовый порядок — русский алфавит
 ART_BY_KEY = {a['key']: a for a in ARTISTS}
 
 CONTACTS = dict(
@@ -205,9 +218,9 @@ def build_index():
     for key in ('accardi', 'van-apple', 'terenin', 'mirogi'):
         featured += ALL_WORKS[key][:3]
     tiles = ''.join(work_tile(w, i) for i, w in enumerate(featured))
-    artist_cards = ''.join(f'''<a class="a-card reveal" href="artist-{a['slug']}.html">
+    artist_cards = ''.join(f'''<a class="a-card reveal" href="artist-{a['slug']}.html" data-sru="{esc(a['sort_ru'])}" data-sen="{esc(a['sort_en'])}">
       <div class="a-card-img"><img src="{esc(a['portrait'])}" alt="{esc(a['name_ru'])}" loading="lazy"></div>
-      <div class="a-card-name">{esc(a['name_ru'])}</div>
+      <div class="a-card-name" data-ru="{esc(a['name_ru'])}" data-en="{esc(a['name_en'])}">{esc(a['name_ru'])}</div>
       <div class="a-card-years">{esc(a['years'])}</div>
     </a>''' for a in ARTISTS)
     body = f'''
@@ -258,28 +271,27 @@ def build_index():
 # ---------- художники ----------
 def build_artists():
     rows = ''
-    for i, a in enumerate(ARTISTS):
-        side = 'row-rev' if i % 2 else ''
+    for a in ARTISTS:
         cnt = len(ALL_WORKS[a['key']])
         cnt_txt = f'{cnt} работ' if not a.get('is_video') else '14 видео-работ'
-        rows += f'''<a class="artist-row reveal {side}" href="artist-{a['slug']}.html">
+        cnt_en = f'{cnt} works' if not a.get('is_video') else '14 video works'
+        rows += f'''<a class="artist-row reveal" href="artist-{a['slug']}.html" data-sru="{esc(a['sort_ru'])}" data-sen="{esc(a['sort_en'])}">
       <div class="ar-img"><img src="{esc(a['portrait'])}" alt="{esc(a['name_ru'])}" loading="lazy"></div>
       <div class="ar-txt">
         <p class="ar-years">{esc(a['years'])}</p>
-        <h2 class="ar-name">{esc(a['name_ru'])}</h2>
-        <p class="ar-en">{esc(a['name_en'])}</p>
+        <h2 class="ar-name" data-ru="{esc(a['name_ru'])}" data-en="{esc(a['name_en'])}">{esc(a['name_ru'])}</h2>
+        <p class="ar-en" data-ru="{esc(a['name_en'])}" data-en="{esc(a['name_ru'])}">{esc(a['name_en'])}</p>
         <p class="ar-short">{esc(a['short_ru'])}</p>
-        <span class="ar-link">{cnt_txt} →</span>
+        <span class="ar-link" data-ru="{cnt_txt} →" data-en="{cnt_en} →">{cnt_txt} →</span>
       </div>
     </a>'''
     body = f'''
 <section class="page-head container">
-  <p class="ph-kicker" data-ru="Ростер галереи" data-en="Gallery roster">Ростер галереи</p>
-  <h1 data-ru="Художники" data-en="Artists">Художники</h1>
+  <h1 data-ru="Художники / Скульпторы" data-en="Artists / Sculptors">Художники / Скульпторы</h1>
 </section>
 <section class="container artist-list">{rows}</section>
 '''
-    return head('Художники — Art Gallery Tolstoy', 'Художники Арт Галереи Толстой', 'artists') + body + footer()
+    return head('Художники — Art Gallery Tolstoy', 'Художники и скульпторы Арт Галереи Толстой', 'artists') + body + footer()
 
 # ---------- страница художника ----------
 def build_artist(a):
@@ -326,9 +338,10 @@ def build_artist(a):
 
 # ---------- коллекция ----------
 def build_collections():
-    filters = '<button class="filter active" data-f="all">Все</button>'
+    filters = '<button class="filter active" data-f="all" data-ru="Все" data-en="All">Все</button>'
     for a in ARTISTS:
-        filters += f'<button class="filter" data-f="{a["key"]}">{esc(a["name_ru"])}</button>'
+        filters += (f'<button class="filter" data-f="{a["key"]}" data-sru="{esc(a["sort_ru"])}" data-sen="{esc(a["sort_en"])}" '
+                    f'data-ru="{esc(a["name_ru"])}" data-en="{esc(a["name_en"])}">{esc(a["name_ru"])}</button>')
     tiles = ''
     idx = 0
     for a in ARTISTS:

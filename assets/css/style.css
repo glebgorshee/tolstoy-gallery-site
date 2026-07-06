@@ -52,12 +52,12 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 }
 .site-header.solid{background:rgba(255,255,255,.92);backdrop-filter:blur(10px);color:var(--fg);padding:14px 0;box-shadow:0 1px 0 var(--line)}
 /* шапка как у Eden: название по центру сверху, меню под ним */
-.hd-inner{position:relative;max-width:var(--maxw);margin:0 auto;padding:0 var(--pad);display:flex;flex-direction:column;align-items:center;gap:13px}
+.hd-inner{position:relative;max-width:var(--maxw);margin:0 auto;padding:0 var(--pad);display:flex;flex-direction:column;align-items:center;gap:20px}
 .hd-top{position:relative;width:100%;display:flex;align-items:center;justify-content:center;min-height:28px}
-.brand{font-family:var(--serif);font-size:20px;letter-spacing:.05em;font-weight:400}
+.brand{font-family:var(--serif);font-size:25px;letter-spacing:.05em;font-weight:400}
 .brand span{font-style:italic}
-.nav{display:flex;align-items:center;gap:34px}
-.nav a{font-size:15px;letter-spacing:.01em;font-weight:400;position:relative;padding-bottom:4px;opacity:.92}
+.nav{display:flex;align-items:center;gap:38px}
+.nav a{font-size:13px;letter-spacing:.02em;font-weight:400;position:relative;padding-bottom:4px;opacity:.82}
 .nav a::after{content:'';position:absolute;left:0;bottom:0;width:0;height:1px;background:currentColor;transition:width .4s var(--ease)}
 .nav a:hover{opacity:1}
 .nav a:hover::after,.nav a.active::after{width:100%}
@@ -134,7 +134,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 /* ---------- artists list ---------- */
 .artist-list{padding-bottom:clamp(60px,10vh,120px);display:flex;flex-direction:column;gap:clamp(40px,8vh,110px)}
 .artist-row{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,80px);align-items:center}
-.artist-row.row-rev .ar-img{order:2}
+.artist-row:nth-child(even) .ar-img{order:2}
 .ar-img{aspect-ratio:4/5;overflow:hidden;background:var(--paper)}
 .ar-img img{width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease)}
 .artist-row:hover .ar-img img{transform:scale(1.04)}
@@ -219,8 +219,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
   .lang{padding:7px 12px}
   .grid{columns:2;column-gap:16px}
   .grid .tile{margin-bottom:20px}
-  .artist-row,.artist-row.row-rev{grid-template-columns:1fr;gap:22px}
-  .artist-row.row-rev .ar-img{order:0}
+  .artist-row{grid-template-columns:1fr;gap:22px}
+  .artist-row:nth-child(even) .ar-img{order:0}
   .visit-grid{grid-template-columns:1fr}
   .ft-grid{grid-template-columns:1fr 1fr}
   .ft-bottom{flex-direction:column;gap:8px}

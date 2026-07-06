@@ -165,10 +165,23 @@ document.documentElement.classList.add('js');
   /* ---- переключение языка RU/EN (базовое) ---- */
   var langBtn = document.getElementById('langToggle');
   var lang = localStorage.getItem('agt-lang') || 'ru';
+  // пересортировка списков художников по алфавиту текущего языка
+  function reorderByLang(container, itemSel) {
+    if (!container) return;
+    var key = 'data-s' + lang; // data-sru | data-sen; у элементов без ключа (напр. «Все») → '' → в начало
+    var items = [].slice.call(container.querySelectorAll(itemSel));
+    items.sort(function (a, b) {
+      return (a.getAttribute(key) || '').localeCompare(b.getAttribute(key) || '', lang);
+    });
+    items.forEach(function (el) { container.appendChild(el); });
+  }
   function applyLang() {
     document.querySelectorAll('[data-ru][data-en]').forEach(function (el) {
       el.textContent = el.getAttribute('data-' + lang);
     });
+    reorderByLang(document.querySelector('.artist-strip'), '.a-card');
+    reorderByLang(document.querySelector('.artist-list'), '.artist-row');
+    reorderByLang(document.getElementById('filters'), '.filter');
     if (langBtn) langBtn.textContent = lang === 'ru' ? 'EN' : 'RU';
     document.documentElement.lang = lang;
   }
