@@ -493,7 +493,7 @@ def build_index():
     <h2 data-ru="Приходите посмотреть" data-en="Come and see">Приходите посмотреть</h2>
     <p class="vc-addr">{esc(CONTACTS['address'])}</p>
     <p class="vc-note" data-ru="Доступ в галерею — по предварительной записи." data-en="Access to the gallery is by appointment only.">Доступ в галерею — по предварительной записи.</p>
-    <a class="btn btn-dark" href="contacts.html" data-ru="Записаться на просмотр" data-en="Book a viewing">Записаться на просмотр</a>
+    <a class="btn btn-dark" href="contacts.html" data-ru="Контакты" data-en="Contacts">Контакты</a>
   </div>
 </section>
 '''
@@ -564,14 +564,6 @@ def build_artist(a):
   <div class="block-head reveal"><h2 data-ru="{gh_ru}" data-en="{gh_en}">{gh_ru}</h2></div>
   {gallery}
 </section>
-<section class="visit-cta">
-  <div class="container visit-cta-in reveal">
-    <p class="vc-kicker" data-ru="Интересует работа?" data-en="Interested in a work?">Интересует работа?</p>
-    <h2 data-ru="Запишитесь на просмотр" data-en="Book a viewing">Запишитесь на просмотр</h2>
-    <p class="vc-note" data-ru="Доступ в галерею — по предварительной записи." data-en="Access to the gallery is by appointment only.">Доступ в галерею — по предварительной записи.</p>
-    <a class="btn btn-dark" href="contacts.html" data-ru="Записаться на просмотр" data-en="Book a viewing">Записаться на просмотр</a>
-  </div>
-</section>
 '''
     return head(f'{a["name_ru"]} — Art Gallery Tolstoy', esc(a['short_ru']), 'artists') + body + footer()
 
@@ -608,7 +600,7 @@ def build_visit():
   <p class="ph-kicker" data-ru="Как добраться" data-en="Getting here">Как добраться</p>
   <h1 data-ru="Контакты" data-en="Contacts">Контакты</h1>
 </section>
-<section class="container visit-grid">
+<section class="container visit-contact">
   <div class="visit-info reveal">
     <div class="vi-block">
       <div class="vi-label" data-ru="Адрес" data-en="Address">Адрес</div>
@@ -628,15 +620,6 @@ def build_visit():
       <p><a href="{c['fb']}" target="_blank" rel="noopener">Facebook</a></p>
     </div>
   </div>
-  <form class="visit-form reveal" onsubmit="return false;">
-    <div class="vf-label" data-ru="Записаться на просмотр" data-en="Book a viewing">Записаться на просмотр</div>
-    <input type="text" placeholder="Имя" data-ru="Имя" data-en="Name" autocomplete="name">
-    <input type="tel" placeholder="Телефон" data-ru="Телефон" data-en="Phone" autocomplete="tel">
-    <input type="email" placeholder="E-mail" data-ru="E-mail" data-en="E-mail" autocomplete="email">
-    <textarea rows="3" placeholder="Комментарий" data-ru="Комментарий" data-en="Message"></textarea>
-    <button class="btn btn-dark" type="submit" data-ru="Отправить" data-en="Send">Отправить</button>
-    <p class="vf-note" data-ru="Форма-заглушка. Подключим отправку на почту при запуске." data-en="Placeholder form. Email delivery will be connected at launch.">Форма-заглушка. Подключим отправку на почту при запуске.</p>
-  </form>
 </section>
 <section class="map-wrap">
   <iframe src="https://maps.google.com/maps?q={map_q}&z=15&output=embed" loading="lazy" title="Карта"></iframe>

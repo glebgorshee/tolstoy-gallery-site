@@ -188,17 +188,12 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .visit-cta-in h2{font-family:var(--serif);font-weight:300;font-size:clamp(2rem,5vw,3.6rem);letter-spacing:-.01em}
 .vc-addr{font-size:1.2rem;margin:22px 0 6px}
 .vc-note{color:var(--muted);margin-bottom:34px}
-.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,90px);padding-bottom:clamp(60px,9vh,110px)}
+.visit-contact{padding-bottom:clamp(60px,9vh,110px)}
+.visit-info{display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(40px,6vw,90px)}
 .vi-block{padding:24px 0;border-top:1px solid var(--line)}
-.vi-block:first-child{border-top:none;padding-top:0}
+.vi-block:nth-child(-n+2){border-top:none;padding-top:0}
 .vi-label{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
 .vi-big{font-family:var(--serif);font-size:clamp(1.5rem,3vw,2.2rem);font-weight:300;line-height:1.2}
-.visit-form{display:flex;flex-direction:column;gap:14px;background:var(--paper);padding:clamp(28px,4vw,44px)}
-.vf-label{font-family:var(--serif);font-size:1.5rem;margin-bottom:8px}
-.visit-form input,.visit-form textarea{font-family:inherit;font-size:15px;padding:14px 16px;border:1px solid var(--line);background:#fff;border-radius:2px;color:var(--fg)}
-.visit-form input:focus,.visit-form textarea:focus{outline:none;border-color:var(--fg)}
-.visit-form .btn{align-self:flex-start;margin-top:6px}
-.vf-note{font-size:12px;color:var(--muted)}
 .map-wrap{height:clamp(320px,45vh,520px)}
 .map-wrap iframe{width:100%;height:100%;border:0;filter:grayscale(.4) contrast(1.05)}
 
@@ -243,7 +238,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
   .grid .tile{margin-bottom:20px}
   .artist-row{grid-template-columns:1fr;gap:22px}
   .artist-row:nth-child(even) .ar-img{order:0}
-  .visit-grid{grid-template-columns:1fr}
+  .visit-info{grid-template-columns:1fr}
+  .vi-block:nth-child(2){border-top:1px solid var(--line);padding-top:24px}
   .ft-grid{grid-template-columns:1fr 1fr}
   .ft-bottom{flex-direction:column;gap:8px}
 }
