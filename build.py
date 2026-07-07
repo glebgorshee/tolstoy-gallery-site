@@ -49,7 +49,7 @@ ARTISTS = [
                  'США. В его работах преобладают оттенки белого и синего, жёлтого и охры. Акцент сделан на '
                  'фигуре в движении и на форме; композиция всегда полна динамики.')),
     dict(slug='van-apple', order=5, key='van-apple',
-         name_ru='Дидерик ван Эппл', name_en='Diederik van Apple',
+         name_ru='ван Эппл', name_en='van Apple',
          years='Нидерланды',
          portrait=f'{IMG}/site/van-apple-art-uitnodiging-kopiya.jpg', hero_pos='center top',
          short_ru='Цифровое mix-media искусство: поп-культура, комиксы, лимитированные серии.',
@@ -116,7 +116,7 @@ SORT_KEYS = {
     'accardi':    ('анджело',  'angelo'),      # Анджело Аккарди
     'tamburro':   ('антонио',  'antonio'),     # Антонио Тамбурро
     'julie-jaler':('джули',    'julie'),       # Джули Жалер
-    'van-apple':  ('дидерик',  'diederik'),    # Дидерик ван Эппл
+    'van-apple':  ('ван эппл', 'van apple'),   # van Apple (имя Diederik убрано)
     'kiko':       ('кико',     'kiko'),        # KIKO
     'mauro-paparella':('мауро','mauro'),       # Мауро Папарелла
     'bashev':     ('максим',   'maxim'),       # Максим Башев
