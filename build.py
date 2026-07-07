@@ -91,6 +91,23 @@ ARTISTS = [
                  'прошлое: пережив непростые обстоятельства, он сумел оставить их позади, сосредоточившись '
                  'на своей страсти. Именно этот опыт и его преодоление сформировали художественный стиль '
                  'Рафаэля.')),
+    dict(slug='jf-piecourt', order=9, key='jf-piecourt',
+         name_ru='Жан-Франсуа Пьекур', name_en='Jean-François Piécourt',
+         years='Франция',
+         portrait=f'{IMG}/site/piecourt-portrait.jpg', hero_pos='center 25%',
+         short_ru='Французский скульптор на стыке искусства и дизайна.',
+         bio_ru=('Жан-Франсуа Пьекур — французский скульптор, работающий на стыке искусства и дизайна: '
+                 'создаёт объекты-скульптуры, соединяя пластику формы с предметным дизайном. '
+                 '[Черновая справка — подробности уточним у художника.]')),
+    dict(slug='naor', order=10, key='naor',
+         name_ru='NAOR', name_en='NAOR',
+         years='Франция',
+         portrait=f'{IMG}/site/naor-portrait.jpg', hero_pos='center 28%',
+         short_ru='Поп-арт-скульптуры из смолы: символы люксовых брендов и ирония над консюмеризмом.',
+         bio_ru=('NAOR — французский художник из Лиона (р. 1988). Его стиль соединяет энергию поп-арта с '
+                 'элегантностью ар-деко. Создаёт скульптуры-фигурки из смолы и металла, вплетая символы '
+                 'люксовых домов — как оммаж и одновременно ирония над культурой потребления. В его '
+                 'работах — баланс между нежностью и агрессией.')),
 ]
 # ключи сортировки по фамилии (для обоих языков). Базовый порядок в DOM — по RU,
 # на EN список пересортировывается в JS (порядки не совпадают).
@@ -103,7 +120,9 @@ SORT_KEYS = {
     'kiko':       ('кико',     'kiko'),        # KIKO
     'mauro-paparella':('мауро','mauro'),       # Мауро Папарелла
     'bashev':     ('максим',   'maxim'),       # Максим Башев
+    'naor':       ('наор',     'naor'),        # NAOR
     'raphael-vanderhaegen':('рафаэль','raphael'),  # Рафаэль Вандерхаген
+    'jf-piecourt':('жан-франсуа','jean-francois'),  # Жан-Франсуа Пьекур
 }
 for a in ARTISTS:
     a['sort_ru'], a['sort_en'] = SORT_KEYS[a['key']]
@@ -174,6 +193,19 @@ EN = {
     bio=('Raphaël Vanderhaegen is an artist (b. 1991). His work draws on his own past: having gone '
          'through difficult circumstances, he found a way to leave them behind by focusing on his '
          'passion. It is this experience — and overcoming it — that shaped Raphaël’s artistic style.')),
+ 'jf-piecourt': dict(
+    years='France',
+    short='French sculptor at the intersection of art and design.',
+    bio=('Jean-François Piécourt is a French sculptor working at the intersection of art and design: '
+         'he creates sculptural objects that merge the plasticity of form with product design. '
+         '[Draft note — details to be confirmed with the artist.]')),
+ 'naor': dict(
+    years='France',
+    short='Resin pop-art figurines: luxury-brand symbols and a wink at consumerism.',
+    bio=('NAOR is a French artist from Lyon (b. 1988). His style blends the energy of pop art with the '
+         'elegance of art deco. He creates resin and metal figurine-sculptures woven with the symbols of '
+         'luxury houses — at once an homage to and a critique of consumer culture. His work balances '
+         'tenderness and aggression.')),
 }
 for a in ARTISTS:
     e = EN[a['key']]
