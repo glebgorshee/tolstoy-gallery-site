@@ -13,7 +13,7 @@ VER = str(int(time.time()))  # версия для сброса кеша CSS/JS 
 ARTISTS = [
     dict(slug='kiko', order=1, key='kiko',
          name_ru='KIKO', name_en='KIKO',
-         years='',
+         years='Франция',
          portrait=f'{IMG}/site/kiko-portrait.jpg', hero_pos='center 15%',
          short_ru='Экспрессивные портреты из цветных росчерков — на грани абстракции и фигуратива.',
          bio_ru=('KIKO — современный художник, работающий в экспрессивной манере: многослойные цветные '
@@ -111,7 +111,7 @@ ARTISTS = [
     dict(slug='dan-faco', order=11, key='dan-faco',
          name_ru='Дэн Фако', name_en='Dan Faco',
          years='Италия',
-         portrait=f'{IMG}/site/danfaco-portrait.jpg', hero_pos='center center',
+         portrait=f'{IMG}/site/danfaco-portrait.jpg', hero_pos='center 22%',
          short_ru='Поп-арт и экшн-пейнтинг: смола, фактуры, символы поп-культуры как эмоциональные карты.',
          bio_ru=('Дэн Фако (Даниэла Факоэтти) — итальянская художница из Бергамо, соединяющая визуальную '
                  'мощь поп-арта с жестовой энергией экшн-пейнтинга. Училась в художественной школе Мандзу '
@@ -131,6 +131,14 @@ ARTISTS = [
                  'показана в 2011 году с успехом и привела к сотрудничеству с галереями в Италии и '
                  'Бразилии. Её работы — с сильным поп-импактом и стрит-настроением, населённые иконами '
                  'поп-культуры: от героев Disney и Looney Tunes до современных героинь.')),
+    dict(slug='dmitry-dyu', order=13, key='dmitry-dyu',
+         name_ru='Dmitry DYU', name_en='Dmitry DYU',
+         years='Россия',
+         portrait=f'{IMG}/site/dyu-portrait.jpg', hero_pos='center 38%',
+         short_ru='Дизайнерские арт-игрушки Dyu Toys: каждая фигура — дух-оболочка, оживающая через владельца.',
+         bio_ru=('Dmitry DYU — художник и создатель Dyu Toys. Каждая фигура — дух-оболочка, оживающий '
+                 'через своего владельца. Это лимитированные объекты, где философия, эстетика и ручная '
+                 'работа превращают коллекцию в живое искусство.')),
 ]
 # ключи сортировки по фамилии (для обоих языков). Базовый порядок в DOM — по RU,
 # на EN список пересортировывается в JS (порядки не совпадают).
@@ -146,6 +154,7 @@ SORT_KEYS = {
     'naor':       ('наор',     'naor'),        # NAOR
     'dan-faco':   ('дэн',      'dan'),         # Дэн Фако
     'milena-b':   ('милена',   'milena'),      # Милена Б.
+    'dmitry-dyu': ('дмитрий',  'dmitry'),      # Dmitry DYU
     'raphael-vanderhaegen':('рафаэль','raphael'),  # Рафаэль Вандерхаген
     'jf-piecourt':('жан-франсуа','jean-francois'),  # Жан-Франсуа Пьекур
 }
@@ -157,7 +166,7 @@ ART_BY_KEY = {a['key']: a for a in ARTISTS}
 # ---------- английские версии текстов художников ----------
 EN = {
  'kiko': dict(
-    years='',
+    years='France',
     short='Expressive portraits built from colored scribbles — between abstraction and figuration.',
     bio=('KIKO is a contemporary artist working in an expressive manner: layered colored scribbles and '
          'strokes come together into portraits and images on the edge of abstraction and figuration. '
@@ -250,6 +259,12 @@ EN = {
          'exhibited in 2011 to acclaim, leading to collaborations with galleries in Italy and Brazil. '
          'Her work has a strong pop impact with a street edge, populated by icons of pop culture — from '
          'Disney and Looney Tunes characters to modern heroines.')),
+ 'dmitry-dyu': dict(
+    years='Russia',
+    short='Designer art toys, Dyu Toys: each figure a spirit-shell that comes alive through its owner.',
+    bio=('Dmitry DYU is an artist and the creator of Dyu Toys. Each figure is a spirit-shell that comes '
+         'alive through its owner — limited-edition objects where philosophy, aesthetics and handcraft '
+         'turn the collection into living art.')),
 }
 for a in ARTISTS:
     e = EN[a['key']]
