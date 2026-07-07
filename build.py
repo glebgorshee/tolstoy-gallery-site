@@ -139,6 +139,14 @@ ARTISTS = [
          bio_ru=('Dmitry DYU — художник и создатель Dyu Toys. Каждая фигура — дух-оболочка, оживающий '
                  'через своего владельца. Это лимитированные объекты, где философия, эстетика и ручная '
                  'работа превращают коллекцию в живое искусство.')),
+    dict(slug='le-marquis', order=14, key='le-marquis',
+         name_ru='Le Marquis', name_en='Le Marquis',
+         years='Франция',
+         portrait=f'{IMG}/site/lemarquis-portrait.jpg', hero_pos='center 25%',
+         short_ru='Скульптуры-фигурки героев детства, переосмысленные с юмором и в духе люкс-брендов.',
+         bio_ru=('Le Marquis — французский художник, «создатель эмоций»: лепит скульптуры-фигурки героев '
+                 'детства, переосмысленные с юмором и в духе люксовых брендов. Знакомые персонажи в новом, '
+                 'ироничном и рекламном ключе.')),
 ]
 # ключи сортировки по фамилии (для обоих языков). Базовый порядок в DOM — по RU,
 # на EN список пересортировывается в JS (порядки не совпадают).
@@ -155,6 +163,7 @@ SORT_KEYS = {
     'dan-faco':   ('дэн',      'dan'),         # Дэн Фако
     'milena-b':   ('милена',   'milena'),      # Милена Б.
     'dmitry-dyu': ('дмитрий',  'dmitry'),      # Dmitry DYU
+    'le-marquis': ('ле маркиз','le marquis'),  # Le Marquis
     'raphael-vanderhaegen':('рафаэль','raphael'),  # Рафаэль Вандерхаген
     'jf-piecourt':('жан-франсуа','jean-francois'),  # Жан-Франсуа Пьекур
 }
@@ -265,6 +274,12 @@ EN = {
     bio=('Dmitry DYU is an artist and the creator of Dyu Toys. Each figure is a spirit-shell that comes '
          'alive through its owner — limited-edition objects where philosophy, aesthetics and handcraft '
          'turn the collection into living art.')),
+ 'le-marquis': dict(
+    years='France',
+    short='Figurines of childhood characters, reimagined with humour and a luxury-brand twist.',
+    bio=('Le Marquis is a French artist — a “creator of emotions” who sculpts figurines of childhood '
+         'characters, reimagined with humour and a luxury-brand twist. Familiar icons reinterpreted in a '
+         'playful, advertising key.')),
 }
 for a in ARTISTS:
     e = EN[a['key']]
