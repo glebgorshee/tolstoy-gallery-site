@@ -13,7 +13,7 @@ VER = str(int(time.time()))  # версия для сброса кеша CSS/JS 
 ARTISTS = [
     dict(slug='kiko', order=1, key='kiko',
          name_ru='KIKO', name_en='KIKO',
-         years='Современный художник',
+         years='',
          portrait=f'{IMG}/site/kiko-portrait.jpg', hero_pos='center 15%',
          short_ru='Экспрессивные портреты из цветных росчерков — на грани абстракции и фигуратива.',
          bio_ru=('KIKO — современный художник, работающий в экспрессивной манере: многослойные цветные '
@@ -21,7 +21,7 @@ ARTISTS = [
                  '[Черновая справка — биографию уточним у художника.]')),
     dict(slug='julie-jaler', order=2, key='julie-jaler',
          name_ru='Джули Жалер', name_en='Julie Jaler',
-         years='Париж',
+         years='Франция',
          portrait=f'{IMG}/site/julie-portrait.jpg', hero_pos='center 12%',
          short_ru='Гиперреалистичные скульптуры-конфеты из смолы в мотивах люксовых домов.',
          bio_ru=('Джули Жалер (Julie Jaler) — французская художница-скульптор из Парижа. Создаёт '
@@ -30,7 +30,7 @@ ARTISTS = [
                  'ракурсах. [Черновая справка — биографию уточним у художницы.]')),
     dict(slug='accardi', order=2, key='accardi',
          name_ru='Анджело Аккарди', name_en='Angelo Accardi',
-         years='р. 1964 · Италия',
+         years='Италия',
          portrait=f'{IMG}/site/angelo-accardi1.jpg',
          short_ru='Ироничные и сюрреалистичные городские пейзажи современной жизни.',
          bio_ru=('Анджело Аккарди родился в 1964 году в городе Сапри, провинция Салерно. Учился в Академии '
@@ -41,7 +41,7 @@ ARTISTS = [
                  'частных коллекциях Европы, США и Азии.')),
     dict(slug='tamburro', order=3, key='tamburro',
          name_ru='Антонио Тамбурро', name_en='Antonio Tamburro',
-         years='р. 1948 · Италия',
+         years='Италия',
          portrait=f'{IMG}/site/tamburo-main.jpg',
          short_ru='Фигура в движении: белое, синее, золото и охра.',
          bio_ru=('Антонио Тамбурро родился в 1948 году. Окончил Академию изящных искусств в Неаполе, затем '
@@ -50,7 +50,7 @@ ARTISTS = [
                  'фигуре в движении и на форме; композиция всегда полна динамики.')),
     dict(slug='van-apple', order=5, key='van-apple',
          name_ru='Дидерик ван Эппл', name_en='Diederik van Apple',
-         years='р. 1985 · Нидерланды',
+         years='Нидерланды',
          portrait=f'{IMG}/site/van-apple-art-uitnodiging-kopiya.jpg', hero_pos='center top',
          short_ru='Цифровое mix-media искусство: поп-культура, комиксы, лимитированные серии.',
          bio_ru=('Дидерик ван Эппл родился и вырос в Лейдене, Нидерланды, в 1985 году. Бросил юриспруденцию '
@@ -61,7 +61,7 @@ ARTISTS = [
                  'галереях, среди коллекционеров и инвесторов.')),
     dict(slug='bashev', order=6, key='bashev',
          name_ru='Максим Башев', name_en='Maxim Bashev',
-         years='Москва',
+         years='Россия',
          portrait=f'{IMG}/site/bashev-main1.jpg', hero_pos='center 15%',
          short_ru='Художник-гуманист: авангард, смешанная техника, фотопортрет в живописи.',
          bio_ru=('Максим Башев — художник, график, фотограф, автор коротких рассказов. Удостоен звания '
@@ -72,6 +72,25 @@ ARTISTS = [
                  'Дали, Баския, Харинг, Дюбюффе, Раушенберг, Твомбли. Живёт и работает в Москве; работы — '
                  'в музеях и частных коллекциях России, США и Европы.'),
          is_video=True),
+    dict(slug='mauro-paparella', order=7, key='mauro-paparella',
+         name_ru='Мауро Папарелла', name_en='Mauro Paparella',
+         years='Италия',
+         portrait=f'{IMG}/site/mauro-portrait.jpg', hero_pos='center 40%',
+         short_ru='Живопись на стыке с цифровыми медиа: идентичность, душа, современное общество.',
+         bio_ru=('Мауро Папарелла — итальянский современный художник (р. 1985). Соединяет живопись и '
+                 'цифровые медиа, работая на стыке фигуративного и абстрактного. Его инновационный язык '
+                 'сочетает живописную традицию с элементами дизайна и мультимедиа; в основе работ — темы '
+                 'поиска идентичности, души человека и размышления о современном обществе. Выставлялся в '
+                 'галереях Италии и за рубежом.')),
+    dict(slug='raphael-vanderhaegen', order=8, key='raphael-vanderhaegen',
+         name_ru='Рафаэль Вандерхаген', name_en='Raphaël Vanderhaegen',
+         years='Бельгия',
+         portrait=f'{IMG}/site/raphael-portrait.jpg', hero_pos='center 55%',
+         short_ru='Личная история и преодоление прошлого как источник стиля.',
+         bio_ru=('Рафаэль Вандерхаген — художник (р. 1991). В своём творчестве он опирается на собственное '
+                 'прошлое: пережив непростые обстоятельства, он сумел оставить их позади, сосредоточившись '
+                 'на своей страсти. Именно этот опыт и его преодоление сформировали художественный стиль '
+                 'Рафаэля.')),
 ]
 # ключи сортировки по фамилии (для обоих языков). Базовый порядок в DOM — по RU,
 # на EN список пересортировывается в JS (порядки не совпадают).
@@ -82,7 +101,9 @@ SORT_KEYS = {
     'julie-jaler':('джули',    'julie'),       # Джули Жалер
     'van-apple':  ('дидерик',  'diederik'),    # Дидерик ван Эппл
     'kiko':       ('кико',     'kiko'),        # KIKO
+    'mauro-paparella':('мауро','mauro'),       # Мауро Папарелла
     'bashev':     ('максим',   'maxim'),       # Максим Башев
+    'raphael-vanderhaegen':('рафаэль','raphael'),  # Рафаэль Вандерхаген
 }
 for a in ARTISTS:
     a['sort_ru'], a['sort_en'] = SORT_KEYS[a['key']]
@@ -92,20 +113,20 @@ ART_BY_KEY = {a['key']: a for a in ARTISTS}
 # ---------- английские версии текстов художников ----------
 EN = {
  'kiko': dict(
-    years='Contemporary artist',
+    years='',
     short='Expressive portraits built from colored scribbles — between abstraction and figuration.',
     bio=('KIKO is a contemporary artist working in an expressive manner: layered colored scribbles and '
          'strokes come together into portraits and images on the edge of abstraction and figuration. '
          '[Draft note — biography to be confirmed with the artist.]')),
  'julie-jaler': dict(
-    years='Paris',
+    years='France',
     short='Hyperrealistic resin candy sculptures wrapped in the motifs of luxury houses.',
     bio=('Julie Jaler is a French sculptor-artist based in Paris. She creates hyperrealistic candy '
          'sculptures in resin, wrapping them in the motifs of luxury houses — a reimagining of luxury, '
          'pop art and the object of desire. Each work exists in several viewing angles. '
          '[Draft note — biography to be confirmed with the artist.]')),
  'accardi': dict(
-    years='b. 1964 · Italy',
+    years='Italy',
     short='Ironic, surreal cityscapes of modern life.',
     bio=('Angelo Accardi was born in 1964 in Sapri, province of Salerno. He studied at the Academy of '
          'Fine Arts in Naples. In the early 1990s he founded his own painting and sculpture studio near '
@@ -113,14 +134,14 @@ EN = {
          'and surreal. He has taken part in numerous solo and group exhibitions in Italy and around the '
          'world; his works are in private collections across Europe, the USA and Asia.')),
  'tamburro': dict(
-    years='b. 1948 · Italy',
+    years='Italy',
     short='The figure in motion: white, blue, gold and ochre.',
     bio=('Antonio Tamburro was born in 1948. He graduated from the Academy of Fine Arts in Naples, then '
          'in Rome. He has exhibited in prestigious galleries in Italy, Monaco, Switzerland, Austria, '
          'Germany and the USA. His work is dominated by shades of white and blue, yellow and ochre. The '
          'emphasis is on the figure in motion and on form; the composition is always full of dynamism.')),
  'van-apple': dict(
-    years='b. 1985 · Netherlands',
+    years='Netherlands',
     short='Digital mix-media art: pop culture, comics, limited editions.',
     bio=('Diederik van Apple was born and raised in Leiden, the Netherlands, in 1985. He gave up law for '
          'art; from 2005 he worked as a gallery art representative in Amsterdam, travelling the world’s '
@@ -129,7 +150,7 @@ EN = {
          'He worked in Ibiza. Today his works are popular in international galleries, among collectors and '
          'investors.')),
  'bashev': dict(
-    years='Moscow',
+    years='Russia',
     short='Humanist artist: avant-garde, mixed media, photo-portraits in painting.',
     bio=('Maxim Bashev is an artist, graphic artist, photographer and author of short stories. He was '
          'awarded the title “Humanist Artist” (certificate from Sotheby’s Vice President of Fine Arts '
@@ -139,6 +160,20 @@ EN = {
          'Among his influences: Velázquez, El Greco, Goya, Dalí, Basquiat, Haring, Dubuffet, Rauschenberg, '
          'Twombly. He lives and works in Moscow; his works are in museums and private collections in '
          'Russia, the USA and Europe.')),
+ 'mauro-paparella': dict(
+    years='Italy',
+    short='Painting meets digital media: identity, the soul, contemporary society.',
+    bio=('Mauro Paparella is an Italian contemporary artist (b. 1985). He merges painting with digital '
+         'media, working between the figurative and the abstract. His innovative language combines '
+         'painterly tradition with elements of design and multimedia; at the core of his work are themes '
+         'of identity, the human soul and reflections on contemporary society. He has exhibited in '
+         'galleries in Italy and abroad.')),
+ 'raphael-vanderhaegen': dict(
+    years='Belgium',
+    short='A personal story and overcoming the past as the source of his style.',
+    bio=('Raphaël Vanderhaegen is an artist (b. 1991). His work draws on his own past: having gone '
+         'through difficult circumstances, he found a way to leave them behind by focusing on his '
+         'passion. It is this experience — and overcoming it — that shaped Raphaël’s artistic style.')),
 }
 for a in ARTISTS:
     e = EN[a['key']]
@@ -313,7 +348,7 @@ def build_index():
     artist_cards = ''.join(f'''<a class="a-card reveal" href="artist-{a['slug']}.html" data-sru="{esc(a['sort_ru'])}" data-sen="{esc(a['sort_en'])}">
       <div class="a-card-img"><img src="{esc(a['portrait'])}" alt="{esc(a['name_ru'])}" loading="lazy"></div>
       <div class="a-card-name" data-ru="{esc(a['name_ru'])}" data-en="{esc(a['name_en'])}">{esc(a['name_ru'])}</div>
-      <div class="a-card-years" data-ru="{esc(a['years'])}" data-en="{esc(a['years_en'])}">{esc(a['years'])}</div>
+      {f'<div class="a-card-years" data-ru="{esc(a["years"])}" data-en="{esc(a["years_en"])}">{esc(a["years"])}</div>' if a['years'] else ''}
     </a>''' for a in ARTISTS)
     body = f'''
 <section class="hero">
@@ -365,12 +400,16 @@ def build_artists():
     rows = ''
     for a in ARTISTS:
         cnt = len(ALL_WORKS[a['key']])
-        cnt_txt = f'{cnt} работ' if not a.get('is_video') else '14 видео-работ'
-        cnt_en = f'{cnt} works' if not a.get('is_video') else '14 video works'
+        if a.get('is_video'):
+            cnt_txt, cnt_en = '14 видео-работ', '14 video works'
+        elif cnt == 0:
+            cnt_txt, cnt_en = 'Скоро', 'Coming soon'
+        else:
+            cnt_txt, cnt_en = f'{cnt} работ', f'{cnt} works'
         rows += f'''<a class="artist-row reveal" href="artist-{a['slug']}.html" data-sru="{esc(a['sort_ru'])}" data-sen="{esc(a['sort_en'])}">
       <div class="ar-img"><img src="{esc(a['portrait'])}" alt="{esc(a['name_ru'])}" loading="lazy"></div>
       <div class="ar-txt">
-        <p class="ar-years" data-ru="{esc(a['years'])}" data-en="{esc(a['years_en'])}">{esc(a['years'])}</p>
+        {f'<p class="ar-years" data-ru="{esc(a["years"])}" data-en="{esc(a["years_en"])}">{esc(a["years"])}</p>' if a['years'] else ''}
         <h2 class="ar-name" data-ru="{esc(a['name_ru'])}" data-en="{esc(a['name_en'])}">{esc(a['name_ru'])}</h2>
         <p class="ar-en" data-ru="{esc(a['name_en'])}" data-en="{esc(a['name_ru'])}">{esc(a['name_en'])}</p>
         <p class="ar-short" data-ru="{esc(a['short_ru'])}" data-en="{esc(a['short_en'])}">{esc(a['short_ru'])}</p>
@@ -398,6 +437,10 @@ def build_artist(a):
             vtiles += f'''<figure class="tile reveal"><div class="tile-img"><video src="{esc(rel)}" muted loop playsinline preload="none"></video></div><figcaption><span class="t-title">{esc(name)}</span></figcaption></figure>'''
         gallery = f'<div class="grid grid-video">{vtiles}</div>' if vtiles else ''
         gh_ru, gh_en = 'Видео-работы', 'Video works'
+    elif not works:
+        gallery = ('<p class="works-soon reveal" data-ru="Работы этого художника скоро появятся." '
+                   'data-en="Works by this artist are coming soon.">Работы этого художника скоро появятся.</p>')
+        gh_ru, gh_en = 'Работы', 'Works'
     else:
         gallery = f'<div class="grid">{tiles}</div>'
         gh_ru, gh_en = 'Работы', 'Works'
@@ -430,6 +473,8 @@ def build_artist(a):
 def build_collections():
     filters = '<button class="filter active" data-f="all" data-ru="Все" data-en="All">Все</button>'
     for a in ARTISTS:
+        if not ALL_WORKS[a['key']]:
+            continue   # художников без работ в фильтры не добавляем
         filters += (f'<button class="filter" data-f="{a["key"]}" data-sru="{esc(a["sort_ru"])}" data-sen="{esc(a["sort_en"])}" '
                     f'data-ru="{esc(a["name_ru"])}" data-en="{esc(a["name_en"])}">{esc(a["name_ru"])}</button>')
     tiles = ''
