@@ -108,6 +108,18 @@ ARTISTS = [
                  'элегантностью ар-деко. Создаёт скульптуры-фигурки из смолы и металла, вплетая символы '
                  'люксовых домов — как оммаж и одновременно ирония над культурой потребления. В его '
                  'работах — баланс между нежностью и агрессией.')),
+    dict(slug='dan-faco', order=11, key='dan-faco',
+         name_ru='Дэн Фако', name_en='Dan Faco',
+         years='Италия',
+         portrait=f'{IMG}/site/danfaco-portrait.jpg', hero_pos='center center',
+         short_ru='Поп-арт и экшн-пейнтинг: смола, фактуры, символы поп-культуры как эмоциональные карты.',
+         bio_ru=('Дэн Фако (Даниэла Факоэтти) — итальянская художница из Бергамо, соединяющая визуальную '
+                 'мощь поп-арта с жестовой энергией экшн-пейнтинга. Училась в художественной школе Мандзу '
+                 'в Бергамо и Школе комикса при Кастелло Сфорцеско в Милане. Работает в акриле, аэрографии '
+                 'и смоле, добавляя фактурные элементы — перья, монеты, природные объекты, — превращая '
+                 'символы поп-культуры и повседневности в насыщенные, чувственные эмоциональные карты. '
+                 'Выставлялась в Милане, Риме, Париже, Праге, Москве, Берлине и др.; в 2025 вошла в '
+                 'Ежегодник итальянских художников.')),
 ]
 # ключи сортировки по фамилии (для обоих языков). Базовый порядок в DOM — по RU,
 # на EN список пересортировывается в JS (порядки не совпадают).
@@ -121,6 +133,7 @@ SORT_KEYS = {
     'mauro-paparella':('мауро','mauro'),       # Мауро Папарелла
     'bashev':     ('максим',   'maxim'),       # Максим Башев
     'naor':       ('наор',     'naor'),        # NAOR
+    'dan-faco':   ('дэн',      'dan'),         # Дэн Фако
     'raphael-vanderhaegen':('рафаэль','raphael'),  # Рафаэль Вандерхаген
     'jf-piecourt':('жан-франсуа','jean-francois'),  # Жан-Франсуа Пьекур
 }
@@ -206,6 +219,16 @@ EN = {
          'elegance of art deco. He creates resin and metal figurine-sculptures woven with the symbols of '
          'luxury houses — at once an homage to and a critique of consumer culture. His work balances '
          'tenderness and aggression.')),
+ 'dan-faco': dict(
+    years='Italy',
+    short='Pop Art meets action painting: resin, materials, pop-culture symbols as emotional maps.',
+    bio=('Dan Faco (Daniela Facoetti) is a Bergamo-based Italian artist who blends the visual power of '
+         'Pop Art with the gestural energy of action painting. Trained at the Manzù Art School in Bergamo '
+         'and the School of Comics at the Castello Sforzesco in Milan, she works across acrylics, airbrush '
+         'and resin, adding material elements — feathers, coins, natural objects — that turn symbols of '
+         'pop culture and everyday life into intense, sensorial emotional maps. She has exhibited in '
+         'Milan, Rome, Paris, Prague, Moscow, Berlin and beyond, and was included in the 2025 Italian '
+         'Artists Yearbook.')),
 }
 for a in ARTISTS:
     e = EN[a['key']]
