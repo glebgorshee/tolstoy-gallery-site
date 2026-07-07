@@ -120,6 +120,17 @@ ARTISTS = [
                  'символы поп-культуры и повседневности в насыщенные, чувственные эмоциональные карты. '
                  'Выставлялась в Милане, Риме, Париже, Праге, Москве, Берлине и др.; в 2025 вошла в '
                  'Ежегодник итальянских художников.')),
+    dict(slug='milena-b', order=12, key='milena-b',
+         name_ru='Милена Б.', name_en='Milena B.',
+         years='Италия',
+         portrait=f'{IMG}/site/milena-portrait.jpg', hero_pos='center 20%',
+         short_ru='Поп-арт со стрит-настроением: иконы кино, музыки и поп-культуры.',
+         bio_ru=('Милена Б. — итальянская поп-художница из Милана (родилась в Ро в 1972 году). Училась '
+                 'графике и рекламе, работала арт-директором в рекламных агентствах, а затем превратила '
+                 'своё увлечение в искусство. Первая коллекция, посвящённая иконам кино и музыки, была '
+                 'показана в 2011 году с успехом и привела к сотрудничеству с галереями в Италии и '
+                 'Бразилии. Её работы — с сильным поп-импактом и стрит-настроением, населённые иконами '
+                 'поп-культуры: от героев Disney и Looney Tunes до современных героинь.')),
 ]
 # ключи сортировки по фамилии (для обоих языков). Базовый порядок в DOM — по RU,
 # на EN список пересортировывается в JS (порядки не совпадают).
@@ -134,6 +145,7 @@ SORT_KEYS = {
     'bashev':     ('максим',   'maxim'),       # Максим Башев
     'naor':       ('наор',     'naor'),        # NAOR
     'dan-faco':   ('дэн',      'dan'),         # Дэн Фако
+    'milena-b':   ('милена',   'milena'),      # Милена Б.
     'raphael-vanderhaegen':('рафаэль','raphael'),  # Рафаэль Вандерхаген
     'jf-piecourt':('жан-франсуа','jean-francois'),  # Жан-Франсуа Пьекур
 }
@@ -229,6 +241,15 @@ EN = {
          'pop culture and everyday life into intense, sensorial emotional maps. She has exhibited in '
          'Milan, Rome, Paris, Prague, Moscow, Berlin and beyond, and was included in the 2025 Italian '
          'Artists Yearbook.')),
+ 'milena-b': dict(
+    years='Italy',
+    short='Pop art with a street edge: icons of cinema, music and pop culture.',
+    bio=('Milena B. is an Italian pop artist based in Milan (born in Rho in 1972). After studying '
+         'graphics and advertising and working as an art director in advertising agencies, she turned '
+         'her passion into art. Her first collection — dedicated to icons of cinema and music — was '
+         'exhibited in 2011 to acclaim, leading to collaborations with galleries in Italy and Brazil. '
+         'Her work has a strong pop impact with a street edge, populated by icons of pop culture — from '
+         'Disney and Looney Tunes characters to modern heroines.')),
 }
 for a in ARTISTS:
     e = EN[a['key']]
