@@ -397,7 +397,7 @@ def footer():
   <div class="ft-grid">
     <div>
       <div class="ft-brand">Art Gallery Tolstoy</div>
-      <p class="ft-muted" data-ru="Галерея современного европейского искусства. Вход только по предварительной записи." data-en="A gallery of contemporary European art. Access by appointment only.">Галерея современного европейского искусства. Вход только по предварительной записи.</p>
+      <p class="ft-muted" data-ru="Галерея современного европейского искусства." data-en="A gallery of contemporary European art.">Галерея современного европейского искусства.</p>
     </div>
     <div>
       <div class="ft-label" data-ru="Адрес" data-en="Address">Адрес</div>
@@ -492,13 +492,12 @@ def build_index():
     <p class="vc-kicker" data-ru="Контакты" data-en="Contacts">Контакты</p>
     <h2 data-ru="Приходите посмотреть" data-en="Come and see">Приходите посмотреть</h2>
     <p class="vc-addr">{esc(CONTACTS['address'])}</p>
-    <p class="vc-note" data-ru="Доступ в галерею — по предварительной записи." data-en="Access to the gallery is by appointment only.">Доступ в галерею — по предварительной записи.</p>
     <a class="btn btn-dark" href="contacts.html" data-ru="Контакты" data-en="Contacts">Контакты</a>
   </div>
 </section>
 '''
     return head('Art Gallery Tolstoy — современное искусство в Москве',
-                'Галерея современного европейского искусства в Москве. Живопись и скульптура. Вход по записи.',
+                'Галерея современного европейского искусства в Москве. Живопись и скульптура.',
                 '') + body + footer()
 
 # ---------- художники ----------
@@ -607,10 +606,6 @@ def build_visit():
       <p class="vi-big" data-ru="{esc(c['address'])}" data-en="Novinsky Blvd, 1/2, Moscow">{esc(c['address'])}</p>
     </div>
     <div class="vi-block">
-      <div class="vi-label" data-ru="Режим" data-en="Hours">Режим</div>
-      <p data-ru="Доступ в галерею — только по предварительной записи. Пожалуйста, свяжитесь с нами, чтобы договориться о визите." data-en="Access to the gallery is by appointment only. Please contact us to make an appointment.">Доступ в галерею — только по предварительной записи. Пожалуйста, свяжитесь с нами, чтобы договориться о визите.</p>
-    </div>
-    <div class="vi-block">
       <div class="vi-label" data-ru="Контакты" data-en="Contacts">Контакты</div>
       <p><a href="mailto:{c['email1']}">{c['email1']}</a> · {c['phone1']}</p>
       <p><a href="mailto:{c['email2']}">{c['email2']}</a> · {c['phone2']}</p>
@@ -625,7 +620,7 @@ def build_visit():
   <iframe src="https://maps.google.com/maps?q={map_q}&z=15&output=embed" loading="lazy" title="Карта"></iframe>
 </section>
 '''
-    return head('Контакты — Art Gallery Tolstoy', 'Контакты, адрес и запись на просмотр в Арт Галерее Толстой', 'contacts') + body + footer()
+    return head('Контакты — Art Gallery Tolstoy', 'Контакты и адрес Арт Галереи Толстой', 'contacts') + body + footer()
 
 # ---------- запись файлов ----------
 def w(path, content):
