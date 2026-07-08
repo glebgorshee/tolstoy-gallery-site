@@ -102,7 +102,7 @@ ARTISTS = [
     dict(slug='naor', order=10, key='naor',
          name_ru='NAOR', name_en='NAOR',
          years='Франция',
-         portrait=f'{IMG}/site/naor-portrait.jpg', hero_pos='center center',
+         portrait=f'{IMG}/site/naor-portrait.jpg', hero_pos='center center', logo=True,
          short_ru='Поп-арт-скульптуры из смолы: символы люксовых брендов и ирония над консюмеризмом.',
          bio_ru=('NAOR — французский художник из Лиона (р. 1988). Его стиль соединяет энергию поп-арта с '
                  'элегантностью ар-деко. Создаёт скульптуры-фигурки из смолы и металла, вплетая символы '
@@ -300,6 +300,9 @@ for a in ARTISTS:
     e = EN[a['key']]
     a['years_en'], a['short_en'], a['bio_en'] = e['years'], e['short'], e['bio']
 
+# логотип-вордмарк для шапки (инлайн SVG, fill наследует currentColor)
+LOGO_SVG = open(os.path.join(ROOT, 'assets/img/site/logo.svg'), encoding='utf-8').read().strip()
+
 CONTACTS = dict(
     address='Новинский бульвар, 1/2, Москва',
     email1='mf@artgallerytolstoy.com', phone1='+7 (916) 999-90-06',
@@ -389,7 +392,7 @@ def header(active=''):
   <div class="hd-inner">
     <div class="hd-top">
       <button class="burger" id="burger" aria-label="Меню"><span></span><span></span></button>
-      <a class="brand" href="index.html">Art Gallery <span>Tolstoy</span></a>
+      <a class="brand" href="index.html" aria-label="Art Gallery Tolstoy">{LOGO_SVG}</a>
       <button class="lang" id="langToggle" type="button">EN</button>
     </div>
     <nav class="nav" id="nav">
@@ -467,7 +470,7 @@ def build_index():
         featured += ALL_WORKS[key][:3]
     tiles = ''.join(work_tile(w, i) for i, w in enumerate(featured))
     artist_cards = ''.join(f'''<a class="a-card reveal" href="artist-{a['slug']}.html" data-sru="{esc(a['sort_ru'])}" data-sen="{esc(a['sort_en'])}">
-      <div class="a-card-img"><img src="{esc(a['portrait'])}" alt="{esc(a['name_ru'])}" loading="lazy"></div>
+      <div class="a-card-img{' logo' if a.get('logo') else ''}"><img src="{esc(a['portrait'])}" alt="{esc(a['name_ru'])}" loading="lazy"></div>
       <div class="a-card-name" data-ru="{esc(a['name_ru'])}" data-en="{esc(a['name_en'])}">{esc(a['name_ru'])}</div>
       {f'<div class="a-card-years" data-ru="{esc(a["years"])}" data-en="{esc(a["years_en"])}">{esc(a["years"])}</div>' if a['years'] else ''}
     </a>''' for a in ARTISTS)
@@ -527,7 +530,7 @@ def build_artists():
         else:
             cnt_txt, cnt_en = f'{cnt} работ', f'{cnt} works'
         rows += f'''<a class="artist-row reveal" href="artist-{a['slug']}.html" data-sru="{esc(a['sort_ru'])}" data-sen="{esc(a['sort_en'])}">
-      <div class="ar-img"><img src="{esc(a['portrait'])}" alt="{esc(a['name_ru'])}" loading="lazy"></div>
+      <div class="ar-img{' logo' if a.get('logo') else ''}"><img src="{esc(a['portrait'])}" alt="{esc(a['name_ru'])}" loading="lazy"></div>
       <div class="ar-txt">
         {f'<p class="ar-years" data-ru="{esc(a["years"])}" data-en="{esc(a["years_en"])}">{esc(a["years"])}</p>' if a['years'] else ''}
         <h2 class="ar-name" data-ru="{esc(a['name_ru'])}" data-en="{esc(a['name_en'])}">{esc(a['name_ru'])}</h2>
@@ -566,7 +569,7 @@ def build_artist(a):
         gh_ru, gh_en = 'Работы', 'Works'
     body = f'''
 <section class="artist-hero">
-  <div class="ah-img"><img src="{esc(a['portrait'])}" alt="{esc(a['name_ru'])}" style="object-position:{a.get('hero_pos','center center')}"></div>
+  <div class="ah-img{' logo' if a.get('logo') else ''}"><img src="{esc(a['portrait'])}" alt="{esc(a['name_ru'])}" style="object-position:{a.get('hero_pos','center center')}"></div>
   <div class="ah-txt container">
     <h1 class="ah-name" data-ru="{esc(a['name_ru'])}" data-en="{esc(a['name_en'])}">{esc(a['name_ru'])}</h1>
   </div>

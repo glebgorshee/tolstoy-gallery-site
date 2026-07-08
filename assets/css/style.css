@@ -54,8 +54,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 /* шапка как у Eden: название по центру сверху, меню под ним */
 .hd-inner{position:relative;max-width:var(--maxw);margin:0 auto;padding:0 var(--pad);display:flex;flex-direction:column;align-items:center;gap:20px}
 .hd-top{position:relative;width:100%;display:flex;align-items:center;justify-content:center;min-height:28px}
-.brand{font-family:var(--serif);font-size:25px;letter-spacing:.05em;font-weight:400}
-.brand span{font-style:italic}
+.brand{display:inline-flex;align-items:center;line-height:0}
+.brand svg{display:block;height:40px;width:auto;fill:currentColor}
 .nav{display:flex;align-items:center;gap:38px}
 .nav a{font-size:13px;letter-spacing:.02em;font-weight:400;position:relative;padding-bottom:4px;opacity:.82}
 .nav a::after{content:'';position:absolute;left:0;bottom:0;width:0;height:1px;background:currentColor;transition:width .4s var(--ease)}
@@ -167,6 +167,11 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .artist-hero .ah-img{position:absolute;inset:0}
 .artist-hero .ah-img img{width:100%;height:100%;object-fit:cover;filter:brightness(.7)}
 .artist-hero .ah-img::after{content:'';position:absolute;inset:0;background:linear-gradient(transparent 40%,rgba(0,0,0,.6))}
+/* лого-аватар (NAOR): вписываем целиком, поля чёрные под цвет лого */
+.a-card-img.logo,.ar-img.logo,.artist-hero .ah-img.logo{background:#000}
+.a-card-img.logo img,.ar-img.logo img,.artist-hero .ah-img.logo img{object-fit:contain}
+.a-card:hover .a-card-img.logo img,.artist-row:hover .ar-img.logo img{transform:none}
+.artist-hero .ah-img.logo img{filter:none}
 .ah-txt{position:relative;z-index:2;width:100%;padding-bottom:clamp(40px,7vh,80px)}
 .ah-years{font-size:13px;letter-spacing:.2em;text-transform:uppercase;opacity:.9;margin-bottom:12px}
 .ah-name{font-family:var(--serif);font-weight:300;font-size:clamp(2.6rem,8vw,6rem);line-height:.98;letter-spacing:-.02em}
@@ -232,10 +237,11 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 @media(max-width:768px){
   .nav{display:none}
   .burger{display:block}
-  .brand{font-size:17px;letter-spacing:.03em}   /* чтобы название влезало между бургером и языком */
+  .brand svg{height:28px}   /* логотип компактнее между бургером и языком */
   .lang{padding:7px 12px}
   .grid{columns:2;column-gap:16px}
   .grid .tile{margin-bottom:20px}
+  .block-head{flex-direction:column;align-items:flex-start;gap:6px;padding-bottom:16px}  /* «Все художники» под заголовком */
   .artist-row{grid-template-columns:1fr;gap:22px}
   .artist-row:nth-child(even) .ar-img{order:0}
   .visit-info{grid-template-columns:1fr}
