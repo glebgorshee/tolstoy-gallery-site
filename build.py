@@ -84,7 +84,7 @@ ARTISTS = [
                  'галереях Италии и за рубежом.')),
     dict(slug='raphael-vanderhaegen', order=8, key='raphael-vanderhaegen',
          name_ru='Рафаэль Вандерхаген', name_en='Raphaël Vanderhaegen',
-         years='Бельгия',
+         years='Нидерланды',
          portrait=f'{IMG}/site/raphael-portrait.jpg', hero_pos='center 55%',
          short_ru='Личная история и преодоление прошлого как источник стиля.',
          bio_ru=('Рафаэль Вандерхаген — художник (р. 1991). В своём творчестве он опирается на собственное '
@@ -102,7 +102,7 @@ ARTISTS = [
     dict(slug='naor', order=10, key='naor',
          name_ru='NAOR', name_en='NAOR',
          years='Франция',
-         portrait=f'{IMG}/site/naor-portrait.jpg', hero_pos='center 28%',
+         portrait=f'{IMG}/site/naor-portrait.jpg', hero_pos='center center',
          short_ru='Поп-арт-скульптуры из смолы: символы люксовых брендов и ирония над консюмеризмом.',
          bio_ru=('NAOR — французский художник из Лиона (р. 1988). Его стиль соединяет энергию поп-арта с '
                  'элегантностью ар-деко. Создаёт скульптуры-фигурки из смолы и металла, вплетая символы '
@@ -121,7 +121,7 @@ ARTISTS = [
                  'Выставлялась в Милане, Риме, Париже, Праге, Москве, Берлине и др.; в 2025 вошла в '
                  'Ежегодник итальянских художников.')),
     dict(slug='milena-b', order=12, key='milena-b',
-         name_ru='Милена Б.', name_en='Milena B.',
+         name_ru='Милена Б. Арт', name_en='Milena B. Art',
          years='Италия',
          portrait=f'{IMG}/site/milena-portrait.jpg', hero_pos='center 20%',
          short_ru='Поп-арт со стрит-настроением: иконы кино, музыки и поп-культуры.',
@@ -132,11 +132,11 @@ ARTISTS = [
                  'Бразилии. Её работы — с сильным поп-импактом и стрит-настроением, населённые иконами '
                  'поп-культуры: от героев Disney и Looney Tunes до современных героинь.')),
     dict(slug='dmitry-dyu', order=13, key='dmitry-dyu',
-         name_ru='Dmitry DYU', name_en='Dmitry DYU',
+         name_ru='Дмитрий Дью', name_en='Dmitry DYU',
          years='Россия',
          portrait=f'{IMG}/site/dyu-portrait.jpg', hero_pos='center 38%',
          short_ru='Дизайнерские арт-игрушки Dyu Toys: каждая фигура — дух-оболочка, оживающая через владельца.',
-         bio_ru=('Dmitry DYU — художник и создатель Dyu Toys. Каждая фигура — дух-оболочка, оживающий '
+         bio_ru=('Дмитрий Дью — художник и создатель Dyu Toys. Каждая фигура — дух-оболочка, оживающий '
                  'через своего владельца. Это лимитированные объекты, где философия, эстетика и ручная '
                  'работа превращают коллекцию в живое искусство.')),
     dict(slug='le-marquis', order=14, key='le-marquis',
@@ -147,6 +147,14 @@ ARTISTS = [
          bio_ru=('Le Marquis — французский художник, «создатель эмоций»: лепит скульптуры-фигурки героев '
                  'детства, переосмысленные с юмором и в духе люксовых брендов. Знакомые персонажи в новом, '
                  'ироничном и рекламном ключе.')),
+    dict(slug='leo-steph', order=15, key='leo-steph',
+         name_ru='Leo & Steph', name_en='Leo & Steph',
+         years='Франция',
+         portrait=f'{IMG}/site/leosteph-portrait.jpg', hero_pos='center 30%',
+         short_ru='Дуэт, создатели персонажа Kid Cup: яркий и позитивный поп-арт в живописи и скульптуре.',
+         bio_ru=('Leo & Steph — арт-дуэт, создатели культового персонажа Kid Cup. Их поп-арт — яркий и '
+                 'позитивный — живёт в живописи и скульптуре: уникальные вещи, лимитированные серии и '
+                 'работы на заказ. Дуэт выставляется на международных ярмарках, включая Art Basel Miami.')),
 ]
 # ключи сортировки по фамилии (для обоих языков). Базовый порядок в DOM — по RU,
 # на EN список пересортировывается в JS (порядки не совпадают).
@@ -164,6 +172,7 @@ SORT_KEYS = {
     'milena-b':   ('милена',   'milena'),      # Милена Б.
     'dmitry-dyu': ('дмитрий',  'dmitry'),      # Dmitry DYU
     'le-marquis': ('ле маркиз','le marquis'),  # Le Marquis
+    'leo-steph':  ('лео',      'leo'),         # Leo & Steph
     'raphael-vanderhaegen':('рафаэль','raphael'),  # Рафаэль Вандерхаген
     'jf-piecourt':('жан-франсуа','jean-francois'),  # Жан-Франсуа Пьекур
 }
@@ -231,7 +240,7 @@ EN = {
          'of identity, the human soul and reflections on contemporary society. He has exhibited in '
          'galleries in Italy and abroad.')),
  'raphael-vanderhaegen': dict(
-    years='Belgium',
+    years='Netherlands',
     short='A personal story and overcoming the past as the source of his style.',
     bio=('Raphaël Vanderhaegen is an artist (b. 1991). His work draws on his own past: having gone '
          'through difficult circumstances, he found a way to leave them behind by focusing on his '
@@ -280,6 +289,12 @@ EN = {
     bio=('Le Marquis is a French artist — a “creator of emotions” who sculpts figurines of childhood '
          'characters, reimagined with humour and a luxury-brand twist. Familiar icons reinterpreted in a '
          'playful, advertising key.')),
+ 'leo-steph': dict(
+    years='France',
+    short='A duo, creators of the Kid Cup character: colorful, positive pop art in painting and sculpture.',
+    bio=('Leo & Steph are an artist duo, creators of the iconic Kid Cup character. Their pop art — '
+         'colorful and positive — lives in paintings and sculptures: unique pieces, limited editions and '
+         'custom works. The duo shows at international fairs including Art Basel Miami.')),
 }
 for a in ARTISTS:
     e = EN[a['key']]
