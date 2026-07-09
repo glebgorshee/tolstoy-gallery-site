@@ -476,7 +476,12 @@ def build_index():
     </a>''' for a in ARTISTS)
     body = f'''
 <section class="hero">
-  <div class="hero-bg"><img src="{IMG}/site/new-slide3.jpg" alt=""></div>
+  <div class="hero-bg">
+    <video class="hero-video" id="heroVideo" muted loop playsinline preload="metadata"
+           poster="{IMG}/site/hero-poster.jpg"
+           data-desktop="assets/video/hero-desktop.mp4" data-mobile="assets/video/hero-mobile.mp4"
+           data-poster-desktop="{IMG}/site/hero-poster.jpg" data-poster-mobile="{IMG}/site/hero-poster-mobile.jpg"></video>
+  </div>
   <div class="hero-in">
     <h1 class="hero-title">Art Gallery<br>Tolstoy</h1>
     <p class="hero-sub" data-ru="Коллекция живописи и скульптуры современных европейских художников" data-en="A collection of paintings and sculptures by modern European artists">Коллекция живописи и скульптуры современных европейских художников</p>

@@ -64,7 +64,7 @@ document.documentElement.classList.add('js');
   if (canAnimate) {
     // лёгкий параллакс фоновой работы в герое (scale даёт запас, чтобы не оголялись края)
     var heroEl = document.querySelector('.hero, .artist-hero');
-    var heroBg = heroEl && heroEl.querySelector('.hero-bg img, .ah-img img');
+    var heroBg = heroEl && heroEl.querySelector('.hero-bg img, .hero-bg video, .ah-img img');
     if (heroEl && heroBg) {
       gsap.set(heroBg, { scale: 1.12 });
       gsap.fromTo(heroBg, { yPercent: -4 }, {
@@ -72,6 +72,29 @@ document.documentElement.classList.add('js');
         scrollTrigger: { trigger: heroEl, start: 'top top', end: 'bottom top', scrub: true }
       });
     }
+  }
+
+  /* ---- hero-видео: грузим источник под ширину экрана (desktop/mobile) ----
+     autoplay-атрибута нет: src ставим из JS, поэтому мобилка НЕ качает тяжёлый desktop-файл.
+     prefers-reduced-motion → видео не грузим вовсе, остаётся постер-кадр. */
+  var heroVideo = document.getElementById('heroVideo');
+  if (heroVideo && !reduce) {
+    var hvMq = window.matchMedia('(max-width: 768px)');
+    var hvLoaded = '';
+    var pickHero = function () {
+      var want = hvMq.matches ? 'mobile' : 'desktop';
+      if (want === hvLoaded) return;
+      hvLoaded = want;
+      var pos = heroVideo.getAttribute('data-poster-' + want);
+      if (pos) heroVideo.poster = pos;
+      heroVideo.src = heroVideo.getAttribute('data-' + want);
+      heroVideo.load();
+      var pr = heroVideo.play();
+      if (pr && pr.catch) pr.catch(function () {});   // автоплей заблокирован → остаётся постер
+    };
+    pickHero();
+    if (hvMq.addEventListener) hvMq.addEventListener('change', pickHero);
+    else if (hvMq.addListener) hvMq.addListener(pickHero);
   }
 
   /* ---- reveal при скролле: IntersectionObserver + каскад внутри пачки ----
