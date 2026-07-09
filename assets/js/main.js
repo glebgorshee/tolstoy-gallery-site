@@ -102,14 +102,28 @@ document.documentElement.classList.add('js');
   /* ---- фильтр коллекции ---- */
   var filters = document.getElementById('filters');
   if (filters) {
+    var collEmpty = document.getElementById('collEmpty');
+    var collEmptyLink = document.getElementById('collEmptyLink');
     filters.addEventListener('click', function (e) {
       var b = e.target.closest('.filter'); if (!b) return;
       filters.querySelectorAll('.filter').forEach(function (x) { x.classList.remove('active'); });
       b.classList.add('active');
       var f = b.getAttribute('data-f');
+      var shown = 0;
       document.querySelectorAll('#collGrid .tile').forEach(function (t) {
-        t.classList.toggle('hide', f !== 'all' && t.getAttribute('data-artist') !== f);
+        var hide = f !== 'all' && t.getAttribute('data-artist') !== f;
+        t.classList.toggle('hide', hide);
+        if (!hide) shown++;
       });
+      // выбран художник, чьих работ ещё нет в коллекции → заглушка со ссылкой на его страницу
+      if (collEmpty) {
+        if (shown === 0 && f !== 'all') {
+          if (collEmptyLink) collEmptyLink.href = 'artist-' + f + '.html';
+          collEmpty.hidden = false;
+        } else {
+          collEmpty.hidden = true;
+        }
+      }
       if (window.ScrollTrigger) ScrollTrigger.refresh();
     });
   }

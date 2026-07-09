@@ -588,8 +588,8 @@ def build_artist(a):
 def build_collections():
     filters = '<button class="filter active" data-f="all" data-ru="Все" data-en="All">Все</button>'
     for a in ARTISTS:
-        if not ALL_WORKS[a['key']]:
-            continue   # художников без работ в фильтры не добавляем
+        # показываем ВСЕХ художников в фильтре, даже без работ (работы ещё в процессе).
+        # клик по «пустому» покажет заглушку со ссылкой на страницу художника (см. main.js)
         filters += (f'<button class="filter" data-f="{a["key"]}" data-sru="{esc(a["sort_ru"])}" data-sen="{esc(a["sort_en"])}" '
                     f'data-ru="{esc(a["name_ru"])}" data-en="{esc(a["name_en"])}">{esc(a["name_ru"])}</button>')
     tiles = ''
@@ -604,6 +604,10 @@ def build_collections():
 <section class="container">
   <div class="filters" id="filters">{filters}</div>
   <div class="grid" id="collGrid">{tiles}</div>
+  <div class="works-soon coll-empty" id="collEmpty" hidden>
+    <span data-ru="Работы этого художника скоро появятся." data-en="Works by this artist are coming soon.">Работы этого художника скоро появятся.</span>
+    <a class="link-more" id="collEmptyLink" href="#" data-ru="Открыть страницу художника →" data-en="Open the artist page →">Открыть страницу художника →</a>
+  </div>
 </section>
 '''
     return head('Коллекция — Art Gallery Tolstoy', 'Коллекция работ Арт Галереи Толстой', 'collections') + body + footer()
