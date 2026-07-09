@@ -47,7 +47,7 @@ document.documentElement.classList.add('js');
 
   if (!reduce) {
     // помечаем элементы первого экрана и запускаем каскад после отрисовки
-    var introSel = ['.hero-title', '.hero-sub', '.hero .btn',
+    var introSel = ['.hero-logo', '.hero-sub', '.hero .btn',
                     '.ah-years', '.ah-name', '.ah-en',
                     '.ph-kicker', '.page-head h1', '.filters'];
     var intro = introSel.map(function (s) { return document.querySelector(s); }).filter(Boolean);

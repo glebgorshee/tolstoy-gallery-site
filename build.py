@@ -483,7 +483,7 @@ def build_index():
            data-poster-desktop="{IMG}/site/hero-poster.jpg" data-poster-mobile="{IMG}/site/hero-poster-mobile.jpg"></video>
   </div>
   <div class="hero-in">
-    <h1 class="hero-title">Art Gallery<br>Tolstoy</h1>
+    <h1 class="hero-logo">{LOGO_SVG}</h1>
     <p class="hero-sub" data-ru="Коллекция живописи и скульптуры современных европейских художников" data-en="A collection of paintings and sculptures by modern European artists">Коллекция живописи и скульптуры современных европейских художников</p>
     <a class="btn btn-glass" href="collections.html" data-ru="Смотреть работы" data-en="Artworks">Смотреть работы</a>
   </div>
