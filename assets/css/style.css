@@ -54,8 +54,10 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 /* шапка как у Eden: название по центру сверху, меню под ним */
 .hd-inner{position:relative;max-width:var(--maxw);margin:0 auto;padding:0 var(--pad);display:flex;flex-direction:column;align-items:center;gap:20px}
 .hd-top{position:relative;width:100%;display:flex;align-items:center;justify-content:center;min-height:28px}
-.brand{display:inline-flex;align-items:center;line-height:0}
+.brand{display:inline-flex;align-items:center;line-height:0;transition:opacity .35s var(--ease)}
 .brand svg{display:block;height:40px;width:auto;fill:currentColor}
+/* главная: логотип в шапке скрыт над героем, появляется при начале скролла (класс ставит main.js) */
+.brand.is-hidden{opacity:0;pointer-events:none}
 .nav{display:flex;align-items:center;gap:38px}
 .nav a{font-size:13px;letter-spacing:.02em;font-weight:400;position:relative;padding-bottom:4px;opacity:.82}
 .nav a::after{content:'';position:absolute;left:0;bottom:0;width:0;height:1px;background:currentColor;transition:width .4s var(--ease)}
