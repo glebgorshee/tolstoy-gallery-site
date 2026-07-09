@@ -369,7 +369,7 @@ ALL_WORKS = {a['key']: works_of(a['key']) for a in ARTISTS}
 def esc(s): return html.escape(s or '', quote=True)
 
 # ---------- переиспользуемые куски ----------
-def head(title, desc, active=''):
+def head(title, desc, active='', home=False):
     return f'''<!doctype html>
 <html lang="ru">
 <head>
@@ -383,16 +383,17 @@ def head(title, desc, active=''):
 <link rel="stylesheet" href="assets/css/style.css?v={VER}">
 </head>
 <body>
-{header(active)}
+{header(active, home)}
 '''
 
-def header(active=''):
+def header(active='', home=False):
     def cls(name): return ' class="active"' if name == active else ''
+    brand_cls = 'brand is-hidden' if home else 'brand'   # на главной логотип скрыт изначально, без мелькания до JS
     return f'''<header class="site-header" id="siteHeader">
   <div class="hd-inner">
     <div class="hd-top">
       <button class="burger" id="burger" aria-label="Меню"><span></span><span></span></button>
-      <a class="brand" href="index.html" aria-label="Art Gallery Tolstoy">{LOGO_SVG}</a>
+      <a class="{brand_cls}" href="index.html" aria-label="Art Gallery Tolstoy">{LOGO_SVG}</a>
       <button class="lang" id="langToggle" type="button">EN</button>
     </div>
     <nav class="nav" id="nav">
@@ -521,7 +522,7 @@ def build_index():
 '''
     return head('Art Gallery Tolstoy — современное искусство в Москве',
                 'Галерея современного европейского искусства в Москве. Живопись и скульптура.',
-                '') + body + footer()
+                '', home=True) + body + footer()
 
 # ---------- художники ----------
 def build_artists():

@@ -22,13 +22,14 @@ document.documentElement.classList.add('js');
   var brandEl = document.querySelector('.brand');
   var isHome = !!document.querySelector('.hero'); // логотип в шапке прячем только на главной над героем
   function onScroll() {
-    var scrolled = window.scrollY > 40;
-    header.classList.toggle('scrolled', scrolled);
-    if (isHome && brandEl) brandEl.classList.toggle('is-hidden', !scrolled);  // над героем скрыт, при скролле появляется
-    if (alwaysSolid) { header.classList.add('solid'); return; }
-    var threshold = hero.offsetHeight - 90;
-    if (window.scrollY > threshold) header.classList.add('solid');
-    else header.classList.remove('solid');
+    var solid;
+    if (alwaysSolid) { header.classList.add('solid'); solid = true; }
+    else {
+      solid = window.scrollY > hero.offsetHeight - 90;   // проскроллен экран с видео
+      header.classList.toggle('solid', solid);
+    }
+    // на главной логотип в шапке появляется только когда экран с видео проскроллен (шапка стала solid)
+    if (isHome && brandEl) brandEl.classList.toggle('is-hidden', !solid);
   }
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
