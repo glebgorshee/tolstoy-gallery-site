@@ -477,7 +477,7 @@ def build_index():
     body = f'''
 <section class="hero">
   <div class="hero-bg">
-    <video class="hero-video" id="heroVideo" muted loop playsinline preload="metadata"
+    <video class="hero-video" id="heroVideo" muted loop playsinline autoplay preload="auto"
            poster="{IMG}/site/hero-poster.jpg"
            data-desktop="assets/video/hero-desktop.mp4" data-mobile="assets/video/hero-mobile.mp4"
            data-poster-desktop="{IMG}/site/hero-poster.jpg" data-poster-mobile="{IMG}/site/hero-poster-mobile.jpg"></video>

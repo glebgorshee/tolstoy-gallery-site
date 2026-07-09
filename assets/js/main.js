@@ -81,16 +81,30 @@ document.documentElement.classList.add('js');
   if (heroVideo && !reduce) {
     var hvMq = window.matchMedia('(max-width: 768px)');
     var hvLoaded = '';
+    var tryPlay = function () {
+      var p = heroVideo.play();
+      if (p && p.catch) p.catch(function () {});   // отказ политики → попробуем ещё по событию/жесту
+    };
+    // добивка: любой первый жест пользователя запускает видео, если автоплей придержали
+    var gestures = ['touchstart', 'pointerdown', 'click', 'scroll', 'keydown'];
+    var onGesture = function () { tryPlay(); };
+    gestures.forEach(function (ev) { window.addEventListener(ev, onGesture, { passive: true }); });
+    heroVideo.addEventListener('playing', function () {   // заиграло → снимаем лишние слушатели
+      gestures.forEach(function (ev) { window.removeEventListener(ev, onGesture, { passive: true }); });
+    });
+    // как только данных достаточно — стартуем, не дожидаясь полной загрузки
+    heroVideo.addEventListener('loadeddata', tryPlay);
+    heroVideo.addEventListener('canplay', tryPlay);
     var pickHero = function () {
       var want = hvMq.matches ? 'mobile' : 'desktop';
       if (want === hvLoaded) return;
       hvLoaded = want;
       var pos = heroVideo.getAttribute('data-poster-' + want);
       if (pos) heroVideo.poster = pos;
+      heroVideo.muted = true;                 // iOS Safari: без явного mute muted-autoplay не стартует
       heroVideo.src = heroVideo.getAttribute('data-' + want);
       heroVideo.load();
-      var pr = heroVideo.play();
-      if (pr && pr.catch) pr.catch(function () {});   // автоплей заблокирован → остаётся постер
+      tryPlay();
     };
     pickHero();
     if (hvMq.addEventListener) hvMq.addEventListener('change', pickHero);
