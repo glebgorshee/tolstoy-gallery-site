@@ -560,7 +560,9 @@ def work_tile(w, idx=0):
                '<button class="ti-nav ti-next" aria-label="Следующий ракурс">›</button>'
                f'<span class="ti-count">1 / {len(imgs)}</span>')
     thumbs = [thumb_path(i) for i in imgs]
-    return f'''<figure class="tile reveal{' multi' if multi else ''}{candy}" data-artist="{esc(w.get('artist',''))}" data-title="{esc(w['title'])}" data-meta-ru="{esc(meta_ru)}" data-meta-en="{esc(meta_en)}" data-sold="{'1' if w['sold'] else '0'}" data-images="{esc('|'.join(imgs))}" data-thumbs="{esc('|'.join(thumbs))}" data-full="{esc(cover)}">
+    _a = ART_BY_KEY.get(w.get('artist', ''))
+    aname_ru, aname_en = (_a['name_ru'], _a['name_en']) if _a else ('', '')
+    return f'''<figure class="tile reveal{' multi' if multi else ''}{candy}" data-artist="{esc(w.get('artist',''))}" data-artist-ru="{esc(aname_ru)}" data-artist-en="{esc(aname_en)}" data-title="{esc(w['title'])}" data-meta-ru="{esc(meta_ru)}" data-meta-en="{esc(meta_en)}" data-sold="{'1' if w['sold'] else '0'}" data-images="{esc('|'.join(imgs))}" data-thumbs="{esc('|'.join(thumbs))}" data-full="{esc(cover)}">
   <div class="tile-img"><img src="{esc(thumbs[0])}" alt="{esc(w['title'])}" loading="lazy" decoding="async">{badge}{nav}</div>
   <figcaption>{title_html}<span class="t-meta" data-ru="{esc(meta_ru)}" data-en="{esc(meta_en)}">{esc(meta_ru)}</span></figcaption>
 </figure>'''

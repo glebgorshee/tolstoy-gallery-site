@@ -199,11 +199,24 @@ document.documentElement.classList.add('js');
       '<button class="lb-close" aria-label="Закрыть">&times;</button>' +
       '<button class="lb-nav lb-prev" aria-label="Назад">&#8249;</button>' +
       '<button class="lb-nav lb-next" aria-label="Вперёд">&#8250;</button>' +
-      '<img alt=""><div class="lb-cap"><div class="lc-title"></div><div class="lc-meta"></div></div>';
+      '<img alt=""><div class="lb-cap"><div class="lc-title"></div><div class="lc-meta"></div><a class="lc-artist"></a></div>';
     document.body.appendChild(lb);
     var lbImg = lb.querySelector('img'),
         lbT = lb.querySelector('.lc-title'),
-        lbM = lb.querySelector('.lc-meta');
+        lbM = lb.querySelector('.lc-meta'),
+        lbA = lb.querySelector('.lc-artist');
+
+    function setArtistLink(t) {                 // ссылка «к художнику» (не на его же странице)
+      var key = t.getAttribute('data-artist');
+      var onOwnPage = key && location.pathname.indexOf('artist-' + key + '.html') !== -1;
+      if (!key || onOwnPage) { lbA.style.display = 'none'; return; }
+      var lng = document.documentElement.lang === 'en' ? 'en' : 'ru';
+      var name = t.getAttribute('data-artist-' + lng) || '';
+      if (!name) { lbA.style.display = 'none'; return; }
+      lbA.href = 'artist-' + key + '.html';
+      lbA.textContent = name + ' →';
+      lbA.style.display = '';
+    }
     var mode = 'works', cur = 0, angles = [], aIdx = 0, angleTile = null;
 
     function metaOf(t, extra) {
@@ -221,6 +234,7 @@ document.documentElement.classList.add('js');
       lbImg.src = t.getAttribute('data-full');
       lbT.textContent = t.getAttribute('data-title') || '';
       lbM.textContent = metaOf(t);
+      setArtistLink(t);
     }
     function showAngle(i) {                     // листаем ракурсы одной работы
       aIdx = (i + angles.length) % angles.length;
@@ -229,6 +243,7 @@ document.documentElement.classList.add('js');
       var lng = document.documentElement.lang === 'en' ? 'en' : 'ru';
       var label = (lng === 'en' ? 'view ' : 'ракурс ') + (aIdx + 1) + ' / ' + angles.length;
       lbM.textContent = metaOf(angleTile, label);
+      setArtistLink(angleTile);
     }
     function step(d) { if (mode === 'angles') showAngle(aIdx + d); else showWork(cur + d); }
     function open(t) {
