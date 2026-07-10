@@ -49,7 +49,7 @@ ARTISTS = [
                  'США. В его работах преобладают оттенки белого и синего, жёлтого и охры. Акцент сделан на '
                  'фигуре в движении и на форме; композиция всегда полна динамики.')),
     dict(slug='van-apple', order=5, key='van-apple',
-         name_ru='ван Эппл', name_en='van Apple',
+         name_ru='Ван Эппл', name_en='Van Apple',
          years='Нидерланды',
          portrait=f'{IMG}/site/van-apple-art-uitnodiging-kopiya.jpg', hero_pos='center top',
          short_ru='Цифровое mix-media искусство: поп-культура, комиксы, лимитированные серии.',
@@ -62,7 +62,7 @@ ARTISTS = [
     dict(slug='bashev', order=6, key='bashev',
          name_ru='Максим Башев', name_en='Maxim Bashev',
          years='Россия',
-         portrait=f'{IMG}/site/bashev-main1.jpg', hero_pos='center 15%',
+         portrait=f'{IMG}/site/bashev-portrait.jpg', hero_pos='center 20%',
          short_ru='Художник-гуманист: авангард, смешанная техника, фотопортрет в живописи.',
          bio_ru=('Максим Башев — художник, график, фотограф, автор коротких рассказов. Удостоен звания '
                  '«Художник-гуманист» (сертификат вице-президента Fine Arts Sotheby’s Гарри Ф. Метцнера и '
@@ -140,19 +140,19 @@ ARTISTS = [
                  'через своего владельца. Это лимитированные объекты, где философия, эстетика и ручная '
                  'работа превращают коллекцию в живое искусство.')),
     dict(slug='le-marquis', order=14, key='le-marquis',
-         name_ru='Le Marquis', name_en='Le Marquis',
+         name_ru='Ле Маркиз', name_en='Le Marquis',
          years='Франция',
          portrait=f'{IMG}/site/lemarquis-portrait.jpg', hero_pos='center 25%',
          short_ru='Скульптуры-фигурки героев детства, переосмысленные с юмором и в духе люкс-брендов.',
-         bio_ru=('Le Marquis — французский художник, «создатель эмоций»: лепит скульптуры-фигурки героев '
+         bio_ru=('Ле Маркиз (Le Marquis) — французский художник, «создатель эмоций»: лепит скульптуры-фигурки героев '
                  'детства, переосмысленные с юмором и в духе люксовых брендов. Знакомые персонажи в новом, '
                  'ироничном и рекламном ключе.')),
     dict(slug='leo-steph', order=15, key='leo-steph',
-         name_ru='Leo & Steph', name_en='Leo & Steph',
+         name_ru='Лео и Стеф', name_en='Leo & Steph',
          years='Франция',
          portrait=f'{IMG}/site/leosteph-portrait.jpg', hero_pos='center 30%',
          short_ru='Дуэт, создатели персонажа Kid Cup: яркий и позитивный поп-арт в живописи и скульптуре.',
-         bio_ru=('Leo & Steph — арт-дуэт, создатели культового персонажа Kid Cup. Их поп-арт — яркий и '
+         bio_ru=('Лео и Стеф (Leo & Steph) — арт-дуэт, создатели культового персонажа Kid Cup. Их поп-арт — яркий и '
                  'позитивный — живёт в живописи и скульптуре: уникальные вещи, лимитированные серии и '
                  'работы на заказ. Дуэт выставляется на международных ярмарках, включая Art Basel Miami.')),
 ]
@@ -313,6 +313,12 @@ CONTACTS = dict(
 # ---------- каталог работ ----------
 catalog = json.load(open(os.path.join(ROOT, 'data/catalog.json'), encoding='utf-8'))
 
+# Новые работы (наполнение 2026) — единый источник с поддержкой мультиракурса.
+# Формат: { "<key>": [ {slug, title, tech_ru, tech_en, size, sold, imgs:[имена файлов]} ] }
+# imgs — имена файлов внутри assets/img/works/<key>/. Несколько файлов = карусель ракурсов.
+_ARTWORKS_PATH = os.path.join(ROOT, 'data/artworks.json')
+artworks_data = json.load(open(_ARTWORKS_PATH, encoding='utf-8')) if os.path.exists(_ARTWORKS_PATH) else {}
+
 def local_work_img(artist_key, slug, remote_url):
     ext = remote_url.rsplit('.', 1)[-1] if remote_url else 'jpg'
     for e in (ext, 'jpg', 'jpeg', 'png', 'webp'):
@@ -346,23 +352,49 @@ def julie_works():
                         sold=False, imgs=imgs, artist='julie-jaler'))
     return out
 
+def artworks_of(artist_key):
+    """Новые работы из data/artworks.json. Несколько файлов в imgs → мультиракурс-карусель (как у Julie)."""
+    out = []
+    for w in artworks_data.get(artist_key, []):
+        imgs = []
+        for fn in w.get('imgs', []):
+            p = f'{IMG}/works/{artist_key}/{fn}'
+            if os.path.exists(os.path.join(ROOT, p)):
+                imgs.append(p)
+        if not imgs:
+            continue
+        out.append(dict(title=w.get('title', ''), tech_ru=w.get('tech_ru') or '', tech_en=w.get('tech_en') or '',
+                        size=w.get('size') or '', sold=w.get('sold', False), imgs=imgs, artist=artist_key))
+    return out
+
+# переводы техник из старого каталога (EN → RU). Серийные названия работ
+# van Apple (K.O. Bunny, Fashion Monkey и т.п.) — имена собственные, не переводятся.
+TECH_RU = {
+    'Oil, Acrylic, Ink Painting':   'Масло, акрил, тушь',
+    'Oil Acrylic and Ink Painting': 'Масло, акрил, тушь',
+    'Mixed Technique On Canvas':    'Холст, смешанная техника',
+    'Etched Metal':                 'Металл, травление',
+}
+
 def works_of(artist_key):
     if artist_key == 'kiko':
-        return kiko_works()
-    if artist_key == 'julie-jaler':
-        return julie_works()
-    out = []
-    for it in catalog.get(artist_key, []):
-        img = local_work_img(artist_key, it['slug'], it.get('image'))
-        if not img:
-            continue
-        meta = it.get('meta', [])
-        tech = meta[1] if len(meta) > 1 else ''
-        size = meta[2] if len(meta) > 2 else ''
-        sold = 'SOLD' in meta
-        out.append(dict(title=it['title'], tech_ru=tech, tech_en=tech, size=size, sold=sold,
-                        imgs=[img], artist=artist_key))
-    return out
+        base = kiko_works()
+    elif artist_key == 'julie-jaler':
+        base = julie_works()
+    else:
+        base = []
+        for it in catalog.get(artist_key, []):
+            img = local_work_img(artist_key, it['slug'], it.get('image'))
+            if not img:
+                continue
+            meta = it.get('meta', [])
+            tech = meta[1] if len(meta) > 1 else ''
+            size = meta[2] if len(meta) > 2 else ''
+            sold = 'SOLD' in meta
+            base.append(dict(title=it['title'], tech_ru=TECH_RU.get(tech, tech), tech_en=tech,
+                            size=size, sold=sold, imgs=[img], artist=artist_key))
+    # Новые работы (artworks.json) доливаются ко всем художникам единообразно
+    return base + artworks_of(artist_key)
 
 ALL_WORKS = {a['key']: works_of(a['key']) for a in ARTISTS}
 
@@ -449,8 +481,12 @@ def work_tile(w, idx=0):
     multi = len(imgs) > 1
     tech_ru = w.get('tech_ru', w.get('tech', ''))
     tech_en = w.get('tech_en', w.get('tech', ''))
-    meta_ru = ' · '.join(x for x in (tech_ru, w['size']) if x)
-    meta_en = ' · '.join(x for x in (tech_en, w['size']) if x)
+    # единицы измерения — каждой версии свои: RU «см», EN «cm»
+    size = w['size'] or ''
+    size_ru = re.sub(r'\bcm\b', 'см', size)
+    size_en = re.sub(r'\bсм\b', 'cm', size)
+    meta_ru = ' · '.join(x for x in (tech_ru, size_ru) if x)
+    meta_en = ' · '.join(x for x in (tech_en, size_en) if x)
     badge = '<span class="badge" data-ru="Продано" data-en="Sold">Продано</span>' if w['sold'] else ''
     title_html = f'<span class="t-title">{esc(w["title"])}</span>' if w['title'] else ''
     candy = ' candy' if w.get('artist') == 'julie-jaler' else ''

@@ -1,0 +1,884 @@
+{
+  "dan-faco": [
+    {
+      "slug": "mask-chanel",
+      "title": "",
+      "tech_ru": "Смешанная техника, арт-резина",
+      "tech_en": "Mixed media, art resin",
+      "size": "130×90 см",
+      "sold": false,
+      "imgs": [
+        "mask-chanel.jpg"
+      ]
+    },
+    {
+      "slug": "alla-pugacheva",
+      "title": "",
+      "tech_ru": "Смешанная техника, арт-резина",
+      "tech_en": "Mixed media, art resin",
+      "size": "130×90 см",
+      "sold": false,
+      "imgs": [
+        "alla-pugacheva.jpg"
+      ]
+    },
+    {
+      "slug": "brigitte-lollipop",
+      "title": "",
+      "tech_ru": "Смешанная техника, арт-резина",
+      "tech_en": "Mixed media, art resin",
+      "size": "130×90 см",
+      "sold": false,
+      "imgs": [
+        "brigitte-lollipop.jpg"
+      ]
+    },
+    {
+      "slug": "madonna-love",
+      "title": "",
+      "tech_ru": "Смешанная техника, арт-резина",
+      "tech_en": "Mixed media, art resin",
+      "size": "120×100 см",
+      "sold": false,
+      "imgs": [
+        "madonna-love.jpg"
+      ]
+    }
+  ],
+  "raphael-vanderhaegen": [
+    {
+      "slug": "marilyn-heart-lollipop",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "marilyn-heart-lollipop.jpg"
+      ]
+    },
+    {
+      "slug": "marilyn-vuitton-money",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "marilyn-vuitton-money.jpg"
+      ]
+    },
+    {
+      "slug": "scrooge-outwork-everyone",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "scrooge-outwork-everyone.jpg"
+      ]
+    },
+    {
+      "slug": "scrooge-work-hard",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "scrooge-work-hard.jpg"
+      ]
+    }
+  ],
+  "dmitry-dyu": [
+    {
+      "slug": "michael-jackson-figure",
+      "title": "",
+      "tech_ru": "Скульптура, кастом",
+      "tech_en": "Custom sculpture",
+      "size": "30 см",
+      "sold": false,
+      "imgs": [
+        "michael-jackson-figure.jpg"
+      ]
+    },
+    {
+      "slug": "guitarist-figure",
+      "title": "",
+      "tech_ru": "Скульптура, кастом",
+      "tech_en": "Custom sculpture",
+      "size": "30 см",
+      "sold": false,
+      "imgs": [
+        "guitarist-figure.jpg"
+      ]
+    }
+  ],
+  "milena-b": [
+    {
+      "slug": "michael-jackson",
+      "title": "",
+      "tech_ru": "Холст, смешанная техника",
+      "tech_en": "Mixed media on canvas",
+      "size": "90×60 см",
+      "sold": false,
+      "imgs": [
+        "michael-jackson.jpg"
+      ]
+    },
+    {
+      "slug": "audrey-hepburn-tiffany",
+      "title": "",
+      "tech_ru": "Холст, смешанная техника",
+      "tech_en": "Mixed media on canvas",
+      "size": "90×60 см",
+      "sold": false,
+      "imgs": [
+        "audrey-hepburn-tiffany.jpg"
+      ]
+    },
+    {
+      "slug": "la-dolce-vita",
+      "title": "",
+      "tech_ru": "Холст, смешанная техника",
+      "tech_en": "Mixed media on canvas",
+      "size": "120×90 см",
+      "sold": false,
+      "imgs": [
+        "la-dolce-vita.jpg"
+      ]
+    },
+    {
+      "slug": "madonna-vogue",
+      "title": "",
+      "tech_ru": "Холст, смешанная техника",
+      "tech_en": "Mixed media on canvas",
+      "size": "90×60 см",
+      "sold": false,
+      "imgs": [
+        "madonna-vogue.jpg"
+      ]
+    },
+    {
+      "slug": "mick-jagger-rolling-stones",
+      "title": "",
+      "tech_ru": "Холст, смешанная техника",
+      "tech_en": "Mixed media on canvas",
+      "size": "90×60 см",
+      "sold": false,
+      "imgs": [
+        "mick-jagger-rolling-stones.jpg"
+      ]
+    },
+    {
+      "slug": "madonna-true-blue",
+      "title": "",
+      "tech_ru": "Холст, смешанная техника",
+      "tech_en": "Mixed media on canvas",
+      "size": "90×60 см",
+      "sold": false,
+      "imgs": [
+        "madonna-true-blue.jpg"
+      ]
+    }
+  ],
+  "mauro-paparella": [
+    {
+      "slug": "captain-america",
+      "title": "",
+      "tech_ru": "Холст, акрил",
+      "tech_en": "Acrylic on canvas",
+      "size": "80×120 см",
+      "sold": false,
+      "imgs": [
+        "captain-america.jpg"
+      ]
+    },
+    {
+      "slug": "golden-elephant-piazza",
+      "title": "",
+      "tech_ru": "Холст, акрил",
+      "tech_en": "Acrylic on canvas",
+      "size": "80×120 см",
+      "sold": false,
+      "imgs": [
+        "golden-elephant-piazza.jpg"
+      ]
+    },
+    {
+      "slug": "shark-pink-panthers",
+      "title": "",
+      "tech_ru": "Холст, акрил",
+      "tech_en": "Acrylic on canvas",
+      "size": "100×100 см",
+      "sold": false,
+      "imgs": [
+        "shark-pink-panthers.jpg"
+      ]
+    },
+    {
+      "slug": "superman-clock-angel",
+      "title": "",
+      "tech_ru": "Холст, акрил",
+      "tech_en": "Acrylic on canvas",
+      "size": "80×120 см",
+      "sold": false,
+      "imgs": [
+        "superman-clock-angel.jpg"
+      ]
+    },
+    {
+      "slug": "batman-king-kong",
+      "title": "",
+      "tech_ru": "Холст, акрил",
+      "tech_en": "Acrylic on canvas",
+      "size": "100×100 см",
+      "sold": false,
+      "imgs": [
+        "batman-king-kong.jpg"
+      ]
+    },
+    {
+      "slug": "colosseum-cherub-chess",
+      "title": "",
+      "tech_ru": "Холст, акрил",
+      "tech_en": "Acrylic on canvas",
+      "size": "100×150 см",
+      "sold": false,
+      "imgs": [
+        "colosseum-cherub-chess.jpg"
+      ]
+    },
+    {
+      "slug": "bear-swing-cathedral",
+      "title": "",
+      "tech_ru": "Холст, акрил",
+      "tech_en": "Acrylic on canvas",
+      "size": "80×120 см",
+      "sold": false,
+      "imgs": [
+        "bear-swing-cathedral.jpg"
+      ]
+    }
+  ],
+  "naor": [
+    {
+      "slug": "porsche-graphite-bear",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "porsche-graphite-bear.jpg"
+      ]
+    },
+    {
+      "slug": "gucci-mickey-mouse",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "gucci-mickey-mouse.jpg"
+      ]
+    },
+    {
+      "slug": "dollar-chrome-turtle",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "dollar-chrome-turtle.jpg"
+      ]
+    },
+    {
+      "slug": "mercedes-black-bear",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "mercedes-black-bear.jpg"
+      ]
+    },
+    {
+      "slug": "dollar-money-bear",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "dollar-money-bear.jpg"
+      ]
+    },
+    {
+      "slug": "hermes-navy-bear",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "hermes-navy-bear.jpg"
+      ]
+    },
+    {
+      "slug": "rolls-royce-blue-bear",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "rolls-royce-blue-bear.jpg"
+      ]
+    },
+    {
+      "slug": "fashion-collage-bear",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "fashion-collage-bear.jpg"
+      ]
+    },
+    {
+      "slug": "dior-toile-flower-bear",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "dior-toile-flower-bear.jpg"
+      ]
+    },
+    {
+      "slug": "ferrari-spiked-collar-bear",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "ferrari-spiked-collar-bear.jpg"
+      ]
+    },
+    {
+      "slug": "tiffany-heart-balloon",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "tiffany-heart-balloon.jpg"
+      ]
+    },
+    {
+      "slug": "dior-monogram-cat",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "dior-monogram-cat.jpg"
+      ]
+    },
+    {
+      "slug": "ferrari-heart-balloon",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "ferrari-heart-balloon.jpg"
+      ]
+    },
+    {
+      "slug": "newspaper-collage-bear",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "newspaper-collage-bear.jpg"
+      ]
+    },
+    {
+      "slug": "rolex-green-gold-bear",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "rolex-green-gold-bear.jpg"
+      ]
+    },
+    {
+      "slug": "ferrari-red-bear",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "ferrari-red-bear.jpg"
+      ]
+    },
+    {
+      "slug": "hermes-graffiti-bear",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "hermes-graffiti-bear.jpg"
+      ]
+    },
+    {
+      "slug": "mercedes-amg-carbon-bear",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "mercedes-amg-carbon-bear.jpg"
+      ]
+    },
+    {
+      "slug": "louis-vuitton-brown-bear",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "louis-vuitton-brown-bear.jpg"
+      ]
+    }
+  ],
+  "leo-steph": [
+    {
+      "slug": "louis-vuitton-blue-print",
+      "title": "",
+      "tech_ru": "Арт-принт",
+      "tech_en": "Art print",
+      "size": "90×60 см",
+      "sold": false,
+      "imgs": [
+        "louis-vuitton-blue-print.jpg"
+      ]
+    },
+    {
+      "slug": "louis-vuitton-blue-cup",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": "55 см",
+      "sold": false,
+      "imgs": [
+        "louis-vuitton-blue-cup.jpg"
+      ]
+    },
+    {
+      "slug": "louis-vuitton-monogram-cup",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": "29 см",
+      "sold": false,
+      "imgs": [
+        "louis-vuitton-monogram-cup.jpg"
+      ]
+    },
+    {
+      "slug": "ferrari-red-cup",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": "29 см",
+      "sold": false,
+      "imgs": [
+        "ferrari-red-cup.jpg"
+      ]
+    },
+    {
+      "slug": "chanel-black-print",
+      "title": "",
+      "tech_ru": "Арт-принт",
+      "tech_en": "Art print",
+      "size": "90×60 см",
+      "sold": false,
+      "imgs": [
+        "chanel-black-print.jpg"
+      ]
+    },
+    {
+      "slug": "basquiat-black-cup",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": "29 см",
+      "sold": false,
+      "imgs": [
+        "basquiat-black-cup.jpg"
+      ]
+    },
+    {
+      "slug": "hermes-orange-cup",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": "29 см",
+      "sold": false,
+      "imgs": [
+        "hermes-orange-cup.jpg"
+      ]
+    },
+    {
+      "slug": "lamborghini-black-cup",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": "29 см",
+      "sold": false,
+      "imgs": [
+        "lamborghini-black-cup.jpg"
+      ]
+    },
+    {
+      "slug": "chanel-white-cup",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": "29 см",
+      "sold": false,
+      "imgs": [
+        "chanel-white-cup.jpg"
+      ]
+    }
+  ],
+  "le-marquis": [
+    {
+      "slug": "calimero-lamborghini-black",
+      "title": "",
+      "tech_ru": "Композитный материал",
+      "tech_en": "Composite material",
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "calimero-lamborghini-black.jpg"
+      ]
+    },
+    {
+      "slug": "calimero-lamborghini-yellow",
+      "title": "",
+      "tech_ru": "Композитный материал",
+      "tech_en": "Composite material",
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "calimero-lamborghini-yellow.jpg"
+      ]
+    },
+    {
+      "slug": "calimero-ferrari-red",
+      "title": "",
+      "tech_ru": "Композитный материал",
+      "tech_en": "Composite material",
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "calimero-ferrari-red.jpg"
+      ]
+    },
+    {
+      "slug": "calimero-porsche-white",
+      "title": "",
+      "tech_ru": "Композитный материал",
+      "tech_en": "Composite material",
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "calimero-porsche-white.jpg"
+      ]
+    },
+    {
+      "slug": "calimero-porsche-red",
+      "title": "",
+      "tech_ru": "Композитный материал",
+      "tech_en": "Composite material",
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "calimero-porsche-red.jpg"
+      ]
+    },
+    {
+      "slug": "calimero-lamborghini-yellow-carbon",
+      "title": "",
+      "tech_ru": "Композитный материал",
+      "tech_en": "Composite material",
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "calimero-lamborghini-yellow-carbon.jpg"
+      ]
+    },
+    {
+      "slug": "calimero-lamborghini-orange-carbon",
+      "title": "",
+      "tech_ru": "Композитный материал",
+      "tech_en": "Composite material",
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "calimero-lamborghini-orange-carbon.jpg"
+      ]
+    },
+    {
+      "slug": "calimero-rolls-royce-blue",
+      "title": "",
+      "tech_ru": "Композитный материал",
+      "tech_en": "Composite material",
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "calimero-rolls-royce-blue.jpg"
+      ]
+    },
+    {
+      "slug": "calimero-lamborghini-black-2",
+      "title": "",
+      "tech_ru": "Композитный материал",
+      "tech_en": "Composite material",
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "calimero-lamborghini-black-2.jpg"
+      ]
+    },
+    {
+      "slug": "calimero-porsche-yellow",
+      "title": "",
+      "tech_ru": "Композитный материал",
+      "tech_en": "Composite material",
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "calimero-porsche-yellow.jpg"
+      ]
+    },
+    {
+      "slug": "calimero-rolex-green-gold",
+      "title": "",
+      "tech_ru": "Композитный материал",
+      "tech_en": "Composite material",
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "calimero-rolex-green-gold.jpg"
+      ]
+    },
+    {
+      "slug": "calimero-porsche-green-carbon",
+      "title": "",
+      "tech_ru": "Композитный материал",
+      "tech_en": "Composite material",
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "calimero-porsche-green-carbon.jpg"
+      ]
+    }
+  ],
+  "jf-piecourt": [
+    {
+      "slug": "porsche-911-burgundy",
+      "title": "",
+      "tech_ru": "Металл, авто лак",
+      "tech_en": "Metal, automotive lacquer",
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "porsche-911-burgundy-1.jpg",
+        "porsche-911-burgundy-2.jpg"
+      ]
+    },
+    {
+      "slug": "porsche-911-gt3-orange",
+      "title": "",
+      "tech_ru": "Металл, авто лак",
+      "tech_en": "Metal, automotive lacquer",
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "porsche-911-gt3-orange-1.jpg",
+        "porsche-911-gt3-orange-2.jpg"
+      ]
+    },
+    {
+      "slug": "porsche-911-black",
+      "title": "",
+      "tech_ru": "Металл, авто лак",
+      "tech_en": "Metal, automotive lacquer",
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "porsche-911-black-1.jpg",
+        "porsche-911-black-2.jpg",
+        "porsche-911-black-3.jpg"
+      ]
+    },
+    {
+      "slug": "porsche-911-ivory",
+      "title": "",
+      "tech_ru": "Металл, авто лак",
+      "tech_en": "Metal, automotive lacquer",
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "porsche-911-ivory.jpg"
+      ]
+    },
+    {
+      "slug": "porsche-911-red-wire",
+      "title": "",
+      "tech_ru": "Металл, авто лак",
+      "tech_en": "Metal, automotive lacquer",
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "porsche-911-red-wire-1.jpg",
+        "porsche-911-red-wire-2.jpg"
+      ]
+    },
+    {
+      "slug": "supercar-red-wire",
+      "title": "",
+      "tech_ru": "Металл, авто лак",
+      "tech_en": "Metal, automotive lacquer",
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "supercar-red-wire.jpg"
+      ]
+    },
+    {
+      "slug": "prancing-horse-black",
+      "title": "",
+      "tech_ru": "Металл, авто лак",
+      "tech_en": "Metal, automotive lacquer",
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "prancing-horse-black.jpg"
+      ]
+    },
+    {
+      "slug": "porsche-911-silver-wire",
+      "title": "",
+      "tech_ru": "Металл, авто лак",
+      "tech_en": "Metal, automotive lacquer",
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "porsche-911-silver-wire.jpg"
+      ]
+    },
+    {
+      "slug": "porsche-911-graphite",
+      "title": "",
+      "tech_ru": "Металл, авто лак",
+      "tech_en": "Metal, automotive lacquer",
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "porsche-911-graphite.jpg"
+      ]
+    },
+    {
+      "slug": "porsche-911-yellow",
+      "title": "",
+      "tech_ru": "Металл, авто лак",
+      "tech_en": "Metal, automotive lacquer",
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "porsche-911-yellow.jpg"
+      ]
+    },
+    {
+      "slug": "porsche-911-chrome",
+      "title": "",
+      "tech_ru": "Металл, авто лак",
+      "tech_en": "Metal, automotive lacquer",
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "porsche-911-chrome-1.jpg",
+        "porsche-911-chrome-2.jpg"
+      ]
+    },
+    {
+      "slug": "prancing-horse-red",
+      "title": "",
+      "tech_ru": "Металл, авто лак",
+      "tech_en": "Metal, automotive lacquer",
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "prancing-horse-red.jpg"
+      ]
+    },
+    {
+      "slug": "porsche-911-blue",
+      "title": "",
+      "tech_ru": "Металл, авто лак",
+      "tech_en": "Metal, automotive lacquer",
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "porsche-911-blue.jpg"
+      ]
+    },
+    {
+      "slug": "gt3rs-green-red-pair",
+      "title": "",
+      "tech_ru": "Металл, авто лак",
+      "tech_en": "Metal, automotive lacquer",
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "gt3rs-green-red-pair.jpg"
+      ]
+    },
+    {
+      "slug": "porsche-911-chrome-mirror",
+      "title": "",
+      "tech_ru": "Металл, авто лак",
+      "tech_en": "Metal, automotive lacquer",
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "porsche-911-chrome-mirror.jpg"
+      ]
+    }
+  ]
+}
