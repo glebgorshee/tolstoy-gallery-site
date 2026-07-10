@@ -400,6 +400,70 @@ ALL_WORKS = {a['key']: works_of(a['key']) for a in ARTISTS}
 
 def esc(s): return html.escape(s or '', quote=True)
 
+# ---------- производные: миниатюры плиток и постеры видео ----------
+# Плитки грузят лёгкие превью (~800px), полноразмер — только в лайтбоксе.
+# Постер видео = кадр из ролика: без него <video preload="none"> стоит пустым квадратом.
+THUMBS = f'{IMG}/thumbs'
+import subprocess
+
+def _fresh(dst, src):
+    return os.path.exists(dst) and os.path.getmtime(dst) >= os.path.getmtime(src)
+
+def thumb_path(rel):
+    """assets/img/<x>.jpg -> assets/img/thumbs/<x>.jpg (если миниатюра есть, иначе оригинал)"""
+    if not rel or not rel.startswith(IMG + '/'):
+        return rel
+    t = f'{THUMBS}/' + os.path.splitext(rel[len(IMG) + 1:])[0] + '.jpg'
+    return t if os.path.exists(os.path.join(ROOT, t)) else rel
+
+def poster_path(video_rel):
+    stem = os.path.splitext(os.path.basename(video_rel))[0]
+    vdir = os.path.basename(os.path.dirname(video_rel))
+    p = f'{THUMBS}/posters/{vdir}/{stem}.jpg'
+    return p if os.path.exists(os.path.join(ROOT, p)) else ''
+
+def make_derivatives():
+    made = 0
+    # миниатюры: работы (кроме *-video) + портреты/картинки site
+    srcs = [p for p in glob.glob(os.path.join(ROOT, IMG, 'works', '*', '*'))
+            if os.path.splitext(p)[1].lower() in ('.jpg', '.jpeg', '.png')
+            and '-video' not in os.path.basename(os.path.dirname(p))]
+    srcs += [p for p in glob.glob(os.path.join(ROOT, IMG, 'site', '*'))
+             if os.path.splitext(p)[1].lower() in ('.jpg', '.jpeg')]
+    for src in srcs:
+        rel = os.path.relpath(src, ROOT).replace(os.sep, '/')
+        dst = os.path.join(ROOT, THUMBS, os.path.splitext(rel[len(IMG) + 1:])[0] + '.jpg')
+        if _fresh(dst, src):
+            continue
+        os.makedirs(os.path.dirname(dst), exist_ok=True)
+        # magick: лучше жмёт + progressive (перцептивно быстрее); sips — запасной
+        r = subprocess.run(['magick', src, '-auto-orient', '-resize', '800x800>',
+                            '-strip', '-interlace', 'Plane', '-quality', '76', dst],
+                           capture_output=True)
+        if r.returncode != 0:
+            subprocess.run(['sips', '-Z', '800', '-s', 'format', 'jpeg',
+                            '-s', 'formatOptions', '76', src, '--out', dst],
+                           capture_output=True)
+        made += 1
+    # постеры видео (ffmpeg): кадр с 0.5 сек, ширина 640
+    for src in glob.glob(os.path.join(ROOT, IMG, 'works', '*-video', '*.mp4')):
+        vdir = os.path.basename(os.path.dirname(src))
+        stem = os.path.splitext(os.path.basename(src))[0]
+        dst = os.path.join(ROOT, THUMBS, 'posters', vdir, f'{stem}.jpg')
+        if _fresh(dst, src):
+            continue
+        os.makedirs(os.path.dirname(dst), exist_ok=True)
+        r = subprocess.run(['ffmpeg', '-y', '-ss', '0.5', '-i', src, '-frames:v', '1',
+                            '-vf', 'scale=480:-2', '-q:v', '6', dst], capture_output=True)
+        if r.returncode != 0:  # ролик короче 0.5с — берём первый кадр
+            subprocess.run(['ffmpeg', '-y', '-i', src, '-frames:v', '1',
+                            '-vf', 'scale=480:-2', '-q:v', '6', dst], capture_output=True)
+        made += 1
+    if made:
+        print(f'Производные обновлены: {made}')
+
+make_derivatives()
+
 # ---------- переиспользуемые куски ----------
 def head(title, desc, active='', home=False):
     return f'''<!doctype html>
@@ -495,8 +559,9 @@ def work_tile(w, idx=0):
         nav = ('<button class="ti-nav ti-prev" aria-label="Предыдущий ракурс">‹</button>'
                '<button class="ti-nav ti-next" aria-label="Следующий ракурс">›</button>'
                f'<span class="ti-count">1 / {len(imgs)}</span>')
-    return f'''<figure class="tile reveal{' multi' if multi else ''}{candy}" data-artist="{esc(w.get('artist',''))}" data-title="{esc(w['title'])}" data-meta-ru="{esc(meta_ru)}" data-meta-en="{esc(meta_en)}" data-sold="{'1' if w['sold'] else '0'}" data-images="{esc('|'.join(imgs))}" data-full="{esc(cover)}">
-  <div class="tile-img"><img src="{esc(cover)}" alt="{esc(w['title'])}" loading="lazy">{badge}{nav}</div>
+    thumbs = [thumb_path(i) for i in imgs]
+    return f'''<figure class="tile reveal{' multi' if multi else ''}{candy}" data-artist="{esc(w.get('artist',''))}" data-title="{esc(w['title'])}" data-meta-ru="{esc(meta_ru)}" data-meta-en="{esc(meta_en)}" data-sold="{'1' if w['sold'] else '0'}" data-images="{esc('|'.join(imgs))}" data-thumbs="{esc('|'.join(thumbs))}" data-full="{esc(cover)}">
+  <div class="tile-img"><img src="{esc(thumbs[0])}" alt="{esc(w['title'])}" loading="lazy" decoding="async">{badge}{nav}</div>
   <figcaption>{title_html}<span class="t-meta" data-ru="{esc(meta_ru)}" data-en="{esc(meta_en)}">{esc(meta_ru)}</span></figcaption>
 </figure>'''
 
@@ -507,7 +572,7 @@ def build_index():
         featured += ALL_WORKS[key][:3]
     tiles = ''.join(work_tile(w, i) for i, w in enumerate(featured))
     artist_cards = ''.join(f'''<a class="a-card reveal" href="artist-{a['slug']}.html" data-sru="{esc(a['sort_ru'])}" data-sen="{esc(a['sort_en'])}">
-      <div class="a-card-img{' logo' if a.get('logo') else ''}"><img src="{esc(a['portrait'])}" alt="{esc(a['name_ru'])}" loading="lazy"></div>
+      <div class="a-card-img{' logo' if a.get('logo') else ''}"><img src="{esc(thumb_path(a['portrait']))}" alt="{esc(a['name_ru'])}" loading="lazy" decoding="async"></div>
       <div class="a-card-name" data-ru="{esc(a['name_ru'])}" data-en="{esc(a['name_en'])}">{esc(a['name_ru'])}</div>
       {f'<div class="a-card-years" data-ru="{esc(a["years"])}" data-en="{esc(a["years_en"])}">{esc(a["years"])}</div>' if a['years'] else ''}
     </a>''' for a in ARTISTS)
@@ -565,14 +630,25 @@ def build_artists():
     rows = ''
     for a in ARTISTS:
         cnt = len(ALL_WORKS[a['key']])
-        if a.get('is_video'):
-            cnt_txt, cnt_en = '14 видео-работ', '14 video works'
-        elif cnt == 0:
-            cnt_txt, cnt_en = 'Скоро', 'Coming soon'
+        vcnt = len(artist_videos(a['key']))
+        def _ru(n, one, few, many):
+            if n % 10 == 1 and n % 100 != 11: return one
+            if 2 <= n % 10 <= 4 and not 12 <= n % 100 <= 14: return few
+            return many
+        w_ru = f'{cnt} {_ru(cnt, "работа", "работы", "работ")}'
+        w_en = f'{cnt} work{"s" if cnt != 1 else ""}'
+        v_ru = f'{vcnt} видео'
+        v_en = f'{vcnt} video{"s" if vcnt != 1 else ""}'
+        if cnt and vcnt:
+            cnt_txt, cnt_en = f'{w_ru} · {v_ru}', f'{w_en} · {v_en}'
+        elif vcnt:
+            cnt_txt, cnt_en = v_ru, v_en
+        elif cnt:
+            cnt_txt, cnt_en = w_ru, w_en
         else:
-            cnt_txt, cnt_en = f'{cnt} работ', f'{cnt} works'
+            cnt_txt, cnt_en = 'Скоро', 'Coming soon'
         rows += f'''<a class="artist-row reveal" href="artist-{a['slug']}.html" data-sru="{esc(a['sort_ru'])}" data-sen="{esc(a['sort_en'])}">
-      <div class="ar-img{' logo' if a.get('logo') else ''}"><img src="{esc(a['portrait'])}" alt="{esc(a['name_ru'])}" loading="lazy"></div>
+      <div class="ar-img{' logo' if a.get('logo') else ''}"><img src="{esc(thumb_path(a['portrait']))}" alt="{esc(a['name_ru'])}" loading="lazy" decoding="async"></div>
       <div class="ar-txt">
         {f'<p class="ar-years" data-ru="{esc(a["years"])}" data-en="{esc(a["years_en"])}">{esc(a["years"])}</p>' if a['years'] else ''}
         <h2 class="ar-name" data-ru="{esc(a['name_ru'])}" data-en="{esc(a['name_en'])}">{esc(a['name_ru'])}</h2>
@@ -590,24 +666,40 @@ def build_artists():
     return head('Художники — Art Gallery Tolstoy', 'Художники и скульпторы Арт Галереи Толстой', 'artists') + body + footer()
 
 # ---------- страница художника ----------
+VIDEO_TITLES = {'x-ray-suitcase': 'X-Ray — Suitcase', 'x-ray-birkin': 'X-Ray — Birkin'}
+
+def artist_videos(key):
+    return sorted(glob.glob(os.path.join(ROOT, f'{IMG}/works/{key}-video/*.mp4')))
+
 def build_artist(a):
     works = ALL_WORKS[a['key']]
     tiles = ''.join(work_tile(w, i) for i, w in enumerate(works))
-    if a.get('is_video'):
-        vids = sorted(glob.glob(os.path.join(ROOT, f'{IMG}/works/bashev-video/*.mp4')))
-        vtiles = ''
-        for v in vids:
-            rel = os.path.relpath(v, ROOT).replace(os.sep, '/')
-            name = os.path.splitext(os.path.basename(v))[0]
-            vtiles += f'''<figure class="tile reveal"><div class="tile-img"><video src="{esc(rel)}" muted loop playsinline preload="none"></video></div><figcaption><span class="t-title">{esc(name)}</span></figcaption></figure>'''
-        gallery = f'<div class="grid grid-video">{vtiles}</div>' if vtiles else ''
-        gh_ru, gh_en = 'Видео-работы', 'Video works'
-    elif not works:
+    vids = artist_videos(a['key'])
+    vtiles = ''
+    for v in vids:
+        rel = os.path.relpath(v, ROOT).replace(os.sep, '/')
+        stem = os.path.splitext(os.path.basename(v))[0]
+        name = VIDEO_TITLES.get(stem, stem.replace('-', ' ').title())
+        poster = poster_path(rel)
+        pattr = f' poster="{esc(poster)}"' if poster else ''
+        vtiles += f'''<figure class="tile reveal"><div class="tile-img"><video src="{esc(rel)}"{pattr} muted loop playsinline preload="none"></video></div><figcaption><span class="t-title">{esc(name)}</span></figcaption></figure>'''
+    video_block = ''
+    if vtiles:
+        vh_ru, vh_en = 'Видео-работы', 'Video works'
+        video_block = f'''
+<section class="container block">
+  <div class="block-head reveal"><h2 data-ru="{vh_ru}" data-en="{vh_en}">{vh_ru}</h2></div>
+  <div class="grid grid-video">{vtiles}</div>
+</section>'''
+    if works:
+        gallery = f'<div class="grid">{tiles}</div>'
+        gh_ru, gh_en = 'Работы', 'Works'
+    elif vids:
+        gallery = ''   # только видео — блок «Работы» не показываем
+        gh_ru, gh_en = '', ''
+    else:
         gallery = ('<p class="works-soon reveal" data-ru="Работы этого художника скоро появятся." '
                    'data-en="Works by this artist are coming soon.">Работы этого художника скоро появятся.</p>')
-        gh_ru, gh_en = 'Работы', 'Works'
-    else:
-        gallery = f'<div class="grid">{tiles}</div>'
         gh_ru, gh_en = 'Работы', 'Works'
     body = f'''
 <section class="artist-hero">
@@ -619,10 +711,10 @@ def build_artist(a):
 <section class="container artist-bio">
   <p class="bio reveal" data-ru="{esc(a['bio_ru'])}" data-en="{esc(a['bio_en'])}">{esc(a['bio_ru'])}</p>
 </section>
-<section class="container block">
+{f'''<section class="container block">
   <div class="block-head reveal"><h2 data-ru="{gh_ru}" data-en="{gh_en}">{gh_ru}</h2></div>
   {gallery}
-</section>
+</section>''' if gallery else ''}{video_block}
 '''
     return head(f'{a["name_ru"]} — Art Gallery Tolstoy', esc(a['short_ru']), 'artists') + body + footer()
 

@@ -880,5 +880,224 @@
         "porsche-911-chrome-mirror.jpg"
       ]
     }
+  ],
+  "accardi": [
+    {
+      "slug": "burgundy-ostrich-royal-portrait",
+      "title": "",
+      "tech_ru": "Смешанная техника, холст",
+      "tech_en": "Mixed media on canvas",
+      "size": "120×80 см",
+      "sold": false,
+      "imgs": [
+        "burgundy-ostrich-royal-portrait.jpg"
+      ]
+    },
+    {
+      "slug": "magenta-ostrich-peter-the-great",
+      "title": "",
+      "tech_ru": "Смешанная техника, холст",
+      "tech_en": "Mixed media on canvas",
+      "size": "100×150 см",
+      "sold": false,
+      "imgs": [
+        "magenta-ostrich-peter-the-great.jpg"
+      ]
+    },
+    {
+      "slug": "green-ostrich-napoleon",
+      "title": "",
+      "tech_ru": "Смешанная техника, холст",
+      "tech_en": "Mixed media on canvas",
+      "size": "100×150 см",
+      "sold": false,
+      "imgs": [
+        "green-ostrich-napoleon.jpg"
+      ]
+    },
+    {
+      "slug": "violet-ostrich-minions",
+      "title": "",
+      "tech_ru": "Смешанная техника, холст",
+      "tech_en": "Mixed media on canvas",
+      "size": "150×150 см",
+      "sold": false,
+      "imgs": [
+        "violet-ostrich-minions.jpg"
+      ]
+    },
+    {
+      "slug": "white-zeppelin-night-plaza",
+      "title": "",
+      "tech_ru": "Смешанная техника, холст",
+      "tech_en": "Mixed media on canvas",
+      "size": "100×150 см",
+      "sold": false,
+      "imgs": [
+        "white-zeppelin-night-plaza.jpg"
+      ]
+    }
+  ],
+  "van-apple": [
+    {
+      "slug": "cash-is-king-gold",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "cash-is-king-gold-1.jpg",
+        "cash-is-king-gold-2.jpg"
+      ]
+    },
+    {
+      "slug": "donald-duck-stamp",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "donald-duck-stamp.jpg"
+      ]
+    },
+    {
+      "slug": "beatles-abbey-road-set",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "beatles-abbey-road-set.jpg"
+      ]
+    },
+    {
+      "slug": "trump-250-dollar-bill",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "trump-250-dollar-bill.jpg"
+      ]
+    },
+    {
+      "slug": "melting-dollar-black-white",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "melting-dollar-black-white-1.jpg",
+        "melting-dollar-black-white-2.jpg"
+      ]
+    }
+  ],
+  "bashev": [
+    {
+      "slug": "punk-on-brillo-boxes",
+      "title": "",
+      "tech_ru": "Холст, акрил",
+      "tech_en": "Acrylic on canvas",
+      "size": "180×160 см",
+      "sold": false,
+      "imgs": [
+        "punk-on-brillo-boxes.jpg"
+      ]
+    },
+    {
+      "slug": "red-heads-win-million",
+      "title": "",
+      "tech_ru": "Холст, смешанная техника",
+      "tech_en": "Mixed media on canvas",
+      "size": "190×190 см",
+      "sold": false,
+      "imgs": [
+        "red-heads-win-million.jpg"
+      ]
+    },
+    {
+      "slug": "figures-white-dog-pink-landscape",
+      "title": "",
+      "tech_ru": "Холст, смешанная техника",
+      "tech_en": "Mixed media on canvas",
+      "size": "150×150 см",
+      "sold": false,
+      "imgs": [
+        "figures-white-dog-pink-landscape.jpg"
+      ]
+    },
+    {
+      "slug": "three-figures-liberta",
+      "title": "",
+      "tech_ru": "Холст, смешанная техника",
+      "tech_en": "Mixed media on canvas",
+      "size": "130×200 см",
+      "sold": false,
+      "imgs": [
+        "three-figures-liberta.jpg"
+      ]
+    },
+    {
+      "slug": "marilyn-girl-on-black-cat",
+      "title": "",
+      "tech_ru": "Холст, смешанная техника",
+      "tech_en": "Mixed media on canvas",
+      "size": "180×160 см",
+      "sold": false,
+      "imgs": [
+        "marilyn-girl-on-black-cat.jpg"
+      ]
+    },
+    {
+      "slug": "mickey-trash-crown-dollar-bills",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "mickey-trash-crown-dollar-bills.jpg"
+      ]
+    },
+    {
+      "slug": "basquiat-boxer-dollar-bills",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "basquiat-boxer-dollar-bills.jpg"
+      ]
+    }
+  ],
+  "tamburro": [
+    {
+      "slug": "women-shopping-bags-stairs",
+      "title": "",
+      "tech_ru": "Холст, масло",
+      "tech_en": "Oil on canvas",
+      "size": "140×140 см",
+      "sold": false,
+      "imgs": [
+        "women-shopping-bags-stairs.jpg"
+      ]
+    },
+    {
+      "slug": "couple-under-umbrella-rain",
+      "title": "",
+      "tech_ru": "Холст, масло",
+      "tech_en": "Oil on canvas",
+      "size": "70×70 см",
+      "sold": false,
+      "imgs": [
+        "couple-under-umbrella-rain.jpg"
+      ]
+    }
   ]
 }

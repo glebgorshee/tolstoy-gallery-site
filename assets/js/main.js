@@ -174,13 +174,14 @@ document.documentElement.classList.add('js');
   /* ---- карусель ракурсов прямо в плитке (стрелки меняют ракурс) ---- */
   document.querySelectorAll('.tile.multi').forEach(function (tile) {
     var imgs = (tile.getAttribute('data-images') || '').split('|').filter(Boolean);
+    var thumbs = (tile.getAttribute('data-thumbs') || '').split('|').filter(Boolean);
     if (imgs.length < 2) return;
     var img = tile.querySelector('.tile-img img');
     var count = tile.querySelector('.ti-count');
     var i = 0;
     function set(n) {
       i = (n + imgs.length) % imgs.length;
-      img.src = imgs[i];
+      img.src = thumbs[i] || imgs[i];                   // в плитке — лёгкое превью
       tile.setAttribute('data-full', imgs[i]);          // лайтбокс откроется на текущем ракурсе
       if (count) count.textContent = (i + 1) + ' / ' + imgs.length;
     }
@@ -297,9 +298,20 @@ document.documentElement.classList.add('js');
     applyLang();
   });
 
-  /* ---- видео-превью Башева: play при наведении ---- */
-  document.querySelectorAll('.grid-video video').forEach(function (v) {
+  /* ---- видео-превью: hover на десктопе, автоплей по видимости на тач-устройствах ---- */
+  var gridVids = [].slice.call(document.querySelectorAll('.grid-video video'));
+  gridVids.forEach(function (v) {
     v.addEventListener('mouseenter', function () { v.play().catch(function(){}); });
     v.addEventListener('mouseleave', function () { v.pause(); });
   });
+  var touchDev = window.matchMedia('(hover: none)').matches;
+  if (touchDev && gridVids.length && 'IntersectionObserver' in window) {
+    var vio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting && en.intersectionRatio >= 0.5) en.target.play().catch(function(){});
+        else en.target.pause();
+      });
+    }, { threshold: [0, 0.5] });
+    gridVids.forEach(function (v) { vio.observe(v); });
+  }
 })();
