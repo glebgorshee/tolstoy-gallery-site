@@ -332,7 +332,7 @@ def kiko_works():
     for p in sorted(glob.glob(os.path.join(ROOT, f'{IMG}/works/kiko/*.jpg'))):
         rel = os.path.relpath(p, ROOT).replace(os.sep, '/')
         out.append(dict(slug=os.path.splitext(os.path.basename(p))[0], title='',
-                        tech_ru='Акрил, смешанная техника', tech_en='Acrylic, mixed technique',
+                        tech_ru='Китайская тушь, арт-резина', tech_en='Chinese ink, art resin',
                         size='', sold=False, imgs=[rel], artist='kiko'))
     return out
 
