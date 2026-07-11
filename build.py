@@ -375,6 +375,7 @@ TECH_RU = {
     'Oil, Acrylic, Ink Painting':   'Масло, акрил, тушь',
     'Oil Acrylic and Ink Painting': 'Масло, акрил, тушь',
     'Mixed Technique On Canvas':    'Холст, смешанная техника',
+    'Oil on Canvas':                'Холст, масло',
     'Etched Metal':                 'Металл, травление',
 }
 
@@ -584,7 +585,9 @@ def work_tile(w, idx=0, goto_artist=False):
     meta_ru = ' · '.join(x for x in (tech_ru, size_ru) if x)
     meta_en = ' · '.join(x for x in (tech_en, size_en) if x)
     badge = '<span class="badge" data-ru="Продано" data-en="Sold">Продано</span>' if w['sold'] else ''
-    title_html = f'<span class="t-title">{esc(w["title"])}</span>' if w['title'] else ''
+    # названия работ не показываем (решение клиента 11.07: только материалы, размер, год);
+    # title в данных сохраняется — вернуть легко
+    title_html = ''
     candy = ' candy' if w.get('artist') == 'julie-jaler' else ''
     nav = ''
     if multi:
@@ -595,7 +598,7 @@ def work_tile(w, idx=0, goto_artist=False):
     _a = ART_BY_KEY.get(w.get('artist', ''))
     aname_ru, aname_en = (_a['name_ru'], _a['name_en']) if _a else ('', '')
     goto = f' data-goto="artist-{esc(w["artist"])}.html"' if goto_artist and w.get('artist') else ''
-    return f'''<figure class="tile reveal{' multi' if multi else ''}{candy}"{goto} data-artist="{esc(w.get('artist',''))}" data-artist-ru="{esc(aname_ru)}" data-artist-en="{esc(aname_en)}" data-title="{esc(w['title'])}" data-meta-ru="{esc(meta_ru)}" data-meta-en="{esc(meta_en)}" data-sold="{'1' if w['sold'] else '0'}" data-images="{esc('|'.join(imgs))}" data-thumbs="{esc('|'.join(thumbs))}" data-full="{esc(cover)}">
+    return f'''<figure class="tile reveal{' multi' if multi else ''}{candy}"{goto} data-artist="{esc(w.get('artist',''))}" data-artist-ru="{esc(aname_ru)}" data-artist-en="{esc(aname_en)}" data-title="" data-meta-ru="{esc(meta_ru)}" data-meta-en="{esc(meta_en)}" data-sold="{'1' if w['sold'] else '0'}" data-images="{esc('|'.join(imgs))}" data-thumbs="{esc('|'.join(thumbs))}" data-full="{esc(cover)}">
   <div class="tile-img"><img src="{esc(thumbs[0])}" alt="{esc(w['title'])}" loading="lazy" decoding="async">{badge}{nav}</div>
   <figcaption>{title_html}<span class="t-meta" data-ru="{esc(meta_ru)}" data-en="{esc(meta_en)}">{esc(meta_ru)}</span></figcaption>
 </figure>'''
