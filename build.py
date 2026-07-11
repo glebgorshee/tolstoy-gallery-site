@@ -542,7 +542,7 @@ def footer():
     return f'''<footer class="site-footer">
   <div class="ft-grid">
     <div>
-      <div class="ft-brand">Art Gallery Tolstoy</div>
+      <div class="ft-brand">{LOGO_SVG}</div>
       <p class="ft-muted" data-ru="Галерея современного европейского искусства." data-en="A gallery of contemporary European art.">Галерея современного европейского искусства.</p>
     </div>
     <div>
