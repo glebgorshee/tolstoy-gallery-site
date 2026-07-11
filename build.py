@@ -18,7 +18,7 @@ ARTISTS = [
          short_ru='Экспрессивные портреты из цветных росчерков — на грани абстракции и фигуратива.',
          bio_ru=('KIKO — современный художник, работающий в экспрессивной манере: многослойные цветные '
                  'росчерки и мазки складываются в портреты и образы на грани абстракции и фигуратива. '
-                 '[Черновая справка — биографию уточним у художника.]')),
+                 '')),
     dict(slug='julie-jaler', order=2, key='julie-jaler',
          name_ru='Джули Жалер', name_en='Julie Jaler',
          years='Франция',
@@ -27,7 +27,7 @@ ARTISTS = [
          bio_ru=('Джули Жалер (Julie Jaler) — французская художница-скульптор из Парижа. Создаёт '
                  'гиперреалистичные скульптуры-конфеты из смолы, оборачивая их в мотивы люксовых домов — '
                  'переосмысление роскоши, поп-арта и объекта желания. Каждая работа существует в нескольких '
-                 'ракурсах. [Черновая справка — биографию уточним у художницы.]')),
+                 'ракурсах.')),
     dict(slug='accardi', order=2, key='accardi',
          name_ru='Анджело Аккарди', name_en='Angelo Accardi',
          years='Италия',
@@ -98,7 +98,7 @@ ARTISTS = [
          short_ru='Французский скульптор на стыке искусства и дизайна.',
          bio_ru=('Жан-Франсуа Пьекур — французский скульптор, работающий на стыке искусства и дизайна: '
                  'создаёт объекты-скульптуры, соединяя пластику формы с предметным дизайном. '
-                 '[Черновая справка — подробности уточним у художника.]')),
+                 '')),
     dict(slug='naor', order=10, key='naor',
          name_ru='NAOR', name_en='NAOR',
          years='Франция',
@@ -188,14 +188,14 @@ EN = {
     short='Expressive portraits built from colored scribbles — between abstraction and figuration.',
     bio=('KIKO is a contemporary artist working in an expressive manner: layered colored scribbles and '
          'strokes come together into portraits and images on the edge of abstraction and figuration. '
-         '[Draft note — biography to be confirmed with the artist.]')),
+         '')),
  'julie-jaler': dict(
     years='France',
     short='Hyperrealistic resin candy sculptures wrapped in the motifs of luxury houses.',
     bio=('Julie Jaler is a French sculptor-artist based in Paris. She creates hyperrealistic candy '
          'sculptures in resin, wrapping them in the motifs of luxury houses — a reimagining of luxury, '
          'pop art and the object of desire. Each work exists in several viewing angles. '
-         '[Draft note — biography to be confirmed with the artist.]')),
+         '')),
  'accardi': dict(
     years='Italy',
     short='Ironic, surreal cityscapes of modern life.',
@@ -250,7 +250,7 @@ EN = {
     short='French sculptor at the intersection of art and design.',
     bio=('Jean-François Piécourt is a French sculptor working at the intersection of art and design: '
          'he creates sculptural objects that merge the plasticity of form with product design. '
-         '[Draft note — details to be confirmed with the artist.]')),
+         '')),
  'naor': dict(
     years='France',
     short='Resin pop-art figurines: luxury-brand symbols and a wink at consumerism.',
