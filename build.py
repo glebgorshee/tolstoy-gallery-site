@@ -331,7 +331,8 @@ def kiko_works():
     out = []
     for p in sorted(glob.glob(os.path.join(ROOT, f'{IMG}/works/kiko/*.jpg'))):
         rel = os.path.relpath(p, ROOT).replace(os.sep, '/')
-        out.append(dict(title='', tech_ru='Акрил, смешанная техника', tech_en='Acrylic, mixed media',
+        out.append(dict(slug=os.path.splitext(os.path.basename(p))[0], title='',
+                        tech_ru='Акрил, смешанная техника', tech_en='Acrylic, mixed technique',
                         size='', sold=False, imgs=[rel], artist='kiko'))
     return out
 
@@ -348,8 +349,8 @@ def julie_works():
         fi = JULIE_FRONT.get(w['slug'])
         if fi is not None and fi < len(imgs):
             imgs = [imgs[fi]] + imgs[:fi] + imgs[fi + 1:]   # фронт — первым
-        out.append(dict(title=w['title'], tech_ru='Смола', tech_en='Resin', size=w.get('size', ''),
-                        sold=False, imgs=imgs, artist='julie-jaler'))
+        out.append(dict(slug=w['slug'], title=w['title'], tech_ru='Смола', tech_en='Resin',
+                        size=w.get('size', ''), sold=False, imgs=imgs, artist='julie-jaler'))
     return out
 
 def artworks_of(artist_key):
@@ -363,7 +364,8 @@ def artworks_of(artist_key):
                 imgs.append(p)
         if not imgs:
             continue
-        out.append(dict(title=w.get('title', ''), tech_ru=w.get('tech_ru') or '', tech_en=w.get('tech_en') or '',
+        out.append(dict(slug=w.get('slug', ''), title=w.get('title', ''),
+                        tech_ru=w.get('tech_ru') or '', tech_en=w.get('tech_en') or '',
                         size=w.get('size') or '', sold=w.get('sold', False), imgs=imgs, artist=artist_key))
     return out
 
@@ -391,12 +393,40 @@ def works_of(artist_key):
             tech = meta[1] if len(meta) > 1 else ''
             size = meta[2] if len(meta) > 2 else ''
             sold = 'SOLD' in meta
-            base.append(dict(title=it['title'], tech_ru=TECH_RU.get(tech, tech), tech_en=tech,
-                            size=size, sold=sold, imgs=[img], artist=artist_key))
+            base.append(dict(slug=it['slug'], title=it['title'], tech_ru=TECH_RU.get(tech, tech),
+                            tech_en=tech, size=size, sold=sold, imgs=[img], artist=artist_key))
     # Новые работы (artworks.json) доливаются ко всем художникам единообразно
     return base + artworks_of(artist_key)
 
 ALL_WORKS = {a['key']: works_of(a['key']) for a in ARTISTS}
+
+# Визитные работы (выбор заказчика, TG 11.07.2026): на главной в «Избранных»
+# и первыми в «Коллекции» сразу после фильтров. Порядок — как прислал клиент.
+FEATURED = [
+    ('dan-faco', 'madonna-love'),
+    ('kiko', 'kiko-7'),
+    ('raphael-vanderhaegen', 'scrooge-work-hard'),
+    ('mauro-paparella', 'colosseum-cherub-chess'),
+    ('leo-steph', 'basquiat-black-cup'),
+    ('milena-b', 'michael-jackson'),
+    ('jf-piecourt', 'porsche-911-graphite'),
+    ('bashev', 'figures-white-dog-pink-landscape'),
+    ('tamburro', 'couple-under-umbrella-rain'),
+    ('accardi', 'painting-1'),
+    ('le-marquis', 'calimero-ferrari-red'),
+    ('van-apple', 'cash-is-king-gold'),
+    ('julie-jaler', 'gucci'),
+]
+
+def featured_works():
+    out = []
+    for key, slug in FEATURED:
+        w = next((x for x in ALL_WORKS.get(key, []) if x.get('slug') == slug), None)
+        if w:
+            out.append(w)
+        else:
+            print(f'!!! FEATURED не найдена: {key}/{slug}')
+    return out
 
 def esc(s): return html.escape(s or '', quote=True)
 
@@ -569,9 +599,7 @@ def work_tile(w, idx=0):
 
 # ---------- главная ----------
 def build_index():
-    featured = []
-    for key in ('julie-jaler', 'accardi', 'van-apple', 'kiko'):
-        featured += ALL_WORKS[key][:3]
+    featured = featured_works()
     tiles = ''.join(work_tile(w, i) for i, w in enumerate(featured))
     artist_cards = ''.join(f'''<a class="a-card reveal" href="artist-{a['slug']}.html" data-sru="{esc(a['sort_ru'])}" data-sen="{esc(a['sort_en'])}">
       <div class="a-card-img{' logo' if a.get('logo') else ''}"><img src="{esc(thumb_path(a['portrait']))}" alt="{esc(a['name_ru'])}" loading="lazy" decoding="async"></div>
@@ -728,9 +756,14 @@ def build_collections():
         # клик по «пустому» покажет заглушку со ссылкой на страницу художника (см. main.js)
         filters += (f'<button class="filter" data-f="{a["key"]}" data-sru="{esc(a["sort_ru"])}" data-sen="{esc(a["sort_en"])}" '
                     f'data-ru="{esc(a["name_ru"])}" data-en="{esc(a["name_en"])}">{esc(a["name_ru"])}</button>')
-    tiles = ''
+    # визитные — первыми (сразу после фильтров), затем остальные по художникам
+    feat = featured_works()
+    feat_ids = {id(w) for w in feat}
+    tiles = ''.join(work_tile(w) for w in feat)
     for a in ARTISTS:
         for w in ALL_WORKS[a['key']]:
+            if id(w) in feat_ids:
+                continue
             tiles += work_tile(w)   # data-artist проставляется внутри work_tile
     body = f'''
 <section class="page-head container">
