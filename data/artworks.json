@@ -89,6 +89,61 @@
       "imgs": [
         "scrooge-work-hard.jpg"
       ]
+    },
+    {
+      "slug": "mickey-minnie-love-me",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "mickey-minnie-love-me.jpg"
+      ]
+    },
+    {
+      "slug": "scrooge-no-days-off",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "scrooge-no-days-off.jpg"
+      ]
+    },
+    {
+      "slug": "scrooge-dream-plan-do",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "scrooge-dream-plan-do.jpg"
+      ]
+    },
+    {
+      "slug": "scrooge-believe-crypto",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "scrooge-believe-crypto.jpg"
+      ]
+    },
+    {
+      "slug": "mickey-minnie-kiss-paris",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "mickey-minnie-kiss-paris.jpg"
+      ]
     }
   ],
   "dmitry-dyu": [
