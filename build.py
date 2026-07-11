@@ -307,7 +307,7 @@ CONTACTS = dict(
     address='Новинский бульвар, 1/2, Москва',
     email1='mf@artgallerytolstoy.com', phone1='+7 (916) 999-90-06',
     email2='mb@artgallerytolstoy.com', phone2='+7 (916) 291-31-45',
-    fb='https://www.facebook.com/artgallerytolstoy/',
+    insta='https://www.instagram.com/artgallerytolstoy/',
 )
 
 # ---------- каталог работ ----------
@@ -555,7 +555,7 @@ def footer():
     </div>
     <div>
       <div class="ft-label" data-ru="Соцсети" data-en="Social">Соцсети</div>
-      <p><a href="{c['fb']}" target="_blank" rel="noopener">Facebook</a></p>
+      <p><a href="{c['insta']}" target="_blank" rel="noopener">Instagram</a></p>
     </div>
   </div>
   <div class="ft-bottom">
@@ -569,7 +569,9 @@ def footer():
 </body>
 </html>'''
 
-def work_tile(w, idx=0):
+def work_tile(w, idx=0, goto_artist=False):
+    """goto_artist=True — визитная плитка: клик ведёт на страницу художника (просьба клиента),
+    а не в лайтбокс. Обрабатывается в main.js по data-goto."""
     imgs = w.get('imgs') or [w.get('img')]
     cover = imgs[0]
     multi = len(imgs) > 1
@@ -592,7 +594,8 @@ def work_tile(w, idx=0):
     thumbs = [thumb_path(i) for i in imgs]
     _a = ART_BY_KEY.get(w.get('artist', ''))
     aname_ru, aname_en = (_a['name_ru'], _a['name_en']) if _a else ('', '')
-    return f'''<figure class="tile reveal{' multi' if multi else ''}{candy}" data-artist="{esc(w.get('artist',''))}" data-artist-ru="{esc(aname_ru)}" data-artist-en="{esc(aname_en)}" data-title="{esc(w['title'])}" data-meta-ru="{esc(meta_ru)}" data-meta-en="{esc(meta_en)}" data-sold="{'1' if w['sold'] else '0'}" data-images="{esc('|'.join(imgs))}" data-thumbs="{esc('|'.join(thumbs))}" data-full="{esc(cover)}">
+    goto = f' data-goto="artist-{esc(w["artist"])}.html"' if goto_artist and w.get('artist') else ''
+    return f'''<figure class="tile reveal{' multi' if multi else ''}{candy}"{goto} data-artist="{esc(w.get('artist',''))}" data-artist-ru="{esc(aname_ru)}" data-artist-en="{esc(aname_en)}" data-title="{esc(w['title'])}" data-meta-ru="{esc(meta_ru)}" data-meta-en="{esc(meta_en)}" data-sold="{'1' if w['sold'] else '0'}" data-images="{esc('|'.join(imgs))}" data-thumbs="{esc('|'.join(thumbs))}" data-full="{esc(cover)}">
   <div class="tile-img"><img src="{esc(thumbs[0])}" alt="{esc(w['title'])}" loading="lazy" decoding="async">{badge}{nav}</div>
   <figcaption>{title_html}<span class="t-meta" data-ru="{esc(meta_ru)}" data-en="{esc(meta_en)}">{esc(meta_ru)}</span></figcaption>
 </figure>'''
@@ -600,7 +603,7 @@ def work_tile(w, idx=0):
 # ---------- главная ----------
 def build_index():
     featured = featured_works()
-    tiles = ''.join(work_tile(w, i) for i, w in enumerate(featured))
+    tiles = ''.join(work_tile(w, i, goto_artist=True) for i, w in enumerate(featured))
     artist_cards = ''.join(f'''<a class="a-card reveal" href="artist-{a['slug']}.html" data-sru="{esc(a['sort_ru'])}" data-sen="{esc(a['sort_en'])}">
       <div class="a-card-img{' logo' if a.get('logo') else ''}"><img src="{esc(thumb_path(a['portrait']))}" alt="{esc(a['name_ru'])}" loading="lazy" decoding="async"></div>
       <div class="a-card-name" data-ru="{esc(a['name_ru'])}" data-en="{esc(a['name_en'])}">{esc(a['name_ru'])}</div>
@@ -759,7 +762,7 @@ def build_collections():
     # визитные — первыми (сразу после фильтров), затем остальные по художникам
     feat = featured_works()
     feat_ids = {id(w) for w in feat}
-    tiles = ''.join(work_tile(w) for w in feat)
+    tiles = ''.join(work_tile(w, goto_artist=True) for w in feat)
     for a in ARTISTS:
         for w in ALL_WORKS[a['key']]:
             if id(w) in feat_ids:
@@ -798,12 +801,12 @@ def build_visit():
     </div>
     <div class="vi-block">
       <div class="vi-label" data-ru="Контакты" data-en="Contacts">Контакты</div>
-      <p><a href="mailto:{c['email1']}">{c['email1']}</a> · {c['phone1']}</p>
-      <p><a href="mailto:{c['email2']}">{c['email2']}</a> · {c['phone2']}</p>
+      <p><a href="mailto:{c['email1']}">{c['email1']}</a><br><a href="tel:{c['phone1'].replace(' ','').replace('(','').replace(')','').replace('-','')}">{c['phone1']}</a></p>
+      <p><a href="mailto:{c['email2']}">{c['email2']}</a><br><a href="tel:{c['phone2'].replace(' ','').replace('(','').replace(')','').replace('-','')}">{c['phone2']}</a></p>
     </div>
     <div class="vi-block">
       <div class="vi-label" data-ru="Соцсети" data-en="Social">Соцсети</div>
-      <p><a href="{c['fb']}" target="_blank" rel="noopener">Facebook</a></p>
+      <p><a href="{c['insta']}" target="_blank" rel="noopener">Instagram</a></p>
     </div>
   </div>
 </section>

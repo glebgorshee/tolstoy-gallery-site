@@ -885,8 +885,8 @@
     {
       "slug": "burgundy-ostrich-royal-portrait",
       "title": "",
-      "tech_ru": "Смешанная техника, холст",
-      "tech_en": "Mixed technique on canvas",
+      "tech_ru": "Масло, акрил, тушь",
+      "tech_en": "Oil Acrylic and Ink Painting",
       "size": "120×80 см",
       "sold": false,
       "imgs": [
@@ -896,8 +896,8 @@
     {
       "slug": "magenta-ostrich-peter-the-great",
       "title": "",
-      "tech_ru": "Смешанная техника, холст",
-      "tech_en": "Mixed technique on canvas",
+      "tech_ru": "Масло, акрил, тушь",
+      "tech_en": "Oil Acrylic and Ink Painting",
       "size": "100×150 см",
       "sold": false,
       "imgs": [
@@ -907,8 +907,8 @@
     {
       "slug": "green-ostrich-napoleon",
       "title": "",
-      "tech_ru": "Смешанная техника, холст",
-      "tech_en": "Mixed technique on canvas",
+      "tech_ru": "Масло, акрил, тушь",
+      "tech_en": "Oil Acrylic and Ink Painting",
       "size": "100×150 см",
       "sold": false,
       "imgs": [
@@ -918,8 +918,8 @@
     {
       "slug": "violet-ostrich-minions",
       "title": "",
-      "tech_ru": "Смешанная техника, холст",
-      "tech_en": "Mixed technique on canvas",
+      "tech_ru": "Масло, акрил, тушь",
+      "tech_en": "Oil Acrylic and Ink Painting",
       "size": "150×150 см",
       "sold": false,
       "imgs": [
@@ -929,8 +929,8 @@
     {
       "slug": "white-zeppelin-night-plaza",
       "title": "",
-      "tech_ru": "Смешанная техника, холст",
-      "tech_en": "Mixed technique on canvas",
+      "tech_ru": "Масло, акрил, тушь",
+      "tech_en": "Oil Acrylic and Ink Painting",
       "size": "100×150 см",
       "sold": false,
       "imgs": [
@@ -1012,8 +1012,8 @@
     {
       "slug": "red-heads-win-million",
       "title": "",
-      "tech_ru": "Холст, смешанная техника",
-      "tech_en": "Mixed technique on canvas",
+      "tech_ru": "Холст, акрил",
+      "tech_en": "Acrylic on canvas",
       "size": "190×190 см",
       "sold": false,
       "imgs": [
@@ -1023,8 +1023,8 @@
     {
       "slug": "figures-white-dog-pink-landscape",
       "title": "",
-      "tech_ru": "Холст, смешанная техника",
-      "tech_en": "Mixed technique on canvas",
+      "tech_ru": "Холст, акрил",
+      "tech_en": "Acrylic on canvas",
       "size": "150×150 см",
       "sold": false,
       "imgs": [
@@ -1034,8 +1034,8 @@
     {
       "slug": "three-figures-liberta",
       "title": "",
-      "tech_ru": "Холст, смешанная техника",
-      "tech_en": "Mixed technique on canvas",
+      "tech_ru": "Холст, акрил",
+      "tech_en": "Acrylic on canvas",
       "size": "130×200 см",
       "sold": false,
       "imgs": [
@@ -1045,34 +1045,12 @@
     {
       "slug": "marilyn-girl-on-black-cat",
       "title": "",
-      "tech_ru": "Холст, смешанная техника",
-      "tech_en": "Mixed technique on canvas",
+      "tech_ru": "Холст, акрил",
+      "tech_en": "Acrylic on canvas",
       "size": "180×160 см",
       "sold": false,
       "imgs": [
         "marilyn-girl-on-black-cat.jpg"
-      ]
-    },
-    {
-      "slug": "mickey-trash-crown-dollar-bills",
-      "title": "",
-      "tech_ru": null,
-      "tech_en": null,
-      "size": null,
-      "sold": false,
-      "imgs": [
-        "mickey-trash-crown-dollar-bills.jpg"
-      ]
-    },
-    {
-      "slug": "basquiat-boxer-dollar-bills",
-      "title": "",
-      "tech_ru": null,
-      "tech_en": null,
-      "size": null,
-      "sold": false,
-      "imgs": [
-        "basquiat-boxer-dollar-bills.jpg"
       ]
     }
   ],

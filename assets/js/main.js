@@ -265,6 +265,8 @@ document.documentElement.classList.add('js');
     tiles.forEach(function (t) {
       t.addEventListener('click', function (e) {
         if (e.target.closest('.ti-nav')) return;   // клик по стрелке — не открываем лайтбокс
+        var goto = t.getAttribute('data-goto');
+        if (goto) { window.location.href = goto; return; }   // визитная — сразу к художнику
         open(t);
       });
     });

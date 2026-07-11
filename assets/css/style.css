@@ -227,6 +227,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .lb-cap .lc-meta{color:#b6b3ae;font-size:14px;margin-top:4px}
 .lb-cap .lc-artist{display:inline-block;color:#fff;font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin-top:14px;padding-bottom:2px;border-bottom:1px solid rgba(255,255,255,.45);text-decoration:none;transition:opacity .3s}
 .lb-cap .lc-artist:hover{opacity:.65}
+/* телефоны не переносятся посреди номера */
+a[href^="tel:"]{white-space:nowrap}
 .lb-close{position:absolute;top:24px;right:28px;font-size:34px;color:#fff;line-height:1}
 .lb-nav{position:absolute;top:50%;transform:translateY(-50%);font-size:44px;color:#fff;opacity:.7;padding:20px;transition:opacity .3s}
 .lb-nav:hover{opacity:1}

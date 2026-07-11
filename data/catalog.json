@@ -41,28 +41,6 @@
       "image": "https://artgallerytolstoy.com/wp-content/uploads/2020/07/16.jpg"
     },
     {
-      "slug": "painting-13",
-      "title": "Painting 13",
-      "meta": [
-        "Angelo Accardi",
-        "Oil Acrylic and Ink Painting",
-        "150×150 | 2017",
-        "SOLD"
-      ],
-      "image": "https://artgallerytolstoy.com/wp-content/uploads/2020/05/13-1-1.jpg"
-    },
-    {
-      "slug": "painting-14",
-      "title": "Painting 14",
-      "meta": [
-        "Angelo Accardi",
-        "Oil Acrylic and Ink Painting",
-        "150×150 | 2018",
-        "SOLD"
-      ],
-      "image": "https://artgallerytolstoy.com/wp-content/uploads/2020/05/14-1.jpg"
-    },
-    {
       "slug": "painting-15",
       "title": "Painting 15",
       "meta": [
@@ -171,6 +149,16 @@
         "80×120 | 2018"
       ],
       "image": "https://artgallerytolstoy.com/wp-content/uploads/2020/05/5-2.jpg"
+    },
+    {
+      "slug": "shoes",
+      "title": "Shoes",
+      "meta": [
+        "Angelo Accardi",
+        "Oil Acrylic and Ink Painting",
+        "95x50x100 | 2018"
+      ],
+      "image": "https://artgallerytolstoy.com/wp-content/uploads/2020/05/shoes-big.jpg"
     }
   ],
   "mirogi": [
@@ -574,91 +562,6 @@
     }
   ],
   "van-apple": [
-    {
-      "slug": "van-apple-sculpture-1",
-      "title": "Dollar$",
-      "meta": [
-        "Diederik van Apple",
-        "Dollar$ – The Gold Peace Turtle",
-        "Edition:",
-        "Limited 1/50",
-        "Year:",
-        "2022",
-        "Materials:",
-        "Chroome / Acryl / Resin",
-        "Size:",
-        "40x25x25 cm"
-      ],
-      "image": "https://artgallerytolstoy.com/wp-content/uploads/2023/10/whatsapp-image-2023-10-23-at-13.55.01-1.jpeg"
-    },
-    {
-      "slug": "van-apple-sculpture-10",
-      "title": "Lamborgini",
-      "meta": [
-        "Diederik van Apple",
-        "Lamborgini – The Red Peace Turtle",
-        "Edition:",
-        "Limited 1/50",
-        "Year:",
-        "2022",
-        "Materials:",
-        "Chroome / Acryl / Resin",
-        "Size:",
-        "40x25x25 cm"
-      ],
-      "image": "https://artgallerytolstoy.com/wp-content/uploads/2023/10/whatsapp-image-2023-10-23-at-13.55.13.jpeg"
-    },
-    {
-      "slug": "van-apple-sculpture-11",
-      "title": "Porshe",
-      "meta": [
-        "Diederik van Apple",
-        "Porshe – The Golden Peace Turtle",
-        "Edition:",
-        "Limited 1/50",
-        "Year:",
-        "2022",
-        "Materials:",
-        "Chroome / Acryl / Resin",
-        "Size:",
-        "40x25x25 cm"
-      ],
-      "image": "https://artgallerytolstoy.com/wp-content/uploads/2023/10/whatsapp-image-2023-10-23-at-13.55.11-1.jpeg"
-    },
-    {
-      "slug": "van-apple-sculpture-12",
-      "title": "Porshe",
-      "meta": [
-        "Diederik van Apple",
-        "Porshe – The Silver Peace Turtle",
-        "Edition:",
-        "Limited 1/50",
-        "Year:",
-        "2022",
-        "Materials:",
-        "Chroome / Acryl / Resin",
-        "Size:",
-        "40x25x25 cm"
-      ],
-      "image": "https://artgallerytolstoy.com/wp-content/uploads/2023/10/whatsapp-image-2023-10-23-at-13.55.12.jpeg"
-    },
-    {
-      "slug": "van-apple-sculpture-13",
-      "title": "Louis Vuitton",
-      "meta": [
-        "Diederik van Apple",
-        "Louis Vuitton – The Silver Peace Turtle",
-        "Edition:",
-        "Limited 1/50",
-        "Year:",
-        "2022",
-        "Materials:",
-        "Chroome / Acryl / Resin",
-        "Size:",
-        "40x25x25 cm"
-      ],
-      "image": "https://artgallerytolstoy.com/wp-content/uploads/2023/10/whatsapp-image-2023-10-23-at-13.55.15-1.jpeg"
-    },
     {
       "slug": "van-apple-sculpture-14",
       "title": "McDuck",
