@@ -103,16 +103,6 @@
       "image": "https://artgallerytolstoy.com/wp-content/uploads/2020/05/18-1.jpg"
     },
     {
-      "slug": "painting-19",
-      "title": "Painting 19",
-      "meta": [
-        "Angelo Accardi",
-        "Oil Acrylic and Ink Painting",
-        "200×140 | 2016"
-      ],
-      "image": "https://artgallerytolstoy.com/wp-content/uploads/2020/05/19-1.jpg"
-    },
-    {
       "slug": "painting-2",
       "title": "Painting 2",
       "meta": [
@@ -121,16 +111,6 @@
         "150×150 | 2018"
       ],
       "image": "https://artgallerytolstoy.com/wp-content/uploads/2020/05/2-2.jpg"
-    },
-    {
-      "slug": "painting-20",
-      "title": "Painting 20",
-      "meta": [
-        "Angelo Accardi",
-        "Oil Acrylic and Ink Painting",
-        "200×140 | 2017"
-      ],
-      "image": "https://artgallerytolstoy.com/wp-content/uploads/2020/05/20-1.jpg"
     },
     {
       "slug": "painting-21",
@@ -173,17 +153,6 @@
       "image": "https://artgallerytolstoy.com/wp-content/uploads/2020/05/11.jpg"
     },
     {
-      "slug": "painting-3",
-      "title": "Painting 3",
-      "meta": [
-        "Angelo Accardi",
-        "Oil Acrylic and Ink Painting",
-        "120×120 | 2018",
-        "SOLD"
-      ],
-      "image": "https://artgallerytolstoy.com/wp-content/uploads/2020/05/3-3.jpg"
-    },
-    {
       "slug": "painting-4",
       "title": "Painting 4",
       "meta": [
@@ -202,37 +171,6 @@
         "80×120 | 2018"
       ],
       "image": "https://artgallerytolstoy.com/wp-content/uploads/2020/05/5-2.jpg"
-    },
-    {
-      "slug": "painting-6",
-      "title": "Painting 6",
-      "meta": [
-        "Angelo Accardi",
-        "Oil Acrylic and Ink Painting",
-        "120×120 | 2018"
-      ],
-      "image": "https://artgallerytolstoy.com/wp-content/uploads/2020/05/6-1.jpg"
-    },
-    {
-      "slug": "painting-9",
-      "title": "Painting 9",
-      "meta": [
-        "Angelo Accardi",
-        "Oil Acrylic and Ink Painting",
-        "100×100 | 2018",
-        "SOLD"
-      ],
-      "image": "https://artgallerytolstoy.com/wp-content/uploads/2020/05/12-1.jpg"
-    },
-    {
-      "slug": "shoes",
-      "title": "Shoes",
-      "meta": [
-        "Angelo Accardi",
-        "Oil Acrylic and Ink Painting",
-        "95x50x100 | 2018"
-      ],
-      "image": "https://artgallerytolstoy.com/wp-content/uploads/2020/05/shoes-big.jpg"
     }
   ],
   "mirogi": [
