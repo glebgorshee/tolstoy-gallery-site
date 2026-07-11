@@ -526,6 +526,61 @@
       "imgs": [
         "louis-vuitton-brown-bear.jpg"
       ]
+    },
+    {
+      "slug": "hermes-monogram-dog",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "hermes-monogram-dog.jpg"
+      ]
+    },
+    {
+      "slug": "hermes-heart-balloon",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "hermes-heart-balloon.jpg"
+      ]
+    },
+    {
+      "slug": "hermes-sunglasses-bear",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "hermes-sunglasses-bear.jpg"
+      ]
+    },
+    {
+      "slug": "hermes-orange-turtle",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "hermes-orange-turtle.jpg"
+      ]
+    },
+    {
+      "slug": "lamborghini-gold-turtle",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "lamborghini-gold-turtle.jpg"
+      ]
     }
   ],
   "leo-steph": [
