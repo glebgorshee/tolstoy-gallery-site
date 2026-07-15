@@ -179,6 +179,50 @@
       "imgs": [
         "guitarist-figure.jpg"
       ]
+    },
+    {
+      "slug": "hoodie-figure-green-glow",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": "30 см",
+      "sold": false,
+      "imgs": [
+        "hoodie-figure-green-glow.jpg"
+      ]
+    },
+    {
+      "slug": "hoodie-figure-grey-orange",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": "30 см",
+      "sold": false,
+      "imgs": [
+        "hoodie-figure-grey-orange.jpg"
+      ]
+    },
+    {
+      "slug": "hoodie-figure-navy-green",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": "30 см",
+      "sold": false,
+      "imgs": [
+        "hoodie-figure-navy-green.jpg"
+      ]
+    },
+    {
+      "slug": "hoodie-figure-red",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": "55 см",
+      "sold": false,
+      "imgs": [
+        "hoodie-figure-red.jpg"
+      ]
     }
   ],
   "milena-b": [
