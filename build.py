@@ -477,7 +477,9 @@ def make_derivatives():
                            capture_output=True)
         made += 1
     # постеры видео (ffmpeg): кадр с 0.5 сек, ширина 640
-    for src in glob.glob(os.path.join(ROOT, IMG, 'works', '*-video', '*.mp4')):
+    video_srcs = (glob.glob(os.path.join(ROOT, IMG, 'works', '*-video', '*.mp4'))
+                  + glob.glob(os.path.join(ROOT, 'assets/video-gallery', '*.mp4')))
+    for src in video_srcs:
         vdir = os.path.basename(os.path.dirname(src))
         stem = os.path.splitext(os.path.basename(src))[0]
         dst = os.path.join(ROOT, THUMBS, 'posters', vdir, f'{stem}.jpg')
@@ -526,6 +528,7 @@ def header(active='', home=False):
     <nav class="nav" id="nav">
       <a href="artists.html"{cls('artists')} data-ru="Художники" data-en="Artists">Художники</a>
       <a href="collections.html"{cls('collections')} data-ru="Коллекция" data-en="Collection">Коллекция</a>
+      <a href="video.html"{cls('video')} data-ru="Видео" data-en="Video">Видео</a>
       <a href="contacts.html"{cls('contacts')} data-ru="Контакты" data-en="Contacts">Контакты</a>
     </nav>
   </div>
@@ -533,6 +536,7 @@ def header(active='', home=False):
 <div class="mobile-menu" id="mobileMenu">
   <a href="artists.html" data-ru="Художники" data-en="Artists">Художники</a>
   <a href="collections.html" data-ru="Коллекция" data-en="Collection">Коллекция</a>
+  <a href="video.html" data-ru="Видео" data-en="Video">Видео</a>
   <a href="contacts.html" data-ru="Контакты" data-en="Contacts">Контакты</a>
 </div>
 '''
@@ -819,6 +823,59 @@ def build_visit():
 '''
     return head('Контакты — Art Gallery Tolstoy', 'Контакты и адрес Арт Галереи Толстой', 'contacts') + body + footer()
 
+# ---------- видео-вкладка ----------
+def gallery_videos():
+    return sorted(glob.glob(os.path.join(ROOT, 'assets/video-gallery/*.mp4')))
+
+def build_video():
+    # агрегируем ВСЕ видео сайта: галерейные промо + видео-работы художников
+    def rels(paths):
+        return [os.path.relpath(p, ROOT).replace(os.sep, '/') for p in sorted(paths)]
+    gal = rels(gallery_videos())
+    vanapple = rels(glob.glob(os.path.join(ROOT, f'{IMG}/works/van-apple-video/*.mp4')))
+    bashev = rels(glob.glob(os.path.join(ROOT, f'{IMG}/works/bashev-video/*.mp4')))
+    others = rels([p for p in glob.glob(os.path.join(ROOT, f'{IMG}/works/*-video/*.mp4'))
+                   if 'van-apple-video' not in p and 'bashev-video' not in p])
+    # чередуем источники, чтобы колонки были разнообразными (не всё Башев подряд)
+    lists = [x for x in (gal, vanapple, bashev, others) if x]
+    merged, mx = [], max((len(x) for x in lists), default=0)
+    for i in range(mx):
+        for lst in lists:
+            if i < len(lst):
+                merged.append(lst[i])
+    # раскладка по 3 колонкам; направления встречные (вверх/вниз/вверх)
+    cols = [[], [], []]
+    for i, rel in enumerate(merged):
+        cols[i % 3].append(rel)
+
+    def vid_el(rel):
+        poster = poster_path(rel)
+        pattr = f' poster="{esc(poster)}"' if poster else ''
+        return f'<video src="{esc(rel)}"{pattr} loop muted playsinline preload="none"></video>'
+
+    dirs = ['up', 'down', 'up']
+    col_html = ''
+    for ci, col in enumerate(cols):
+        inner = ''.join(vid_el(r) for r in col)
+        dur = max(20, round(len(col) * 3.4))   # скорость ∝ длине колонки, чтоб ехало ровно
+        # дубль тем же порядком — для бесшовного цикла (см. keyframes translateY -50%)
+        col_html += (f'<div class="vidwall__col vidwall__col--{dirs[ci]}" '
+                     f'style="animation-duration:{dur}s">{inner}{inner}</div>')
+
+    body = f'''
+<section class="page-head container">
+  <p class="ph-kicker" data-ru="Живые работы" data-en="Living works">Живые работы</p>
+  <h1 data-ru="Видео" data-en="Video">Видео</h1>
+  <p class="ph-sub" data-ru="Нажмите на любое видео, чтобы посмотреть со звуком." data-en="Tap any video to watch with sound.">Нажмите на любое видео, чтобы посмотреть со звуком.</p>
+</section>
+<section class="vidwall" aria-label="Видео галереи">{col_html}</section>
+<div class="vlb" id="vlb" aria-hidden="true">
+  <button class="vlb-close" type="button" aria-label="Закрыть">&times;</button>
+  <div class="vlb-stage"></div>
+</div>
+'''
+    return head('Видео — Art Gallery Tolstoy', 'Видео-работы Арт Галереи Толстой', 'video') + body + footer()
+
 # ---------- запись файлов ----------
 def w(path, content):
     with open(os.path.join(ROOT, path), 'w', encoding='utf-8') as f:
@@ -831,6 +888,7 @@ w('artists.html', build_artists())
 for a in ARTISTS:
     w(f'artist-{a["slug"]}.html', build_artist(a))
 w('collections.html', build_collections())
+w('video.html', build_video())
 w('contacts.html', build_visit())
 print('Работ в каталоге по художникам:', {k: len(v) for k, v in ALL_WORKS.items()})
 print('Готово.')

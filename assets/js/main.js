@@ -332,3 +332,79 @@ document.documentElement.classList.add('js');
     gridVids.forEach(function (v) { vio.observe(v); });
   }
 })();
+
+/* ---- Видео-вкладка: бегущие колонки (play/pause по видимости) + клик → лайтбокс со звуком ---- */
+(function () {
+  var wall = document.querySelectorAll('.vidwall video');
+  if (!wall.length) return;
+
+  // стена всегда без звука (звук только в лайтбоксе); играем сразу, IO дальше паузит уехавшие
+  var io = ('IntersectionObserver' in window)
+    ? new IntersectionObserver(function (entries) {
+        if (!(window.innerHeight > 0)) return;   // защита от кривого вьюпорта (headless-превью)
+        entries.forEach(function (e) {
+          if (e.isIntersecting) e.target.play().catch(function () {});
+          else e.target.pause();
+        });
+      }, { rootMargin: '400px 0px' })
+    : null;
+  wall.forEach(function (v) {
+    v.muted = true;
+    v.play().catch(function () {});   // muted-автоплей разрешён без жеста
+    if (io) io.observe(v);
+  });
+  // iOS/Low-Power фолбэк: пнуть видимые по первому жесту
+  var kicked = false;
+  function kick() {
+    if (kicked) return; kicked = true;
+    var vh = window.innerHeight || 800;
+    wall.forEach(function (v) {
+      var r = v.getBoundingClientRect();
+      if (r.bottom > -300 && r.top < vh + 300) v.play().catch(function () {});
+    });
+    ['touchstart', 'pointerdown', 'click'].forEach(function (ev) { window.removeEventListener(ev, kick); });
+  }
+  ['touchstart', 'pointerdown', 'click'].forEach(function (ev) { window.addEventListener(ev, kick, { passive: true }); });
+
+  // видео-лайтбокс
+  var vlb = document.getElementById('vlb');
+  if (!vlb) return;
+  var stage = vlb.querySelector('.vlb-stage');
+  var closeBtn = vlb.querySelector('.vlb-close');
+
+  function open(src) {
+    if (!src) return;
+    stage.innerHTML = '';
+    var el = document.createElement('video');
+    el.src = src; el.controls = true; el.autoplay = true;
+    el.playsInline = true; el.setAttribute('playsinline', ''); el.preload = 'auto';
+    stage.appendChild(el);
+    vlb.classList.add('is-open');
+    vlb.setAttribute('aria-hidden', 'false');
+    document.documentElement.style.overflow = 'hidden';
+    if (window.gsap) gsap.fromTo(stage, { scale: .86, opacity: 0 }, { scale: 1, opacity: 1, duration: .4, ease: 'expo.out' });
+    el.play().catch(function () {});
+  }
+  function close() {
+    if (!vlb.classList.contains('is-open')) return;
+    vlb.classList.remove('is-open');
+    vlb.setAttribute('aria-hidden', 'true');
+    stage.innerHTML = '';
+    document.documentElement.style.overflow = '';
+  }
+
+  // тап/клик: отличаем от драга (палец сдвинулся >12px или зажатие >600мс — не открываем)
+  wall.forEach(function (v) {
+    var x = 0, y = 0, t = 0, moved = false;
+    v.addEventListener('pointerdown', function (e) { x = e.clientX; y = e.clientY; t = Date.now(); moved = false; });
+    v.addEventListener('pointermove', function (e) { if (Math.hypot(e.clientX - x, e.clientY - y) > 12) moved = true; });
+    v.addEventListener('pointerup', function () {
+      if (moved || Date.now() - t > 600) return;
+      open(v.currentSrc || v.src);
+    });
+    v.addEventListener('pointercancel', function () { moved = true; });
+  });
+  closeBtn.addEventListener('click', function (e) { e.stopPropagation(); close(); });
+  vlb.addEventListener('click', function (e) { if (e.target === vlb || e.target === stage) close(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+})();
