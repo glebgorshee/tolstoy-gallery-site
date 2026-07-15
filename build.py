@@ -51,7 +51,7 @@ ARTISTS = [
     dict(slug='van-apple', order=5, key='van-apple',
          name_ru='Ван Эппл', name_en='Van Apple',
          years='Нидерланды',
-         portrait=f'{IMG}/site/van-apple-art-uitnodiging-kopiya.jpg', hero_pos='center top',
+         portrait=f'{IMG}/site/van-apple-portrait.jpg', hero_pos='center 30%',
          short_ru='Цифровое mix-media искусство: поп-культура, комиксы, лимитированные серии.',
          bio_ru=('Дидерик ван Эппл родился и вырос в Лейдене, Нидерланды, в 1985 году. Бросил юриспруденцию '
                  'ради творчества; с 2005 года работал арт-представителем галереи в Амстердаме, ездил по '
