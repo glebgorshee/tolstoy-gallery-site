@@ -1160,6 +1160,119 @@
         "melting-dollar-black-white-1.jpg",
         "melting-dollar-black-white-2.jpg"
       ]
+    },
+    {
+      "slug": "scrooge-vault-sitting",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "scrooge-vault-sitting.jpg"
+      ]
+    },
+    {
+      "slug": "scrooge-vault-red",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "scrooge-vault-red.jpg"
+      ]
+    },
+    {
+      "slug": "scrooge-vault-blue",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "scrooge-vault-blue.jpg"
+      ]
+    },
+    {
+      "slug": "scrooge-vault-diving",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "scrooge-vault-diving.jpg"
+      ]
+    },
+    {
+      "slug": "dollar-100-three-presidents",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "dollar-100-three-presidents.jpg"
+      ]
+    },
+    {
+      "slug": "nun-white",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "nun-white.jpg"
+      ]
+    },
+    {
+      "slug": "nun-black",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "nun-black.jpg"
+      ]
+    },
+    {
+      "slug": "nun-latex",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "nun-latex-1.jpg",
+        "nun-latex-2.jpg"
+      ]
+    },
+    {
+      "slug": "xray-suitcase",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "xray-suitcase-still-1.jpg",
+        "xray-suitcase-still-2.jpg"
+      ]
+    },
+    {
+      "slug": "xray-birkin",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "xray-birkin-still-1.jpg",
+        "xray-birkin-still-2.jpg"
+      ]
     }
   ],
   "bashev": [
