@@ -43,6 +43,17 @@
       "imgs": [
         "madonna-love.jpg"
       ]
+    },
+    {
+      "slug": "mask-love-you",
+      "title": "",
+      "tech_ru": null,
+      "tech_en": null,
+      "size": null,
+      "sold": false,
+      "imgs": [
+        "mask-love-you.jpg"
+      ]
     }
   ],
   "raphael-vanderhaegen": [
