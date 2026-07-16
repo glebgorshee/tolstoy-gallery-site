@@ -50,7 +50,7 @@ ARTISTS = [
                  'фигуре в движении и на форме; композиция всегда полна динамики.')),
     dict(slug='van-apple', order=5, key='van-apple',
          name_ru='Ван Эппл', name_en='Van Apple',
-         years='Нидерланды',
+         years='Нидерланды', vids_as_works=True,   # X-Ray видео — оживлённые картины, показываем как обычные «Работы»
          portrait=f'{IMG}/site/van-apple-portrait.jpg', hero_pos='center 30%',
          short_ru='Цифровое mix-media искусство: поп-культура, комиксы, лимитированные серии.',
          bio_ru=('Дидерик ван Эппл родился и вырос в Лейдене, Нидерланды, в 1985 году. Бросил юриспруденцию '
