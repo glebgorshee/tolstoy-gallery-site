@@ -264,6 +264,8 @@ a[href^="tel:"]{white-space:nowrap}
 @media(max-width:480px){
   .grid{columns:1}
   .artist-strip{grid-template-columns:repeat(2,1fr)}
+  .ft-grid{grid-template-columns:1fr;gap:30px}   /* на телефоне всё в одну колонку — почты/адрес влезают */
+  .ft-grid a,.ft-muted{overflow-wrap:break-word}
 }
 
 @media(prefers-reduced-motion:reduce){

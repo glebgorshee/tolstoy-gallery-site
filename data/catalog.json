@@ -561,5 +561,53 @@
       "image": "https://artgallerytolstoy.com/wp-content/uploads/2020/05/6-3.jpg"
     }
   ],
-  "van-apple": []
+  "van-apple": [
+    {
+      "slug": "van-apple-sculpture-28",
+      "title": "Dom Perignon Amex",
+      "meta": [
+        "Diederik van Apple",
+        "Dom Perignon Amex",
+        "Year:",
+        "2023",
+        "Materials:",
+        "Alu / Holo / Epoxy",
+        "Size:",
+        "150×95 cm"
+      ],
+      "image": "https://artgallerytolstoy.com/wp-content/uploads/2023/10/whatsapp-image-2023-10-23-at-13.55.14.jpeg"
+    },
+    {
+      "slug": "van-apple-sculpture-29",
+      "title": "Pearl Girl",
+      "meta": [
+        "Diederik van Apple",
+        "Pearl Girl",
+        "Year:",
+        "2023",
+        "Materials:",
+        "Board / Epoxy",
+        "Size:",
+        "105×105 cm"
+      ],
+      "image": "https://artgallerytolstoy.com/wp-content/uploads/2023/10/whatsapp-image-2023-10-23-at-13.55.13-1.jpeg"
+    },
+    {
+      "slug": "van-apple-sculpture-30",
+      "title": "Rock n Roll",
+      "meta": [
+        "Diederik van Apple",
+        "Rock n Roll",
+        "Edition:",
+        "Unique",
+        "Year:",
+        "2023",
+        "Materials:",
+        "$ Notes / Epoxy / Holo",
+        "Size:",
+        "110×100 cm"
+      ],
+      "image": "https://artgallerytolstoy.com/wp-content/uploads/2023/10/whatsapp-image-2023-10-25-at-20.03.44.jpeg"
+    }
+  ]
 }
