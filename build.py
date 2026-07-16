@@ -655,7 +655,7 @@ def build_index():
 <section class="visit-cta">
   <div class="container visit-cta-in reveal">
     <p class="vc-kicker" data-ru="Контакты" data-en="Contacts">Контакты</p>
-    <h2 data-ru="Приходите посмотреть" data-en="Come and see">Приходите посмотреть</h2>
+    <h2 data-ru="Ждём вас в галерее" data-en="Visit the gallery">Ждём вас в галерее</h2>
     <p class="vc-addr">{esc(CONTACTS['address'])}</p>
     <a class="btn btn-dark" href="contacts.html" data-ru="Контакты" data-en="Contacts">Контакты</a>
   </div>
