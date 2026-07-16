@@ -884,5 +884,6 @@ for a in ARTISTS:
 w('collections.html', build_collections())
 w('video.html', build_video())
 w('contacts.html', build_visit())
+w('CNAME', 'artgallerytolstoy.com\n')   # свой домен для GitHub Pages (не терять при пересборке)
 print('Работ в каталоге по художникам:', {k: len(v) for k, v in ALL_WORKS.items()})
 print('Готово.')
