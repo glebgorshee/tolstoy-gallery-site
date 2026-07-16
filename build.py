@@ -61,7 +61,7 @@ ARTISTS = [
                  'галереях, среди коллекционеров и инвесторов.')),
     dict(slug='bashev', order=6, key='bashev',
          name_ru='Максим Башев', name_en='Maxim Bashev',
-         years='Россия',
+         years='Россия', vids_as_works=True,   # видео Башева — анимированные картины, показываем как обычные «Работы»
          portrait=f'{IMG}/site/bashev-portrait.jpg', hero_pos='center 20%',
          short_ru='Художник-гуманист: авангард, смешанная техника, фотопортрет в живописи.',
          bio_ru=('Максим Башев — художник, график, фотограф, автор коротких рассказов. Удостоен звания '
@@ -669,24 +669,6 @@ def build_index():
 def build_artists():
     rows = ''
     for a in ARTISTS:
-        cnt = len(ALL_WORKS[a['key']])
-        vcnt = len(artist_videos(a['key']))
-        def _ru(n, one, few, many):
-            if n % 10 == 1 and n % 100 != 11: return one
-            if 2 <= n % 10 <= 4 and not 12 <= n % 100 <= 14: return few
-            return many
-        w_ru = f'{cnt} {_ru(cnt, "работа", "работы", "работ")}'
-        w_en = f'{cnt} work{"s" if cnt != 1 else ""}'
-        v_ru = f'{vcnt} видео'
-        v_en = f'{vcnt} video{"s" if vcnt != 1 else ""}'
-        if cnt and vcnt:
-            cnt_txt, cnt_en = f'{w_ru} · {v_ru}', f'{w_en} · {v_en}'
-        elif vcnt:
-            cnt_txt, cnt_en = v_ru, v_en
-        elif cnt:
-            cnt_txt, cnt_en = w_ru, w_en
-        else:
-            cnt_txt, cnt_en = 'Скоро', 'Coming soon'
         rows += f'''<a class="artist-row reveal" href="artist-{a['slug']}.html" data-sru="{esc(a['sort_ru'])}" data-sen="{esc(a['sort_en'])}">
       <div class="ar-img{' logo' if a.get('logo') else ''}"><img src="{esc(thumb_path(a['portrait']))}" alt="{esc(a['name_ru'])}" loading="lazy" decoding="async"></div>
       <div class="ar-txt">
@@ -694,7 +676,7 @@ def build_artists():
         <h2 class="ar-name" data-ru="{esc(a['name_ru'])}" data-en="{esc(a['name_en'])}">{esc(a['name_ru'])}</h2>
         <p class="ar-en" data-ru="{esc(a['name_en'])}" data-en="{esc(a['name_ru'])}">{esc(a['name_en'])}</p>
         <p class="ar-short" data-ru="{esc(a['short_ru'])}" data-en="{esc(a['short_en'])}">{esc(a['short_ru'])}</p>
-        <span class="ar-link" data-ru="{cnt_txt} →" data-en="{cnt_en} →">{cnt_txt} →</span>
+        <span class="ar-link" data-ru="Смотреть →" data-en="View →">Смотреть →</span>
       </div>
     </a>'''
     body = f'''
@@ -715,23 +697,30 @@ def build_artist(a):
     works = ALL_WORKS[a['key']]
     tiles = ''.join(work_tile(w, i) for i, w in enumerate(works))
     vids = artist_videos(a['key'])
+    vids_as_works = a.get('vids_as_works')   # видео = анимированные картины → в общую сетку «Работы»
     vtiles = ''
     for v in vids:
         rel = os.path.relpath(v, ROOT).replace(os.sep, '/')
-        stem = os.path.splitext(os.path.basename(v))[0]
-        name = VIDEO_TITLES.get(stem, stem.replace('-', ' ').title())
         poster = poster_path(rel)
         pattr = f' poster="{esc(poster)}"' if poster else ''
-        vtiles += f'''<figure class="tile reveal"><div class="tile-img"><video src="{esc(rel)}"{pattr} muted loop playsinline preload="none"></video></div><figcaption><span class="t-title">{esc(name)}</span></figcaption></figure>'''
+        if vids_as_works:
+            # как обычная работа — без подписи (названия убраны по всему сайту)
+            vtiles += f'''<figure class="tile reveal"><div class="tile-img"><video src="{esc(rel)}"{pattr} muted loop playsinline preload="none"></video></div></figure>'''
+        else:
+            stem = os.path.splitext(os.path.basename(v))[0]
+            name = VIDEO_TITLES.get(stem, stem.replace('-', ' ').title())
+            vtiles += f'''<figure class="tile reveal"><div class="tile-img"><video src="{esc(rel)}"{pattr} muted loop playsinline preload="none"></video></div><figcaption><span class="t-title">{esc(name)}</span></figcaption></figure>'''
     video_block = ''
-    if vtiles:
+    if vids_as_works and vtiles:
+        tiles += vtiles          # видео-плитки в ту же сетку «Работы», отдельного блока нет
+    elif vtiles:
         vh_ru, vh_en = 'Видео-работы', 'Video works'
         video_block = f'''
 <section class="container block">
   <div class="block-head reveal"><h2 data-ru="{vh_ru}" data-en="{vh_en}">{vh_ru}</h2></div>
   <div class="grid grid-video">{vtiles}</div>
 </section>'''
-    if works:
+    if works or (vids_as_works and vids):
         gallery = f'<div class="grid">{tiles}</div>'
         gh_ru, gh_en = 'Работы', 'Works'
     elif vids:

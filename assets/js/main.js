@@ -316,7 +316,7 @@ document.documentElement.classList.add('js');
   });
 
   /* ---- видео-превью: hover на десктопе, автоплей по видимости на тач-устройствах ---- */
-  var gridVids = [].slice.call(document.querySelectorAll('.grid-video video'));
+  var gridVids = [].slice.call(document.querySelectorAll('.grid video'));
   gridVids.forEach(function (v) {
     v.addEventListener('mouseenter', function () { v.play().catch(function(){}); });
     v.addEventListener('mouseleave', function () { v.pause(); });
