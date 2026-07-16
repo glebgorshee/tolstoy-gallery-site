@@ -486,9 +486,10 @@ def make_derivatives():
         if _fresh(dst, src):
             continue
         os.makedirs(os.path.dirname(dst), exist_ok=True)
-        r = subprocess.run(['ffmpeg', '-y', '-ss', '0.5', '-i', src, '-frames:v', '1',
-                            '-vf', 'scale=480:-2', '-q:v', '6', dst], capture_output=True)
-        if r.returncode != 0:  # ролик короче 0.5с — берём первый кадр
+        # thumbnail=n=200 — ffmpeg сам выбирает репрезентативный (не чёрный/размытый) кадр
+        r = subprocess.run(['ffmpeg', '-y', '-i', src, '-vf', 'thumbnail=n=200,scale=480:-2',
+                            '-frames:v', '1', '-q:v', '6', dst], capture_output=True)
+        if r.returncode != 0:  # фолбэк — первый кадр
             subprocess.run(['ffmpeg', '-y', '-i', src, '-frames:v', '1',
                             '-vf', 'scale=480:-2', '-q:v', '6', dst], capture_output=True)
         made += 1
