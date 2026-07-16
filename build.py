@@ -817,16 +817,21 @@ def gallery_videos():
     return sorted(glob.glob(os.path.join(ROOT, 'assets/video-gallery/*.mp4')))
 
 def build_video():
-    # агрегируем ВСЕ видео сайта: галерейные промо + видео-работы художников
+    # вкладка «Видео» = только красивые промо-видео галереи.
+    # Видео художников с vids_as_works (Башев, Ван Эппл) — это их анимированные КАРТИНЫ,
+    # они живут в «Работах» на странице художника и в общую вкладку НЕ идут.
     def rels(paths):
         return [os.path.relpath(p, ROOT).replace(os.sep, '/') for p in sorted(paths)]
     gal = rels(gallery_videos())
-    vanapple = rels(glob.glob(os.path.join(ROOT, f'{IMG}/works/van-apple-video/*.mp4')))
-    bashev = rels(glob.glob(os.path.join(ROOT, f'{IMG}/works/bashev-video/*.mp4')))
-    others = rels([p for p in glob.glob(os.path.join(ROOT, f'{IMG}/works/*-video/*.mp4'))
-                   if 'van-apple-video' not in p and 'bashev-video' not in p])
-    # чередуем источники, чтобы колонки были разнообразными (не всё Башев подряд)
-    lists = [x for x in (gal, vanapple, bashev, others) if x]
+    skip = {a['key'] for a in ARTISTS if a.get('vids_as_works')}
+    artist_vids = []
+    for folder in sorted(glob.glob(os.path.join(ROOT, f'{IMG}/works/*-video'))):
+        key = os.path.basename(folder)[:-len('-video')]
+        if key in skip:
+            continue
+        artist_vids += rels(glob.glob(os.path.join(folder, '*.mp4')))
+    # чередуем источники, чтобы колонки были разнообразными
+    lists = [x for x in (gal, artist_vids) if x]
     merged, mx = [], max((len(x) for x in lists), default=0)
     for i in range(mx):
         for lst in lists:
